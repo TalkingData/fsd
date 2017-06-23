@@ -1,7 +1,7 @@
 ---
 title: DFE 第一期 （本期主编：王祥）
 date: 2017-06-23 11:18:25
-tags: [全栈,Node]
+tags: [weekly,全栈,Node]
 ---
 
 ## 基础
