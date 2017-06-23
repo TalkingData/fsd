@@ -1,20 +1,45 @@
 ---
-title: DFE 第一期 （本期主编：王祥）
+title: 大前端周刊 第一期 （本期小编：王祥）
 date: 2017-06-23 11:18:25
 tags: [weekly,全栈,Node]
 ---
 
 ## 基础
 
-1. [语义化版本 2.0.0](http://semver.org/lang/zh-CN/)
-2. [package.json规则](https://docs.npmjs.com/files/package.json)
-3. [Promise](http://es6.ruanyifeng.com/#docs/promise)
-4. [异步函数async](http://es6.ruanyifeng.com/#docs/async)
+* [Promise](http://es6.ruanyifeng.com/#docs/promise)
+在Javascript的单线程异步架构下，Promise会是很多异步服务的核心知识点，Node 8.X已经可以方便的将回调方式转换为Promise。
 
-## 工具
+* [异步函数async](http://es6.ruanyifeng.com/#docs/async)
+使用异步函数可以实现“用同步的写法，完成异步的事情”，Node 8.X已经在编译器层面对async做了优化。
+* [语义化版本 2.0.0](http://semver.org/lang/zh-CN/)
+玩开源项目的基础，组件发布的约定。
+* [package.json规则](https://docs.npmjs.com/files/package.json)
+项目的依赖列表，区别开发环境、生产环境、面向的平台和组件的规范（CMD、AMD和UMD）等。
 
-1. [mocha单元测试](https://mochajs.org/)
-2. [power-assert断言库](https://www.npmjs.com/package/power-assert)
+## 单元测试工具
+Web 应用中的单元测试更加重要，在 Web 产品快速迭代的时期，每个测试用例都给应用的稳定性提供了一层保障。 API 升级，测试用例可以很好地检查代码是否向下兼容。 对于各种可能的输入，一旦测试覆盖，都能明确它的输出。 代码改动后，可以通过测试结果判断代码的改动是否影响已确定的结果。
+
+* [mocha单元测试](https://mochajs.org/)
+NPM里每天有25W的下载量，同时支持Node、浏览器多平台的测试用例的执行。
+
+* [power-assert断言库](https://www.npmjs.com/package/power-assert)
+power-assert可以零学习成本，直观的展示出判断条件和结果。
+
+```
+1) Array #indexOf() should return index when the value is present:
+     AssertionError: # path/to/test/mocha_node.js:10
+
+  assert(ary.indexOf(zero) === two)
+         |   |       |     |   |
+         |   |       |     |   2
+         |   -1      0     false
+         [1,2,3]
+
+  [number] two
+  => 2
+  [number] ary.indexOf(zero)
+  => -1
+```
 
 ## 文章
 
