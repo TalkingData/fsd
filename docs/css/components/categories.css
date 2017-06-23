@@ -1,0 +1,60 @@
+article .categories-cloud {
+  width: 100%;
+  margin: 8rem 0;
+  text-align: center;
+  line-height: 2rem;
+}
+article .categories-cloud > spannot(last-child) {
+  margin-right: 3rem;
+}
+article .categories-cloud > span {
+  display: inline-block;
+}
+article .categories-cloud > span > span {
+  line-height: 1;
+  vertical-align: middle;
+}
+article .archive-categories,
+article .archive-categories > spannot(last-child) {
+  margin-right: 3rem;
+}
+article .archive-categories > span {
+  display: inline-block;
+}
+article .archive-categories > span > span {
+  line-height: 1;
+  vertical-align: middle;
+}
+article .archive-categories,
+article .categories-cloud {
+  margin: 8rem 0;
+  font-size: 1.3rem;
+  color: #9e9e9e;
+}
+article .archive-categories a,
+article .categories-cloud a {
+  color: #9e9e9e;
+}
+article .archive-categories a:hover,
+article .categories-cloud a:hover {
+  color: #f03838;
+}
+article .archive-categories i,
+article .categories-cloud i {
+  vertical-align: middle;
+  color: #9e9e9e;
+  margin-right: 0.5rem;
+}
+article .archive-categories .post-categories,
+article .categories-cloud .post-categories {
+  margin-right: 3rem;
+}
+article .archive-categories .post-categories a:before,
+article .categories-cloud .post-categories a:before {
+  content: "#";
+}
+article .archive-categories .post-categories a:not(:last-of-type):after,
+article .categories-cloud .post-categories a:not(:last-of-type):after {
+  content: ",";
+  padding-right: 5px;
+}
