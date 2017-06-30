@@ -33,7 +33,7 @@ ps：[EditorConfig](http://editorconfig.org/)规范在这里。
 * [koa2从起步到填坑](http://www.jianshu.com/p/6b816c609669)
 比较系统简介`koa2`使用，包含一些例子，可以让人更快上手。
 
-* [现代前端科技解析 —— 数据响应式系统](http://www.jianshu.com/p/6b816c609669)
+* [现代前端科技解析 —— 数据响应式系统](https://www.404forest.com/2017/06/28/modern-web-development-tech-analysis-data-reactivity-system/)
 文章讲解数据响应式系统及其构建，分步骤实现了`vue2.0`的响应式，还有详细的代码示例及注释。
 
 * [关于前端开发谈谈单元测试](https://segmentfault.com/a/1190000000317146)
