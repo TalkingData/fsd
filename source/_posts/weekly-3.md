@@ -28,6 +28,9 @@ ps:详解请参考[这里](http://www.jianshu.com/p/ef892323e68f)
 
 ## 文章
 
+* [一劳永逸的搞定flex布局](https://juejin.im/post/58e3a5a0a0bb9f0069fc16bb)
+你是否还在使用浮动布局？写各种line-height实现居中？不妨试试flexBox布局，它简单易用的写法可以轻松实现各种布局，让你的布局更快速高效。
+
 * [Vue的数据依赖实现原理简析](https://segmentfault.com/a/1190000010014281)
 主要从初始化的数据层面上分析了Vue是如何管理依赖来到达数据的动态响应。
 initState的过程中，将props,computed,data等属性通过Object.defineProperty来改造其getter/setter属性，并为每一个响应式属性实例化一个observer观察者。这个observer内部dep记录了这个响应式属性的所有依赖。

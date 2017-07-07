@@ -103,6 +103,8 @@ JavaScript系列相信作为“前端程序猿(媛)”的你一定了解作用�
 <li><a href="http://www.jianshu.com/p/c3dae0951f74" target="_blank" rel="external">前端资源汇集</a><br>如此之全的知识整理、资源汇集，都掌握的话你可以神挡杀神佛挡杀佛了。</li>
 </ul>
 <h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
+<li><p><a href="https://juejin.im/post/58e3a5a0a0bb9f0069fc16bb" target="_blank" rel="external">一劳永逸的搞定flex布局</a><br>你是否还在使用浮动布局？写各种line-height实现居中？不妨试试flexBox布局，它简单易用的写法可以轻松实现各种布局，让你的布局更快速高效。</p>
+</li>
 <li><p><a href="https://segmentfault.com/a/1190000010014281" target="_blank" rel="external">Vue的数据依赖实现原理简析</a><br>主要从初始化的数据层面上分析了Vue是如何管理依赖来到达数据的动态响应。<br>initState的过程中，将props,computed,data等属性通过Object.defineProperty来改造其getter/setter属性，并为每一个响应式属性实例化一个observer观察者。这个observer内部dep记录了这个响应式属性的所有依赖。<br>当响应式属性调用setter函数时，通过dep.notify()方法去遍历所有的依赖，调用watcher.update()去完成数据的动态响应。</p>
 </li>
 <li><p><a href="https://mp.weixin.qq.com/s?__biz=MzIyNjE4NjI2Nw==&amp;mid=2652558943&amp;idx=1&amp;sn=1516afcf876b9fb4a17ce048c5ade58d" target="_blank" rel="external">靠谱程序员必备技能——重构</a><br>当项目变得难以维护，重构便便迫在眉睫，但很多所谓重构仅仅算是重写，随着时间推移，项目再次变得难以维护，周而复始，陷入怪圈。如何避免重构变成重写，本文给了一些很好的建议。</p>
