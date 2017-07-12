@@ -1,85 +1,28 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
   <title>FSD Weekly</title>
-
   
-  <meta name="author" content="FSD Weekly">
+  <link href="/fsd/atom.xml" rel="self"/>
   
-
+  <link href="https://talkingdata.github.io/"/>
+  <updated>2017-07-12T15:59:01.000Z</updated>
+  <id>https://talkingdata.github.io/</id>
   
-
-  
-
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  
-
-  <meta property="og:site_name" content="FSD Weekly"/>
-
-  
-  <meta property="og:image" content="/fsd/favicon.ico"/>
-  
-
-  <link href="/fsd/favicon.ico" rel="icon">
-  <link rel="alternate" href="/fsd/atom.xml" title="FSD Weekly" type="application/atom+xml">
-  <link rel="stylesheet" href="/fsd/css/style.css" media="screen" type="text/css">
-</head>
-
-
-<body>
-<div class="blog">
-  <div class="content">
-
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/fsd/">FSD Weekly</a>
-    </h1>
-    <p class="site-description"></p>
-  </div>
-  <nav class="site-navigation">
-    <ul>
-      
-        <li><a href="/fsd/">主页</a></li>
-      
-        <li><a href="/fsd/archives">归档</a></li>
-      
-    </ul>
-  </nav>
-</header>
-
-    <main class="site-main posts-loop">
+  <author>
+    <name>FSD Weekly</name>
     
-  <article>
-
+  </author>
   
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>大前端周刊 第四期 （本期小编：李丽娇）</title>
+    <link href="https://talkingdata.github.io/2017/07/12/weekly-4/"/>
+    <id>https://talkingdata.github.io/2017/07/12/weekly-4/</id>
+    <published>2017-07-12T07:16:43.000Z</published>
+    <updated>2017-07-12T15:59:01.000Z</updated>
     
-    <h3 class="article-title"><a href="/fsd/2017/07/12/weekly-4/"><span>大前端周刊 第四期 （本期小编：李丽娇）</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/fsd/2017/07/12/weekly-4/" rel="bookmark">
-        <time class="entry-date published" datetime="2017-07-12T07:16:43.000Z">
-          2017-07-12
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+    <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="http://www.webhek.com/post/svg.html" target="_blank" rel="external">SVG的用法</a><br><strong>SVG基础和使用介绍</strong></p>
 </li>
 <li><p><a href="http://coolshell.cn/articles/9666.html" target="_blank" rel="external">浏览器的渲染原理简介</a><br><strong>由浅到深、简单易懂的浏览器渲染原理介绍</strong></p>
@@ -115,52 +58,26 @@
 <li><p><a href="http://www.ruanyifeng.com/blog/2012/10/javascript_module.html" target="_blank" rel="external">Javascript模块化编程（一）：模块的写法</a><br><a href="http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html" target="_blank" rel="external">Javascript模块化编程（二）：AMD规范</a><br><a href="http://www.ruanyifeng.com/blog/2012/11/require_js.html" target="_blank" rel="external">Javascript模块化编程（三）：require.js的用法</a><br><small><em>推荐人：包京京</em></small><br>阮一峰的文章最大的好处就是解释的清楚，很多大牛工程师不善表达，自己会但不一定能教得会。<br>三篇系列文章介绍了：js模块花的基本概念，AMD规范以及require.js的实践。</p>
 </li>
 </ul>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
+]]></content>
     
-
+    <summary type="html">
     
-
-    </div>
-
+      &lt;h2 id=&quot;基础&quot;&gt;&lt;a href=&quot;#基础&quot; class=&quot;headerlink&quot; title=&quot;基础&quot;&gt;&lt;/a&gt;基础&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.webhek.com/post/svg.html&quot; target=&quot;_blank&quot;
     
-  </div>
-</article>
-
-
-
-  <article>
-
+    </summary>
+    
+    
+  </entry>
   
+  <entry>
+    <title>大前端周刊 第三期 （本期小编：李志伟）</title>
+    <link href="https://talkingdata.github.io/2017/07/07/weekly-3/"/>
+    <id>https://talkingdata.github.io/2017/07/07/weekly-3/</id>
+    <published>2017-07-07T05:10:51.000Z</published>
+    <updated>2017-07-12T15:54:45.000Z</updated>
     
-    <h3 class="article-title"><a href="/fsd/2017/07/07/weekly-3/"><span>大前端周刊 第三期 （本期小编：李志伟）</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/fsd/2017/07/07/weekly-3/" rel="bookmark">
-        <time class="entry-date published" datetime="2017-07-07T05:10:51.000Z">
-          2017-07-07
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+    <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="https://juejin.im/post/59278e312f301e006c2e1510" target="_blank" rel="external">JavaScript系列</a><br>相信作为“前端程序猿(媛)”的你一定了解作用域、原型、原型链、继承、闭包……在前端框架的盛行之下，却让初学者忽略了JS基础的学习，但基础不稳必然限制你的发展空间，当你了解了底层，就能很轻松明白框架的原理。</p>
 </li>
 <li><p><a href="https://juejin.im/post/57dcd394a22b9d00610c5ec8" target="_blank" rel="external">排序算法</a><br>什么？在这个“用数据说话”的时代，你不懂排序算法？那你算什么男人~算什么男人~ 不对不对 算什么猿人~算什么猿人…咳咳，言归正传，平时开发我们常用的快速排序、冒泡排序、选择排序你是否了解其利弊。除此之外还有什么排序算法呢？快来一起学习吧。</p>
@@ -198,59 +115,38 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ npm i nyc --save-dev</div><div class="line">$ ./node_modules/.bin/nyc ./node_modules/.bin/mocha</div></pre></td></tr></table></figure>
 <p>执行单元测试命令后，还会直观的给出代码覆盖率报告，以<a href="http://flcloverjs.org/" target="_blank" rel="external">Flclover</a>为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">------------------------------------|----------|----------|----------|----------|----------------|</div><div class="line">File                                |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |</div><div class="line">------------------------------------|----------|----------|----------|----------|----------------|</div><div class="line">All files                           |    79.41 |    66.67 |    61.11 |    81.82 |                |</div><div class="line"> flclover                           |      100 |      100 |      100 |      100 |                |</div><div class="line">  index.js                          |      100 |      100 |      100 |      100 |                |</div><div class="line"> flclover/lib                       |    88.52 |    82.35 |    81.82 |    88.52 |                |</div><div class="line">  application.js                    |      100 |      100 |      100 |      100 |                |</div><div class="line">  flclover.js                       |       30 |        0 |        0 |       30 |... 13,14,17,19 |</div><div class="line"> flclover/lib/middleware/bodyparser |      100 |      100 |      100 |      100 |                |</div><div class="line">  index.js                          |      100 |      100 |      100 |      100 |                |</div><div class="line"> flclover/lib/middleware/logger     |    55.56 |       50 |       50 |    55.56 |                |</div><div class="line">  index.js                          |    55.56 |       50 |       50 |    55.56 |... 39,42,45,48 |</div><div class="line"> flclover/lib/utils                 |    71.43 |    33.33 |        0 |    83.33 |                |</div><div class="line">  index.js                          |    81.25 |    33.33 |        0 |      100 |           7,10 |</div><div class="line">  logger.js                         |       40 |      100 |        0 |       40 |         4,9,13 |</div><div class="line">------------------------------------|----------|----------|----------|----------|----------------|</div></pre></td></tr></table></figure></p>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
+]]></content>
     
-
+    <summary type="html">
+    
+      &lt;h2 id=&quot;基础&quot;&gt;&lt;a href=&quot;#基础&quot; class=&quot;headerlink&quot; title=&quot;基础&quot;&gt;&lt;/a&gt;基础&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://juejin.im/post/59278e312f301e006c2e1510&quot; tar
+    
+    </summary>
     
     
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/es6/">es6</a><a href="/fsd/tags/vue/">vue</a><a href="/fsd/tags/算法/">算法</a><a href="/fsd/tags/工具/">工具</a><a href="/fsd/tags/必备技能/">必备技能</a>
-    </span>
+      <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
     
-
-    </div>
-
+      <category term="es6" scheme="https://talkingdata.github.io/tags/es6/"/>
     
-  </div>
-</article>
-
-
-
-  <article>
-
+      <category term="vue" scheme="https://talkingdata.github.io/tags/vue/"/>
+    
+      <category term="算法" scheme="https://talkingdata.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="工具" scheme="https://talkingdata.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="必备技能" scheme="https://talkingdata.github.io/tags/%E5%BF%85%E5%A4%87%E6%8A%80%E8%83%BD/"/>
+    
+  </entry>
   
+  <entry>
+    <title>大前端周刊 第二期 （本期小编：胡国伟）</title>
+    <link href="https://talkingdata.github.io/2017/06/30/weekly-2/"/>
+    <id>https://talkingdata.github.io/2017/06/30/weekly-2/</id>
+    <published>2017-06-30T03:18:25.000Z</published>
+    <updated>2017-07-04T03:52:42.000Z</updated>
     
-    <h3 class="article-title"><a href="/fsd/2017/06/30/weekly-2/"><span>大前端周刊 第二期 （本期小编：胡国伟）</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/fsd/2017/06/30/weekly-2/" rel="bookmark">
-        <time class="entry-date published" datetime="2017-06-30T03:18:25.000Z">
-          2017-06-30
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+    <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="http://es6.ruanyifeng.com/#docs/class" target="_blank" rel="external">Class 的基本语法</a><br>尽管基本上，<code>ES6</code>的<code>class</code>可以看作只是一个语法糖，但使得<code>JavaScript</code>对象原型的写法更加清晰、更像面向对象编程的语法，更接近传统语言的写法。</p>
 </li>
 <li><p><a href="http://es6.ruanyifeng.com/#docs/module" target="_blank" rel="external">Module 的语法</a><br>相交于社区提供了各种模块化解决方案，<code>ES6</code>语言标准的层面上实现了模块功能，成为浏览器和服务器通用的模块解决方案。</p>
@@ -288,59 +184,36 @@
 <li><p><a href="http://www.oschina.net/translate/learning-javascript-design-patterns?cmp" target="_blank" rel="external">学用 JavaScript 设计模式</a><br>文章讲解数据响应式系统及其构建，分步骤实现了 vue2.0的响应式，还有详细的代码示例及注释。</p>
 </li>
 </ul>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
+]]></content>
     
-
+    <summary type="html">
+    
+      &lt;h2 id=&quot;基础&quot;&gt;&lt;a href=&quot;#基础&quot; class=&quot;headerlink&quot; title=&quot;基础&quot;&gt;&lt;/a&gt;基础&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://es6.ruanyifeng.com/#docs/class&quot; target=&quot;_blan
+    
+    </summary>
     
     
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/框架/">框架</a><a href="/fsd/tags/测试/">测试</a><a href="/fsd/tags/设计模式/">设计模式</a><a href="/fsd/tags/three-js/">three.js</a>
-    </span>
+      <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
     
-
-    </div>
-
+      <category term="框架" scheme="https://talkingdata.github.io/tags/%E6%A1%86%E6%9E%B6/"/>
     
-  </div>
-</article>
-
-
-
-  <article>
-
+      <category term="测试" scheme="https://talkingdata.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="设计模式" scheme="https://talkingdata.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="three.js" scheme="https://talkingdata.github.io/tags/three-js/"/>
+    
+  </entry>
   
+  <entry>
+    <title>大前端周刊 第一期 （本期小编：王祥）</title>
+    <link href="https://talkingdata.github.io/2017/06/23/weekly-1/"/>
+    <id>https://talkingdata.github.io/2017/06/23/weekly-1/</id>
+    <published>2017-06-23T03:18:25.000Z</published>
+    <updated>2017-06-23T09:01:24.000Z</updated>
     
-    <h3 class="article-title"><a href="/fsd/2017/06/23/weekly-1/"><span>大前端周刊 第一期 （本期小编：王祥）</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/fsd/2017/06/23/weekly-1/" rel="bookmark">
-        <time class="entry-date published" datetime="2017-06-23T03:18:25.000Z">
-          2017-06-23
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+    <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="external">Promise</a><br>在Javascript的单线程异步架构下，Promise会是很多异步服务的核心知识点，Node 8.X已经可以方便的将回调方式转换为Promise。</p>
 </li>
 <li><p><a href="http://es6.ruanyifeng.com/#docs/async" target="_blank" rel="external">异步函数async</a><br>使用异步函数可以实现“用同步的写法，完成异步的事情”，Node 8.X已经在编译器层面对async做了优化。</p>
@@ -374,53 +247,22 @@
 <li><p><a href="https://segmentfault.com/a/1190000009885614" target="_blank" rel="external">重温ES6核心概念和基本用法</a><br>文章梳理了ES6核心概念及基础用法，推荐给大家。</p>
 </li>
 </ul>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
+]]></content>
     
-
+    <summary type="html">
+    
+      &lt;h2 id=&quot;基础&quot;&gt;&lt;a href=&quot;#基础&quot; class=&quot;headerlink&quot; title=&quot;基础&quot;&gt;&lt;/a&gt;基础&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://es6.ruanyifeng.com/#docs/promise&quot; target=&quot;_bl
+    
+    </summary>
     
     
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/全栈/">全栈</a><a href="/fsd/tags/Node/">Node</a>
-    </span>
+      <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
     
-
-    </div>
-
+      <category term="全栈" scheme="https://talkingdata.github.io/tags/%E5%85%A8%E6%A0%88/"/>
     
-  </div>
-</article>
-
-
-
-
-<nav class="pagination">
+      <category term="Node" scheme="https://talkingdata.github.io/tags/Node/"/>
+    
+  </entry>
   
-  
-</nav>
-    </main>
-
-    <footer class="site-footer">
-  <p class="site-info">
-    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
-    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
-    </br>
-    
-    &copy; 2017 FSD Weekly
-    
-  </p>
-</footer>
-    
-  </div>
-</div>
-</body>
-</html>
+</feed>
