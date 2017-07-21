@@ -1,7 +1,8 @@
 ---
 title: 大前端周刊 第四期 （本期小编：李丽娇）
 date: 2017-07-12 15:16:43
-tags:
+tags: [weekly,Echarts,ES6,Vue,SVG,算法,模块化,性能优化]
+
 ---
 
 ## 基础
