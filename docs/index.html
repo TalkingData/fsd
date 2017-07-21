@@ -59,6 +59,156 @@
 
   
     
+    <h3 class="article-title"><a href="/fsd/2017/07/21/5-protocols-for-event-driven-api-architectures/"><span>5 Protocols For Event-Driven API Architectures</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/fsd/2017/07/21/5-protocols-for-event-driven-api-architectures/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-07-21T04:00:00.000Z">
+          2017-07-21
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>原文：<a href="http://nordicapis.com/5-protocols-for-event-driven-api-architectures/" target="_blank" rel="external">5 Protocols For Event-Driven API Architectures</a></p>
+<p>The internet is a system of communication, and as such, the relationship between client and server, as well as server to server, is one of the most oft-discussed and hotly contested concepts. <strong>event-driven architecture</strong> is a methodology of defining these relationships, and creating systems within a specific set of relationships that allow for extensive functionality.</p>
+<p>In this piece, we’re going to discuss 5 common event-driven methods — <strong>WebSockets</strong>, <strong>WebHooks</strong>, <strong>REST Hooks</strong>, <strong>Pub-Sub</strong>, and <strong>Server Sent Events</strong>. We’ll define what they fundamentally are and do, and how API providers go about using them. Additionally, we’ll provide some pros and cons on each to make choosing a solution for your platform easy and intuitive.</p>
+<h2 id="What-is-an-Event-Driven-Architecture"><a href="#What-is-an-Event-Driven-Architecture" class="headerlink" title="What is an Event-Driven Architecture?"></a>What is an Event-Driven Architecture?</h2><p>Event-driven architectures establish an event that can be consumed and reacted to. But what is an event?</p>
+<p>An event is essentially any significant <strong>change</strong> from one state to another, such as the change from having no messages in your inbox to have a new message in your inbox. This state can be reacted to <strong>internally</strong> (such as when the email program in question realizes a new message has been received), <strong>externally</strong> (when a user sees a notification for a new message), or used to <strong>generate another event</strong> (for instance, the message tally increases by one).</p>
+<p>Event-driven architectures are appealing to API developers because they function very well in <strong>asynchronous</strong> environments. By crafting APIs that <strong>trigger</strong> certain functions on new event delivery, API systems don’t have to inherently wait for synchronous delivery or real time communication. This is hugely beneficial, as eliminating the need to constantly poll endpoints frees resources from otherwise wasteful purposes, reducing both general hardware requirements and call-specific overhead.</p>
+<p>For this reason, event-driven architectures are very, very popular, and lead to improved power, bandwidth, and co-processing than other solutions and architectures such as polling and other poll-centric derivatives.</p>
+<h2 id="5-Types-of-Event-Driven-Protocols-for-APIs"><a href="#5-Types-of-Event-Driven-Protocols-for-APIs" class="headerlink" title="5 Types of Event-Driven Protocols for APIs"></a>5 Types of Event-Driven Protocols for APIs</h2><h3 id="1-WebSockets"><a href="#1-WebSockets" class="headerlink" title="1: WebSockets"></a>1: WebSockets</h3><p><strong>WebSockets</strong> are an interesting event-driven solution, because, for most browsers, they’re actually baked into the application itself. Essentially, WebSocket is a protocol that provides full-duplex communication on a single TCP connection. It was standardized by the Internet Engineering Task Force as <a href="https://tools.ietf.org/html/rfc6455" target="_blank" rel="external">RFC 6455</a>, and the WebSocket API in Web IDL was later standardized under the W3C banner.</p>
+<p>While the protocol itself is meant to be used between <strong>web browsers</strong> and <strong>servers</strong>, the protocol can be used in any case where there is a client-server relationship. The protocol itself is based upon TCP, with the additional HTTP interpretation statement that is considered an “Upgrade request” to allow for interoperability.</p>
+<h4 id="Pros"><a href="#Pros" class="headerlink" title="Pros"></a>Pros</h4><p>Because WebSocket is expressly designed for browser operation, it boasts extremely <strong>low overhead</strong> for what it actually does. By establishing a <strong>full-duplex</strong> conversation using a standardized methodology, connection both to and from the two entities can take place simultaneously, resulting in lower overhead and better throughput.</p>
+<p>Additionally, the fact that these communications take place over TCP 80/443 means that environments that traditionally block non-web based applications for security reasons can still handle this protocol, as firewalls allow communication to and from this port.</p>
+<p>Perhaps the strongest argument for the use of WebSockets are the fact that they are standardized and <strong>natively supported</strong> by all major browsers, ranging from Microsft Edge to Opera, from Firefox to Chrome. This means that any web application that ties into it will be interactable within the vast majority of both browser-based and browser-independent gateways and applications.</p>
+<h4 id="Cons"><a href="#Cons" class="headerlink" title="Cons"></a>Cons</h4><p>WebSockets have one distinct major failing — while it might have support for HTTP-like functionality, <strong>it is not HTTP</strong> whatsoever. This has implications, especially when considering optimizing in HTTP such as caching, proxying, etc., that haven’t quite become apparent.</p>
+<p>Because WebSockets are relatively new, having been only officially standardized in 2011, the industry is still understanding what the side effects mean. Most applications that use WebSockets are designed specifically for everything that a WebSocket is — what has yet to be seen, however, is whether or not this solution is better in the long-run than any stateless solution currently available.</p>
+<p>There is of course the fact that, as with other architectures on this list, WebSockets create an “always on” connection during the duration of data transfer. While this is fine for many uses such as media streaming and live stream calculations, it also essentially means that, for WebSockets, there is no scalability. Ports have hardcoded limitations and bandwidth, and thus in order to “scale”, you must add additional ports to match the maximum load. In stateless systems, this is less of an issue, as requests can wait and be made in such a way as to be independent on the state of the server itself.</p>
+<h3 id="2-WebHooks"><a href="#2-WebHooks" class="headerlink" title="2: WebHooks"></a>2: WebHooks</h3><p><strong>WebHooks</strong> are a similar concept to the WebSocket. They primarily function using <strong>custom callbacks</strong>, or code that is passed as an argument to another chunk of code and executed at a specified point in time. Essentially, a WebHook is a glorified system of “if this, then do”, allowing for users independent of the event firing to craft a custom response to that event within their own system.</p>
+<p>The term was coined by <a href="https://twitter.com/progrium" target="_blank" rel="external">Jeff Lindsay</a> in 2007, and quickly became popular amongst users who wished to create automated responses to exterior behaviors. A great example of this would be a developer pushing a new item to GitHub, which causes an event. A user has a system tied into the URI of a WebHook. When the push is published, the user’s system utilizes the URI of the WebHook to integrate the push into a larger build, thereby creating a compiled component.</p>
+<h4 id="Pros-1"><a href="#Pros-1" class="headerlink" title="Pros"></a>Pros</h4><p>WebHooks function a lot like WebSockets, but they’re different in some key areas. First and foremost, WebSockets are primarily designed for browser-based communications, and while they can be used regardless in any client-server communication, they do not behave well in a <strong>server-to-server</strong> setup.</p>
+<p>WebHooks, on the other hand, work very well in server-to-server systems due to how they operate. Because the system essentially functions as the aforementioned “if this then do”, servers can be configured to tie into pre-formed URIs at any time and execute a given function whenever that event is triggered.</p>
+<p>Additionally, WebHooks have the unique benefit of being <strong>based upon HTTP</strong>, unlike WebSockets. This means that the system can be integrated without utilizing any new infrastructure, allowing speedy adoption and relatively simple setup.</p>
+<h4 id="Cons-1"><a href="#Cons-1" class="headerlink" title="Cons"></a>Cons</h4><p>The problem with WebHooks is that a lot of their functionality can already be placed on the arguably more powerful REST architectural approach. While adopting event-driven architecture is often a requirement of the service being built, it’s a hard sell when it can be mirrored in REST while also giving the wealth of options that REST gives to the user.</p>
+<p>These RESTful solutions such as <a href="http://www.restms.org/" target="_blank" rel="external">RestMS</a> are essentially simply message querying services, though, and do require additional infrastructure, which may or may not be doable considering the purpose of the application.</p>
+<p>Additionally, WebHooks can be <strong>resource intensive</strong> to both the client and the server. If the client needs to notify many servers that an event has occurred, and a server needs to listen to a great deal of clients notifying of this change, you can very quickly run into a situation where your network grows uncontrollably. While HTTP does scale quite well, this is a definite negative to consider.</p>
+<p>However, there are also ways to build a <a href="https://en.wikipedia.org/wiki/Message_queuing_service" target="_blank" rel="external">message queuing service</a> on top of HTTP—some RESTful examples include <a href="https://www.iron.io/platform/ironmq/" target="_blank" rel="external">IronMQ</a> and RestMS.</p>
+<h3 id="3-REST-Hooks"><a href="#3-REST-Hooks" class="headerlink" title="3: REST Hooks"></a>3: REST Hooks</h3><p>Speaking of RESTful examples, <strong>REST Hooks</strong> is essentially “hooking” baked into REST itself. Defined as an initiative from <a href="http://resthooks.org/docs/" target="_blank" rel="external">Zapier</a>, this is a subject <a href="http://nordicapis.com/stop-polling-and-consider-using-rest-hooks/" target="_blank" rel="external">we’ve covered before</a> — hooks are collated to a single target URL as a subscription, which pings the resource requester when a change is noted.</p>
+<p>This approach is a response to the practice of <strong>polling</strong>, in which a client constantly checks for changes to a resource. Under the REST Hooks paradigm, the client instead waits for a change, and reacts to it. To put it simply, this is a WebHook in REST.</p>
+<h4 id="Pros-2"><a href="#Pros-2" class="headerlink" title="Pros"></a>Pros</h4><p>REST Hooks are obviously super powerful in the correct context — being able to passively receive a resource rather than dedicating processing power to constant polling frees up a lot of the client-side cost.</p>
+<p>Perhaps the strongest argument for REST Hooks though, is the fact that it’s <strong>so easy</strong> and <strong>intuitive</strong> to use. While WebHooks utilize HTTP and thus do not need new architecture to set up, they are also limited by the fact that they are built upon HTTP, and can thus be somewhat complex to set up properly and use effectively.</p>
+<p>REST Hooks, though, are <strong>subscription based</strong>, and as such, are simply usable by subscribing. This makes it a very easy to use solution while providing a lot of the usability and effectiveness of more complex systems.</p>
+<h4 id="Cons-2"><a href="#Cons-2" class="headerlink" title="Cons"></a>Cons</h4><p>Of course, every solution has its negatives, and REST Hooks are no different. It could be viewed that REST Hooks actually fly in the face of what REST is — <a href="http://nordicapis.com/defining-stateful-vs-stateless-web-services/" target="_blank" rel="external">session free and stateless</a>. REST Hooks essentially create consistent polling, it’s just moved the polling from one side to another.</p>
+<p>Then, there’s the arguable problem that REST Hooks might be doing something that has already been solved. Some would argue that TCP already does most of what REST Hooks is trying to do, and simply layering more solutions on top of HTTP to get what TCP already does is a poor approach.</p>
+<h3 id="4-Pub-Sub"><a href="#4-Pub-Sub" class="headerlink" title="4: Pub-Sub"></a>4: Pub-Sub</h3><p><strong>Pub-Sub</strong> is a slightly different approach. Referred to by its full name as <strong>publish-subscribe</strong>, the concept is where events are published to a class without knowledge of the client subscribing to the class. Basically, a user will join one or more classes, and then will receive event updates without regard or knowledge to the event publisher.</p>
+<p>The main difference here is one of conscious choice of provider — in the other solutions noted herein, a user consciously communicates with a given server or provider and receives events as pre-determined. Under the Pub-Sub scheme, the user only specifies which class they wish to be part of and what events they are interested in receiving. From there, they receive these events when one is pushed out.</p>
+<p>A way this is often framed in internet discussions is in the frame of a <strong>radio channel</strong>. Record companies, or publishers, issue audio to the station, which then broadcasts this audio to listeners, or subscribers. Pub-sub is the middleman radio station here — listeners don’t know who gave the station the music, nor do the companies know who the listeners are. It is this segmentation that is baked into the pattern.</p>
+<p>When we talk about Pub-Sub, we need to keep in mind that we’re actually talking about two different things. Pub-Sub can mean the methodology and general concept in programming terms, but it can also mean specific provider solutions based upon that methodology. For instance, Google’s <a href="https://cloud.google.com/pubsub/docs/overview" target="_blank" rel="external">Cloud Pub/Sub</a> is an implementation of the general methodology within their cloud service, and allows for asynchronous many-to-many pub-sub relationships as stated above.</p>
+<h4 id="Pros-3"><a href="#Pros-3" class="headerlink" title="Pros"></a>Pros</h4><p>A huge benefit of Pub-Sub is the fact that it’s <strong>loosely coupled</strong>, and thus is extremely scalable and flexible. The only thing the event-provider is doing is generating the content — each other step is done through a separated middleman, and so the content is easily scaled and modulated to the architecture and design of the solution.</p>
+<p>Additionally, Pub-Sub lends itself very well to <strong>testing</strong>. A subscriber is narrowly limited to a set of events that they have requested under a class, so if a failure occurs, this natural segmentation informs the provider as to where the fault is, and which class of users is experiencing the fault.</p>
+<h4 id="Cons-3"><a href="#Cons-3" class="headerlink" title="Cons"></a>Cons</h4><p>Unfortunately, decoupling is also a huge disadvantage for this pattern. By being a <strong>middleman</strong>, Pub-Sub cannot effectively notify the provider that a message has been sent, and the listener is separated from the event and thus may not know if a message wasn’t sent that should have been. Harkening back to the radio explanation, a listener will never know if a song was meant to play on a channel or if the channel is out of range, and once the record executives hand off the music, they’ve got no idea if the user received the songs without direct feedback from them.</p>
+<p>Additionally, while the system is extensible and flexible, instability does occur with high traffic load as subclass after subclass might be constructed to handle further segmentation. This of course leads to the aforementioned instability in addition to increased complexity.</p>
+<p>You must keep in mind that while the relationship between the publisher and subscriber in this model may be beneficial, it also comes with its own difficulties when these relationships need to be modulated. While you can certainly work around this, at this point, you’re fighting the very basis of the pattern, rather than any secondary natures — you’re trying to make dehydrated water, and fighting against the nature of a pattern suggests the pattern to be inherently poor.</p>
+<blockquote>
+<p>Also read: <a href="http://nordicapis.com/building-a-backend-for-frontend-shim-for-your-microservices/" target="_blank" rel="external">Building a Backend for Frontend (BFF) For Your Microservices</a></p>
+</blockquote>
+<h3 id="5-Server-Sent-Events"><a href="#5-Server-Sent-Events" class="headerlink" title="5: Server Sent Events"></a>5: Server Sent Events</h3><p><strong>Server Sent Events</strong>, or SSE, is a communication protocol much like WebSockets, but with the implication of <strong>unidirectional data</strong>. In this architecture, the server is consistently sending updates to the client as an automatic process. This was standardized under HTML5 by the <a href="https://www.w3.org/TR/2009/WD-eventsource-20091029/" target="_blank" rel="external">W3C</a>, and is thus compatible with any solution that is likewise compatible with HTML5.</p>
+<blockquote>
+<p>Of note is that there is a competing standardization from the <a href="https://whatwg.org/" target="_blank" rel="external">Web Hypertext Application Technology Working Group</a> – this is a relic from movement away from “HTML5” and into what WHATWG is calling “HTML Living Standard”. The general working consensus is that, WHATWG’s standardization is prioritized in the rare cases of divergent standards. This could become more of an issue as time marches forward, given that WHATWG was created due to a perceived lack of interest from W3C towards evolving HTML, but for the time being, either standard is generally acceptable.<br>While simple in theory, Server Sent Events are anything but simple when considering benefits and drawbacks.</p>
+</blockquote>
+<h4 id="Pros-4"><a href="#Pros-4" class="headerlink" title="Pros"></a>Pros</h4><p>SSE is <strong>not bidirectional</strong> in its communications — the server is issuing the events in a steady, predictable method. This is hugely beneficial to applications which do not need the two-way communications baked into WebSockets or other such solutions, as this means <strong>lower bandwidth</strong>, and an allowance for the connection to be temporary rather than always-on during the duration of data transfer. By its nature, the data is being transferred one way, and thus there is no need to wait for data to be returned.</p>
+<p>Additionally, at least in theory, SSE is easier to set up in complex situations. You only have to worry about data traveling one direction via one system, thus reducing complexity dramatically. There is no need to define a message exchange protocol, no need to specify data duration or wait times, no need to support bilateral messaging — the single direction saves a lot of complexity.</p>
+<h4 id="Cons-4"><a href="#Cons-4" class="headerlink" title="Cons"></a>Cons</h4><p>That simplicity could be where SSE fails for particular use cases. SSE is a very poor solution for situations that require <strong>bidirectional communication</strong>, and while this seems obvious, it would surprise many developers to see how many systems actually depend on bidirectional communication for simple functionality.</p>
+<p>While much of this can be fixed with workarounds, a developer’s goal in choosing an event-driven protocol should be to find one that works out of the box, not to find a solution that might work if configured properly and given secondary systems upon which to depend.</p>
+<p>There is also the issue of <strong>security</strong> and authentication. While two-way systems can easily use authentication methodologies, SSE handles this using <strong>header forwarding</strong>. While headers can be manipulated and overridden in many languages and applications, the EventSource object in JavaScript does not natively support this, which would cause many adoptees some major headaches.</p>
+<p>Finally, there is a concern over loss of efficiency with <strong>over transmitting</strong> data. A two-direction system can determine when a client or server disconnects, but SSE can only determine that a client has disconnected after attempting a full data transmission and receiving a noted failure. Because of this, data can be lost rather quickly, and with many failed connections, this loss can mount dramatically over time.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>There is no one event-driven solution that works in every use case. While many would argue that event-driven solutions should be REST based, which suggests REST Hooks as the answer, many others would argue that it is entirely situational, and that REST is not always the silver bullet it’s touted to be.</p>
+<p>If you are building for scalability with low overhead in a browser environment, <strong>WebSockets</strong> are a great solution. Conversely, if you’d like those same benefits but are working in a non-browser system, then <strong>WebHooks</strong> should be your approach. <strong>REST Hooks</strong> are not only great for RESTful services, they’re also much easier to set up than either, and thus are great in low-time high-rush situations. <strong>Pub-Sub</strong> can be great if you need to enforce a division between client and server, and this can further be established and controlled in an even stronger way with <strong>Server Sent</strong>.</p>
+<p>Simply put, the best solution will be the one that fits your specific situation and build — any of these solutions, given the correct system, is a great solution. To that end, each solution has a very specific use case.</p>
+<h2 id="TLDR-Comparison-Table"><a href="#TLDR-Comparison-Table" class="headerlink" title="TLDR Comparison Table"></a>TLDR Comparison Table</h2><table>
+<thead>
+<tr>
+<th>PROTOCOL</th>
+<th>RELATED TO</th>
+<th>STANDARD BODY</th>
+<th>NOTES</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WebSockets</td>
+<td>TCP, HTTP-like</td>
+<td>IETF, W3C</td>
+<td>Two-way communication over TCP<br>Designed for web browsers &amp; web servers<br>Good for lower overhead scenarios<br>Supported in all major browsers</td>
+</tr>
+<tr>
+<td>Webhooks</td>
+<td>URI, HTTP</td>
+<td>-</td>
+<td>User defined “HTTP callbacks”<br>Triggered by an event HTTP<br>Requests are made to Webhook URI<br>Enables real-time event triggering</td>
+</tr>
+<tr>
+<td>REST Hooks</td>
+<td>HTTP</td>
+<td>Zapier</td>
+<td>Lightweight subscription layer<br>Manipulated by a REST API<br>Essentially a WebHook in REST</td>
+</tr>
+<tr>
+<td>Pub-Sub</td>
+<td>-</td>
+<td>-</td>
+<td>Client subscribes to classes<br>Bidirectional<br>Middleman layer between client and server<br>Loose coupling</td>
+</tr>
+<tr>
+<td>Server Sent</td>
+<td>HTTP, HTML5 , DOM</td>
+<td>WHATWG, W3C</td>
+<td>Server constantly sends updates to the client<br>Unidirectional push notifications as DOM events</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/fsd/tags/Event-Driven/">Event-Driven</a><a href="/fsd/tags/全栈/">全栈</a><a href="/fsd/tags/Node/">Node</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
     <h3 class="article-title"><a href="/fsd/2017/07/12/weekly-4/"><span>大前端周刊 第四期 （本期小编：李丽娇）</span></a></h3>
     
   
@@ -390,7 +540,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/全栈/">全栈</a><a href="/fsd/tags/Node/">Node</a>
+        <a href="/fsd/tags/全栈/">全栈</a><a href="/fsd/tags/Node/">Node</a><a href="/fsd/tags/weekly/">weekly</a>
     </span>
     
 
