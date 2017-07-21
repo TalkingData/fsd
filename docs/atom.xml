@@ -5,7 +5,7 @@
   <link href="/fsd/atom.xml" rel="self"/>
   
   <link href="https://talkingdata.github.io/"/>
-  <updated>2017-07-21T06:42:59.236Z</updated>
+  <updated>2017-07-21T07:14:35.939Z</updated>
   <id>https://talkingdata.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://talkingdata.github.io/2017/07/21/weekly-5/"/>
     <id>https://talkingdata.github.io/2017/07/21/weekly-5/</id>
     <published>2017-07-21T06:21:43.000Z</published>
-    <updated>2017-07-21T06:42:59.236Z</updated>
+    <updated>2017-07-21T07:14:35.939Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="https://kongchenglc.github.io/blog/%E5%85%B3%E4%BA%8Ethis20170716/" target="_blank" rel="external">JS中关于this</a><br><strong>关于this的几种绑定规则以及优先级</strong></p>
@@ -69,6 +69,18 @@
     
     </summary>
     
+    
+      <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
+    
+      <category term="three.js" scheme="https://talkingdata.github.io/tags/three-js/"/>
+    
+      <category term="ES6" scheme="https://talkingdata.github.io/tags/ES6/"/>
+    
+      <category term="Vue" scheme="https://talkingdata.github.io/tags/Vue/"/>
+    
+      <category term="Zepto" scheme="https://talkingdata.github.io/tags/Zepto/"/>
+    
+      <category term="事件驱动" scheme="https://talkingdata.github.io/tags/%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8/"/>
     
   </entry>
   
@@ -199,7 +211,7 @@
     <link href="https://talkingdata.github.io/2017/07/12/weekly-4/"/>
     <id>https://talkingdata.github.io/2017/07/12/weekly-4/</id>
     <published>2017-07-12T07:16:43.000Z</published>
-    <updated>2017-07-12T15:59:01.000Z</updated>
+    <updated>2017-07-21T07:13:15.334Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="http://www.webhek.com/post/svg.html" target="_blank" rel="external">SVG的用法</a><br><strong>SVG基础和使用介绍</strong></p>
@@ -246,6 +258,22 @@
     
     </summary>
     
+    
+      <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
+    
+      <category term="算法" scheme="https://talkingdata.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="ES6" scheme="https://talkingdata.github.io/tags/ES6/"/>
+    
+      <category term="Vue" scheme="https://talkingdata.github.io/tags/Vue/"/>
+    
+      <category term="Echarts" scheme="https://talkingdata.github.io/tags/Echarts/"/>
+    
+      <category term="模块化" scheme="https://talkingdata.github.io/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
+    
+      <category term="性能优化" scheme="https://talkingdata.github.io/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    
+      <category term="SVG" scheme="https://talkingdata.github.io/tags/SVG/"/>
     
   </entry>
   
