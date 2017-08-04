@@ -1,5 +1,5 @@
 ---
-title: weekly-7
+title: 大前端周刊 第七期 （本期小编：张成斌）
 date: 2017-08-04 10:32:34
 tags: [weekly,模块,node,Vue,函数式]
 ---
