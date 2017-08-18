@@ -48,8 +48,6 @@ tags: [weekly,工程化实践,Vuex,Webpack,PWA,持续部署]
 <small>*推荐人：张成斌*</small>
 滴滴的 webapp 是运行在微信、支付宝、手 Q 以及其它第三方渠道的打车软件。借着产品层面的功能和视觉升级，我们用 Vue 2.0 对它进行了一次技术重构；本文即是本次重构中的经验分享。
 
-* [前端工程化实践](http://wxnet.me/2017/08/18/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5/)
+* [前端工程化实践](http://wxnet.me/2017/08/18/front-end-engineering-practice/)
 <small>*推荐人：王祥*</small>
 第一篇原创文章，总结了TalkingData DTU可视化团队，在2017年上半年的实践和尝试。内容包括git工作流、代码规范和大前端的目标确定，总结过往，才能更好的迎接未来。
-
-
