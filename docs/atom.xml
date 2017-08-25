@@ -5,7 +5,7 @@
   <link href="/fsd/atom.xml" rel="self"/>
   
   <link href="https://talkingdata.github.io/"/>
-  <updated>2017-08-18T19:10:15.000Z</updated>
+  <updated>2017-08-25T07:07:55.000Z</updated>
   <id>https://talkingdata.github.io/</id>
   
   <author>
@@ -16,11 +16,105 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>大前端周刊 第九期 （本期小编：包京京）</title>
+    <title>大前端周刊 第10期 （本期小编：王祥）</title>
+    <link href="https://talkingdata.github.io/2017/08/25/weekly-10/"/>
+    <id>https://talkingdata.github.io/2017/08/25/weekly-10/</id>
+    <published>2017-08-25T02:30:30.000Z</published>
+    <updated>2017-08-25T07:07:55.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><p>ES 6 中引入了很多让代码看起来更简洁的新特性，比如展开运算符 (spread operator)。下面的三段代码，展示了 ES6 更简洁的对象拷贝、数组复制和可变参数的写法。</p>
+<ul>
+<li>对象拷贝</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// very bad</span></div><div class="line"><span class="keyword">const</span> original = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;;</div><div class="line"><span class="keyword">const</span> copy = <span class="built_in">Object</span>.assign(original, &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;); <span class="comment">// this mutates `original` ಠ_ಠ</span></div><div class="line"><span class="keyword">delete</span> copy.a; <span class="comment">// so does this</span></div><div class="line"></div><div class="line"><span class="comment">// bad</span></div><div class="line"><span class="keyword">const</span> original = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;;</div><div class="line"><span class="keyword">const</span> copy = <span class="built_in">Object</span>.assign(&#123;&#125;, original, &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;); <span class="comment">// copy =&gt; &#123; a: 1, b: 2, c: 3 &#125;</span></div><div class="line"></div><div class="line"><span class="comment">// good</span></div><div class="line"><span class="keyword">const</span> original = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;;</div><div class="line"><span class="keyword">const</span> copy = &#123; ...original, <span class="attr">c</span>: <span class="number">3</span> &#125;; <span class="comment">// copy =&gt; &#123; a: 1, b: 2, c: 3 &#125;</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> &#123; a, ...noA &#125; = copy; <span class="comment">// noA =&gt; &#123; b: 2, c: 3 &#125;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>数组复制 (copy arrays)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bad</span></div><div class="line"><span class="keyword">const</span> len = items.length;</div><div class="line"><span class="keyword">const</span> itemsCopy = [];</div><div class="line"><span class="keyword">let</span> i;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i += <span class="number">1</span>) &#123;</div><div class="line">  itemsCopy[i] = items[i];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// good</span></div><div class="line"><span class="keyword">const</span> itemsCopy = [...items];</div></pre></td></tr></table></figure>
+<ul>
+<li>可变函数 (variadic function)</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bad</span></div><div class="line"><span class="keyword">const</span> x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line"><span class="built_in">console</span>.log.apply(<span class="built_in">console</span>, x);</div><div class="line"></div><div class="line"><span class="comment">// good</span></div><div class="line"><span class="keyword">const</span> x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line"><span class="built_in">console</span>.log(...x);</div><div class="line"></div><div class="line"><span class="comment">// bad</span></div><div class="line"><span class="keyword">new</span> (<span class="built_in">Function</span>.prototype.bind.apply(<span class="built_in">Date</span>, [<span class="literal">null</span>, <span class="number">2016</span>, <span class="number">8</span>, <span class="number">5</span>]));</div><div class="line"></div><div class="line"><span class="comment">// good</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(...[<span class="number">2016</span>, <span class="number">8</span>, <span class="number">5</span>]);</div></pre></td></tr></table></figure>
+<h2 id="工具和模块"><a href="#工具和模块" class="headerlink" title="工具和模块"></a>工具和模块</h2><p>推荐一个 Markdown 生成 Word 文档工具 pandoc。</p>
+<ol>
+<li><p>使用 pandoc 将 Markdown 文件转换为 Word 文档。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pandoc -f markdown -t docx front-end-engineering-practice.md -o mydoc.docx</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装 pandoc ( Mac )</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install pandoc</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
+<li><a href="https://zhuanlan.zhihu.com/p/26709518" target="_blank" rel="external">10 个基于 JavaScript 的机器学习实例</a></li>
+</ul>
+<p>虽然，大多数 JavaScript 机器学习库都是“新轮子”，有的甚至还在研发中，但并不会影响你的使用。在这篇文章中，我们将与你分享这些库，以及一些很酷的 AI Web 应用程序实例，帮助你开启机器学习之旅。</p>
+<ul>
+<li><a href="https://github.com/jawil/blog/issues/14" target="_blank" rel="external">通俗大白话来理解TCP协议的三次握手和四次分手</a></li>
+</ul>
+<p>前端工程师也需要了解HTTP方面的一些知识，本篇文章用通俗易懂的方式讲解了平时经常听到的三次握手和四次分手究竟是什么。</p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html" target="_blank" rel="external">测试框架 Mocha 实例教程</a></li>
+</ul>
+<p>Mocha 是目前最流行的测试框架之一，支持浏览器端和 Node 端的单元测试。这篇文章非常全面地介绍如何使用Mocha，让你轻松上手。</p>
+<ul>
+<li><a href="https://www.kancloud.cn/kancloud/midway/48192" target="_blank" rel="external">前后端分离的思考与实践</a></li>
+</ul>
+<p>本文是阿里某前端团队，在探索一套基于NodeJS的前后端分离方案的过程中，对于前后端分离的一些认识以及思考。</p>
+<ul>
+<li>Mac <a href="http://blog.devtang.com/2015/11/14/charles-introduction/" target="_blank" rel="external">Charles 从入门到精通</a><br>PC <a href="http://blog.csdn.net/qq_21445563/article/details/51017605" target="_blank" rel="external">Fiddler 抓包工具总结</a></li>
+</ul>
+<p>在PC Web端开发的时候，我们能很方便的从浏览器开发者工具里进行网络接口调试。<br>在移动端开发是面对这样的需求，我们可以通过抓包工具来解决这个问题。<br>在Mac系统常用的抓包工具是Charles，Windows系统中常用的抓包工具是Fiddler。<br>下面的文章分别对Charles和Fiddler进行介绍，并图文显示了使用方法。</p>
+<ul>
+<li><a href="https://github.com/zce/weapp-demo/tree/tutorial" target="_blank" rel="external">微信小程序开发教程</a></li>
+</ul>
+<p>由易到难介绍小程序开发的流程，讲解比较层次化，比较细致，可以让人很快进行上手开发</p>
+<ul>
+<li><a href="https://github.com/Jocs/jocs.github.io/issues/1" target="_blank" rel="external">JavaScript Error 指南</a></li>
+</ul>
+<p>深度的剖析了错误信息和追溯栈，从错误捕获、剖析追溯栈、不同浏览器对于追溯栈格式上的差异等等，讲解相当详细也很透彻。</p>
+<ul>
+<li><a href="http://ifanqi.me/2017/07/25/you-can-understand-closure/" target="_blank" rel="external">浏览器是怎么看闭包的</a></li>
+</ul>
+<p>关于闭包的解释有很多，很多只是从“行”上去解读，理解 JavaScript 闭包绕不开一个问题：闭包是如何实现变量保留在内存中呢？这涉及到浏览器对内存的分配与回收，本文从这个点展开图文详实的解读。拓展阅读：<a href="http://ifanqi.me/2017/07/28/js-variable-memory/" target="_blank" rel="external">可视化分析js的内存分配与回收</a>。</p>
+<ul>
+<li><a href="https://github.com/xieranmaya/blog/issues/3" target="_blank" rel="external">剖析Promise内部结构</a></li>
+</ul>
+<p>一步一步实现一个完整的、能通过所有Test case的Promise类。文章由构造简单的promise对象开始，逐步完善逻辑。抛出问题，介绍思路，给出代码示例，比较清晰合理。自己实现已有的轮子，对于编码能力提升还是很有帮助的。</p>
+<h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p>
+<ul>
+<li>资深前端工程师</li>
+<li>前端实习生</li>
+</ul>
+<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</div><div class="line"><span class="built_in">console</span>.log(email);</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Show-me-the-code&quot;&gt;&lt;a href=&quot;#Show-me-the-code&quot; class=&quot;headerlink&quot; title=&quot;Show me the code&quot;&gt;&lt;/a&gt;Show me the code&lt;/h2&gt;&lt;p&gt;ES 6 中引入了很多让代码
+    
+    </summary>
+    
+    
+      <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
+    
+      <category term="工程化实践" scheme="https://talkingdata.github.io/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5/"/>
+    
+      <category term="Vuex" scheme="https://talkingdata.github.io/tags/Vuex/"/>
+    
+      <category term="Webpack" scheme="https://talkingdata.github.io/tags/Webpack/"/>
+    
+      <category term="PWA" scheme="https://talkingdata.github.io/tags/PWA/"/>
+    
+      <category term="持续部署" scheme="https://talkingdata.github.io/tags/%E6%8C%81%E7%BB%AD%E9%83%A8%E7%BD%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大前端周刊 第9期 （本期小编：包京京）</title>
     <link href="https://talkingdata.github.io/2017/08/18/weekly-9/"/>
     <id>https://talkingdata.github.io/2017/08/18/weekly-9/</id>
     <published>2017-08-18T06:57:34.000Z</published>
-    <updated>2017-08-18T19:10:15.000Z</updated>
+    <updated>2017-08-25T02:32:00.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="http://blog.benoitvallon.com/data-structures-in-javascript/data-structures-in-javascript/" target="_blank" rel="external">javascript数据结构</a><br><strong>用javascript创建并分析各种常见数据结构</strong></p>
@@ -62,9 +156,9 @@
     
       <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
     
-      <category term="Vuex" scheme="https://talkingdata.github.io/tags/Vuex/"/>
-    
       <category term="工程化实践" scheme="https://talkingdata.github.io/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%AE%9E%E8%B7%B5/"/>
+    
+      <category term="Vuex" scheme="https://talkingdata.github.io/tags/Vuex/"/>
     
       <category term="Webpack" scheme="https://talkingdata.github.io/tags/Webpack/"/>
     
@@ -75,11 +169,11 @@
   </entry>
   
   <entry>
-    <title>大前端周刊 第八期 （本期小编：耿少真）</title>
+    <title>大前端周刊 第8期 （本期小编：耿少真）</title>
     <link href="https://talkingdata.github.io/2017/08/11/weekly-8/"/>
     <id>https://talkingdata.github.io/2017/08/11/weekly-8/</id>
     <published>2017-08-11T06:57:34.000Z</published>
-    <updated>2017-08-18T19:09:30.000Z</updated>
+    <updated>2017-08-25T02:32:05.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="http://www.zcfy.cc/article/mastering-chrome-developer-tools-next-level-front-end-development-techniques-3722.html?t=selection" target="_blank" rel="external">掌握Chrome开发工具</a><br><strong>熟悉Chrome开发工具的基本功能: DOM检查器、样式面板和JavaScript控制台和一些不太为人所知的特性</strong></p>
@@ -138,11 +232,11 @@
   </entry>
   
   <entry>
-    <title>大前端周刊 第七期 （本期小编：张成斌）</title>
+    <title>大前端周刊 第7期 （本期小编：张成斌）</title>
     <link href="https://talkingdata.github.io/2017/08/04/weekly-7/"/>
     <id>https://talkingdata.github.io/2017/08/04/weekly-7/</id>
     <published>2017-08-04T02:32:34.000Z</published>
-    <updated>2017-08-09T02:50:16.000Z</updated>
+    <updated>2017-08-25T02:32:09.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="https://juejin.im/post/597ec55a51882556a234fcef" target="_blank" rel="external">exports、module.exports 和 export、export default 到底是咋回事</a><br><strong>模块引入方式的一个梳理</strong></p>
@@ -197,11 +291,11 @@
   </entry>
   
   <entry>
-    <title>大前端周刊 第六期 （本期小编：郭俊兵）</title>
+    <title>大前端周刊 第6期 （本期小编：郭俊兵）</title>
     <link href="https://talkingdata.github.io/2017/07/28/weekly-6/"/>
     <id>https://talkingdata.github.io/2017/07/28/weekly-6/</id>
     <published>2017-07-28T04:09:40.000Z</published>
-    <updated>2017-08-09T02:50:16.000Z</updated>
+    <updated>2017-08-25T02:32:13.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&amp;mid=2651552360&amp;idx=1&amp;sn=8d2bc092405fc23379a786a6b7a36274&amp;chksm=8025ada9b75224bfd372ce168cb0f9cb6959255e2a7e94556eacea5d1d8e4b559dd494704ae5&amp;mpshare=1&amp;scene=1&amp;srcid=0720bFFOVROJ90Pe2ZutzpQz#rd" target="_blank" rel="external">CSS 样式书写规范</a><br><strong>不同的规范都有各自的长处与缺陷，对待所谓的规范最好的方式不是人云亦云，拿来就用，而是应该结合实际情况及需求，取长补短，取其精华去其糟粕。</strong></p>
@@ -249,9 +343,9 @@
     
       <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
     
-      <category term="Vue" scheme="https://talkingdata.github.io/tags/Vue/"/>
-    
       <category term="Vuex" scheme="https://talkingdata.github.io/tags/Vuex/"/>
+    
+      <category term="Vue" scheme="https://talkingdata.github.io/tags/Vue/"/>
     
       <category term="node" scheme="https://talkingdata.github.io/tags/node/"/>
     
@@ -266,11 +360,11 @@
   </entry>
   
   <entry>
-    <title>大前端周刊 第五期 （本期小编：陶明）</title>
+    <title>大前端周刊 第5期 （本期小编：陶明）</title>
     <link href="https://talkingdata.github.io/2017/07/21/weekly-5/"/>
     <id>https://talkingdata.github.io/2017/07/21/weekly-5/</id>
     <published>2017-07-21T06:21:43.000Z</published>
-    <updated>2017-08-09T02:50:16.000Z</updated>
+    <updated>2017-08-25T02:32:17.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="https://kongchenglc.github.io/blog/%E5%85%B3%E4%BA%8Ethis20170716/" target="_blank" rel="external">JS中关于this</a><br><strong>关于this的几种绑定规则以及优先级</strong></p>
@@ -457,11 +551,11 @@
   </entry>
   
   <entry>
-    <title>大前端周刊 第四期 （本期小编：李丽娇）</title>
+    <title>大前端周刊 第4期 （本期小编：李丽娇）</title>
     <link href="https://talkingdata.github.io/2017/07/12/weekly-4/"/>
     <id>https://talkingdata.github.io/2017/07/12/weekly-4/</id>
     <published>2017-07-12T07:16:43.000Z</published>
-    <updated>2017-08-09T02:50:16.000Z</updated>
+    <updated>2017-08-25T02:32:20.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="http://www.webhek.com/post/svg.html" target="_blank" rel="external">SVG的用法</a><br><strong>SVG基础和使用介绍</strong></p>
@@ -528,11 +622,11 @@
   </entry>
   
   <entry>
-    <title>大前端周刊 第三期 （本期小编：李志伟）</title>
+    <title>大前端周刊 第3期 （本期小编：李志伟）</title>
     <link href="https://talkingdata.github.io/2017/07/07/weekly-3/"/>
     <id>https://talkingdata.github.io/2017/07/07/weekly-3/</id>
     <published>2017-07-07T05:10:51.000Z</published>
-    <updated>2017-07-12T15:54:45.000Z</updated>
+    <updated>2017-08-25T02:32:23.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="https://juejin.im/post/59278e312f301e006c2e1510" target="_blank" rel="external">JavaScript系列</a><br>相信作为“前端程序猿(媛)”的你一定了解作用域、原型、原型链、继承、闭包……在前端框架的盛行之下，却让初学者忽略了JS基础的学习，但基础不稳必然限制你的发展空间，当你了解了底层，就能很轻松明白框架的原理。</p>
@@ -597,11 +691,11 @@
   </entry>
   
   <entry>
-    <title>大前端周刊 第二期 （本期小编：胡国伟）</title>
+    <title>大前端周刊 第2期 （本期小编：胡国伟）</title>
     <link href="https://talkingdata.github.io/2017/06/30/weekly-2/"/>
     <id>https://talkingdata.github.io/2017/06/30/weekly-2/</id>
     <published>2017-06-30T03:18:25.000Z</published>
-    <updated>2017-07-04T03:52:42.000Z</updated>
+    <updated>2017-08-25T02:32:26.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="http://es6.ruanyifeng.com/#docs/class" target="_blank" rel="external">Class 的基本语法</a><br>尽管基本上，<code>ES6</code>的<code>class</code>可以看作只是一个语法糖，但使得<code>JavaScript</code>对象原型的写法更加清晰、更像面向对象编程的语法，更接近传统语言的写法。</p>
@@ -664,11 +758,11 @@
   </entry>
   
   <entry>
-    <title>大前端周刊 第一期 （本期小编：王祥）</title>
+    <title>大前端周刊 第1期 （本期小编：王祥）</title>
     <link href="https://talkingdata.github.io/2017/06/23/weekly-1/"/>
     <id>https://talkingdata.github.io/2017/06/23/weekly-1/</id>
     <published>2017-06-23T03:18:25.000Z</published>
-    <updated>2017-06-23T09:01:24.000Z</updated>
+    <updated>2017-08-25T02:32:41.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="external">Promise</a><br>在Javascript的单线程异步架构下，Promise会是很多异步服务的核心知识点，Node 8.X已经可以方便的将回调方式转换为Promise。</p>
