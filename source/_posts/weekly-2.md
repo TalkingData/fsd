@@ -1,5 +1,5 @@
 ---
-title: 大前端周刊 第二期 （本期小编：胡国伟）
+title: 大前端周刊 第2期 （本期小编：胡国伟）
 date: 2017-06-30 11:18:25
 tags: [weekly,框架,测试,设计模式,three.js]
 ---
@@ -53,4 +53,3 @@ ps：[EditorConfig](http://editorconfig.org/)规范在这里。
 
 * [学用 JavaScript 设计模式](http://www.oschina.net/translate/learning-javascript-design-patterns?cmp)
 文章讲解数据响应式系统及其构建，分步骤实现了 vue2.0的响应式，还有详细的代码示例及注释。
-

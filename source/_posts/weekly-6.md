@@ -1,5 +1,5 @@
 ---
-title: 大前端周刊 第六期 （本期小编：郭俊兵）
+title: 大前端周刊 第6期 （本期小编：郭俊兵）
 date: 2017-07-28 12:09:40
 tags: [weekly,Vuex,node,WebSocket,http,Vue,iView,Git]
 ---

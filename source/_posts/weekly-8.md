@@ -1,5 +1,5 @@
 ---
-title: 大前端周刊 第八期 （本期小编：耿少真）
+title: 大前端周刊 第8期 （本期小编：耿少真）
 date: 2017-08-11 14:57:34
 tags: [weekly,模块,node,Vue,API设计，单元测试]
 ---
@@ -61,4 +61,3 @@ Frontend Ops是这篇文章作者自己定义的一个概念，业界应该还�
 <small>*推荐人：郭俊兵*</small>
 这一行代码会被渲染成一个矩阵效果，通过一次代码解读，享受理解它的过程。
 `<pre id=p><script>n=setInterval("for(n+=7,i=k,P='p.\\n';i-=1/k;P+=P[i%2?(i%2*j-j+n/k^j)&1:2])j=k/i;p.innerHTML=P",k=64)</script>`
-
