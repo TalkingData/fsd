@@ -8,7 +8,7 @@ tags: [weekly,模块,node,Vue,函数式]
 * [exports、module.exports 和 export、export default 到底是咋回事](https://juejin.im/post/597ec55a51882556a234fcef)
 **模块引入方式的一个梳理**
 
-* [Node.js 实践教程](https://juejin.im/post/597ec55a51882556a234fcef)
+* [Node.js 实践教程](https://github.com/ElemeFE/node-practice)
 **饿了么出的一个Node实践教程，还在施工中，有兴趣的小伙伴可以关注一下。前提背景是[如何通过饿了么 Node.js 面试](https://github.com/ElemeFE/node-interview/tree/master/sections/zh-cn)**
 
 * [浏览器是怎么看闭包的](https://juejin.im/post/5979b5755188253df1067397)
