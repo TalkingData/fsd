@@ -59,6 +59,114 @@
 
   
     
+    <h3 class="article-title"><a href="/fsd/2017/09/01/weekly-11/"><span>大前端周刊 第11期 （本期小编：胡国伟）</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/fsd/2017/09/01/weekly-11/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-09-01T09:00:00.000Z">
+          2017-09-01
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><h4 id="截流-throttle"><a href="#截流-throttle" class="headerlink" title="截流(throttle)"></a>截流(throttle)</h4><p>概念理解：固定函数执行的速率。<br>使用场景：DOM 事件绑定，短时间内触发多次绑定事件造成性能问题，如 <code>onresize</code>,<code>onscroll</code>等，使用节流函数可确保在指定时间内只触发一次。<br>简单实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> throttle = <span class="function">(<span class="params">func, wait</span>) =&gt;</span> &#123;</div><div class="line">	<span class="keyword">let</span> context, args;</div><div class="line">	<span class="keyword">let</span> previous = <span class="number">0</span>;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">let</span> now = +<span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">		context = <span class="keyword">this</span>;</div><div class="line">		args = <span class="built_in">arguments</span>;</div><div class="line">		<span class="keyword">if</span> (now - previous &gt; wait) &#123;</div><div class="line">			func.apply(context, args);</div><div class="line">			previous = now;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h4 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖(debounce)"></a>防抖(debounce)</h4><p>概念理解：强制一个函数在某个连续时间段内只执行一次，哪怕它本来会被调用多次。<br>使用场景：</p>
+<ol>
+<li>表单远程搜索，键盘多次输入取最后一次输入值作为查询关键词。</li>
+<li>下拉菜单的延时消失。</li>
+</ol>
+<p>简单实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> debounce = <span class="function">(<span class="params">func, wait</span>) =&gt;</span> &#123;</div><div class="line">	<span class="keyword">let</span> timeout;</div><div class="line">  	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    	<span class="keyword">let</span> context = <span class="keyword">this</span>;</div><div class="line">    	<span class="keyword">let</span> args = <span class="built_in">arguments</span>;</div><div class="line">    	clearTimeout(timeout);</div><div class="line">    	timeout = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      		func.apply(context, args)</div><div class="line">    	&#125;, wait);</div><div class="line">    &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="工具和模块"><a href="#工具和模块" class="headerlink" title="工具和模块"></a>工具和模块</h2><p>推荐功能强大的<code>HTTP</code>抓包调试工具：Fiddler。假如有这样一个场景，线上突然出现bug，而你正在休假、手头有没有源码，但又急需你参与问题排查，怎么办？Fiddler 便是你的救活利器。</p>
+<ol>
+<li>官网：<a href="http://www.telerik.com/fiddler" target="_blank" rel="external">http://www.telerik.com/fiddler</a></li>
+<li>插件（官方&amp;第三方）：<a href="http://www.telerik.com/fiddler/add-ons" target="_blank" rel="external">http://www.telerik.com/fiddler/add-ons</a></li>
+<li>快速上手：<a href="https://www.qcloud.com/community/article/115124?fromSource=gwzcw.93596.93596.93596" target="_blank" rel="external">十分钟学会 Fiddler</a></li>
+<li>视频教程：<a href="http://www.imooc.com/learn/37" target="_blank" rel="external">http://www.imooc.com/learn/37</a></li>
+<li>系列文章<ul>
+<li><a href="http://blog.csdn.net/ohmygirl/article/details/17846199" target="_blank" rel="external">【HTTP】Fiddler（一） - Fiddler简介</a></li>
+<li><a href="http://blog.csdn.net/ohmygirl/article/details/17849983" target="_blank" rel="external">【HTTP】Fiddler（二） - 使用Fiddler做抓包分析</a></li>
+<li><a href="http://blog.csdn.net/ohmygirl/article/details/17855031" target="_blank" rel="external">【HTTP】Fiddler（三）- Fiddler命令行和HTTP断点调试</a></li>
+</ul>
+</li>
+</ol>
+<h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
+<li><p><a href="http://www.ruanyifeng.com/blog/2015/06/istanbul.html" target="_blank" rel="external">代码覆盖率工具 Istanbul 入门教程</a><br>使用 Mocha 进行单元测试时，还需要了解测试的覆盖程度，这个指标就叫做”代码覆盖率”（code coverage）。这篇文章非常全面地介绍了Istanbul，让你轻松上手。深入了解：<a href="https://github.com/istanbuljs/nyc" target="_blank" rel="external">nyc</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzIyMjYyMzg3MA==&amp;mid=2247484408&amp;idx=2&amp;sn=456405dd36fd679dea1470b131924980&amp;chksm=e82be2e9df5c6bff70912d297d535bfb747e2598a129641ea3409cedd88f2eac22e2d77dc98b&amp;mpshare=1&amp;scene=1&amp;srcid=0901XT4SSeVjxiKd3Pj6IOvv&amp;pass_ticket=%2BCgbmXT%2FgYy2AZSB%2B2tlPOm2ZM34W2NpPc%2F1G3ifFff91PXQRXcYFvt%2BSdaP7QjU#rd" target="_blank" rel="external">深入浅出浏览器渲染原理</a><br>对于 HTTP 协议和浏览器渲染原理都是理解容易但不好讲明白，那么为什么不采用 Node.js 来阐述呢？以实践的方式、最简单的方式来向你展示不好讲的东西，对于 Node.js 开发者和大前端开发来说都是非常实用的。</p>
+</li>
+<li><p><a href="https://github.com/DMQ/mvvm" target="_blank" rel="external">剖析Vue实现原理 - 如何实现双向绑定mvvm</a></p>
+<ol>
+<li>了解vue的双向数据绑定原理以及核心代码模块</li>
+<li>了解如何实现双向绑定</li>
+</ol>
+</li>
+<li><p><a href="https://github.com/jawil/blog/issues/16" target="_blank" rel="external">不用call和apply方法模拟实现ES5的bind方法</a><br>这个问题是对JavaScript基本功很好的一个检测，看JavaScript掌握的怎么样以及平时有没有去深入研究一些方法的实现，简而言之，就是有没有折腾精神。</p>
+</li>
+<li><p><a href="https://github.com/Jocs/jocs.github.io/issues/11" target="_blank" rel="external">通过ES6 Generator函数实现异步操作</a><br>文章对 Generator函数实现异步进行了深入的讲解，最后使用 promise和 generator这样的模式实现异步操作，对于实现的过程进行深入细致的分析。</p>
+</li>
+<li><p><a href="http://mp.weixin.qq.com/s?__biz=MzI2MTY0NTEyMA==&amp;mid=2247483871&amp;idx=1&amp;sn=f717d3c787626d997c410117a1cd7fb9&amp;chksm=ea5677f0dd21fee6c7853b60b7e32d744af1abb183903ce8523954e093263a8c375895f0f193&amp;mpshare=1&amp;scene=1&amp;srcid=06289q8vqWAQUGuqdrMsqEzq#" target="_blank" rel="external">你了解CSS设计模式吗？</a><br>简单来了解下CSS设计模式：</p>
+<ol>
+<li>BEM全称（block、element、modifier）是Yandex 团队提出的CSS Class命名法</li>
+<li>OOCSS全称（Object Oriented CSS）由Nicole Sullivan提出的css理论</li>
+<li>SMACSS是Jonathan Snook的一个CSS框架</li>
+<li>Atomic Design，原子设计</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><a href="http://fed.renren.com/2017/07/02/algorithm/" target="_blank" rel="external">我接触过的前端数据结构与算法</a><br>  作者总结了前端常常碰到的算法，主要涉及递归、节流、数组去重、栈和堆、图像处理等。代码示例较为清晰，对于初学者还是很有帮助的，比较赞同作者的观点：算法的目的是用最小的时间和最小的空间解决问题。但是有时候不用太拘泥于一定要最优的答案，能够合适地解决问题就是好方法，而且对于不同的应用场景可能要采取不同的策略。</li>
+</ul>
+<ul>
+<li><a href="http://web.jobbole.com/88463/" target="_blank" rel="external">JavaScript 中 4 种常见的内存泄露陷阱</a><br>虽然Javascript有内存自动回收机制，但这并不以为着js开发使完全不用关心内存管理。文中详细介绍了什么是内存泄漏和js中容易引起内存泄漏的点，并提供了使用Chrome分析内存的方法。</li>
+</ul>
+<h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p>
+<ul>
+<li>资深前端工程师</li>
+<li>前端实习生</li>
+</ul>
+<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</div><div class="line"><span class="built_in">console</span>.log(email);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/开发工具/">开发工具</a><a href="/fsd/tags/测试工具/">测试工具</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/ES6/">ES6</a><a href="/fsd/tags/设计模式/">设计模式</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
     <h3 class="article-title"><a href="/fsd/2017/08/25/weekly-10/"><span>大前端周刊 第10期 （本期小编：王祥）</span></a></h3>
     
   
@@ -325,7 +433,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/模块/">模块</a><a href="/fsd/tags/node/">node</a><a href="/fsd/tags/API设计，单元测试/">API设计，单元测试</a>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/node/">node</a><a href="/fsd/tags/模块/">模块</a><a href="/fsd/tags/API设计，单元测试/">API设计，单元测试</a>
     </span>
     
 
@@ -407,7 +515,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/模块/">模块</a><a href="/fsd/tags/node/">node</a><a href="/fsd/tags/函数式/">函数式</a>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/node/">node</a><a href="/fsd/tags/模块/">模块</a><a href="/fsd/tags/函数式/">函数式</a>
     </span>
     
 
@@ -583,7 +691,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/three-js/">three.js</a><a href="/fsd/tags/ES6/">ES6</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/Zepto/">Zepto</a><a href="/fsd/tags/事件驱动/">事件驱动</a>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/ES6/">ES6</a><a href="/fsd/tags/three-js/">three.js</a><a href="/fsd/tags/Zepto/">Zepto</a><a href="/fsd/tags/事件驱动/">事件驱动</a>
     </span>
     
 
@@ -821,7 +929,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Echarts/">Echarts</a><a href="/fsd/tags/ES6/">ES6</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/SVG/">SVG</a><a href="/fsd/tags/算法/">算法</a><a href="/fsd/tags/模块化/">模块化</a><a href="/fsd/tags/性能优化/">性能优化</a>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/ES6/">ES6</a><a href="/fsd/tags/算法/">算法</a><a href="/fsd/tags/Echarts/">Echarts</a><a href="/fsd/tags/SVG/">SVG</a><a href="/fsd/tags/模块化/">模块化</a><a href="/fsd/tags/性能优化/">性能优化</a>
     </span>
     
 
@@ -911,97 +1019,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/算法/">算法</a><a href="/fsd/tags/es6/">es6</a><a href="/fsd/tags/vue/">vue</a><a href="/fsd/tags/工具/">工具</a><a href="/fsd/tags/必备技能/">必备技能</a>
-    </span>
-    
-
-    </div>
-
-    
-  </div>
-</article>
-
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/fsd/2017/06/30/weekly-2/"><span>大前端周刊 第2期 （本期小编：胡国伟）</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/fsd/2017/06/30/weekly-2/" rel="bookmark">
-        <time class="entry-date published" datetime="2017-06-30T03:18:25.000Z">
-          2017-06-30
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li><p><a href="http://es6.ruanyifeng.com/#docs/class" target="_blank" rel="external">Class 的基本语法</a><br>尽管基本上，<code>ES6</code>的<code>class</code>可以看作只是一个语法糖，但使得<code>JavaScript</code>对象原型的写法更加清晰、更像面向对象编程的语法，更接近传统语言的写法。</p>
-</li>
-<li><p><a href="http://es6.ruanyifeng.com/#docs/module" target="_blank" rel="external">Module 的语法</a><br>相交于社区提供了各种模块化解决方案，<code>ES6</code>语言标准的层面上实现了模块功能，成为浏览器和服务器通用的模块解决方案。</p>
-</li>
-<li><p><a href="http://es6.ruanyifeng.com/#docs/array" target="_blank" rel="external">数组的扩展</a><br><code>ES6</code>内置新数组方法，无需再自己再实现相应的<code>polyfill</code>了，赶紧学习充能，搭配<a href="http://louiszhai.github.io/2017/04/28/array/" target="_blank" rel="external">该文（<em>【深度长文】JavaScript数组所有API全解密</em>）</a>食用，更易消化。</p>
-</li>
-<li><p><a href="https://webpack-china.org/" target="_blank" rel="external">webpack 中文</a><br>旧版的<code>webpack</code>官方文档有些糟糕，幸好后来有了新版，并且还有志愿者维护了相对应的中文版本，这下查阅学习就更轻松了。近日<code>webpack 3.0</code> 已经释出，大家赶快跟进。</p>
-</li>
-<li><p><a href="https://segmentfault.com/a/1190000007599845" target="_blank" rel="external">EditorConfig使用介绍</a><br>团队合作，统一编辑器行为非常必要，本文对<code>EditorConfig</code>中的配置进行了讲解。<br>ps：<a href="http://editorconfig.org/" target="_blank" rel="external">EditorConfig</a>规范在这里。</p>
-</li>
-</ul>
-<h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
-<li><ol>
-<li><a href="http://www.ruanyifeng.com/blog/2017/05/server-sent_events.html" target="_blank" rel="external">Server-Sent Events 教程</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="external">WebSocket 教程</a> <br><br>这两篇文章一起读，就可以很全面的了解现代浏览器和服务器通信技术。</li>
-</ol>
-</li>
-<li><p><a href="https://github.com/wangfupeng1988/js-async-tutorial" target="_blank" rel="external">深入理解 JavaScript 异步</a><br>这个系列文章把异步方面的知识以及原理讲解的比较清楚，从传统的方式到<code>promise</code>到<code>generator</code>到<code>async</code>，值得一读。</p>
-</li>
-<li><p><a href="http://www.jianshu.com/p/6b816c609669" target="_blank" rel="external">koa2从起步到填坑</a><br>比较系统简介<code>koa2</code>使用，包含一些例子，可以让人更快上手。</p>
-</li>
-<li><p><a href="https://www.404forest.com/2017/06/28/modern-web-development-tech-analysis-data-reactivity-system/" target="_blank" rel="external">现代前端科技解析 —— 数据响应式系统</a><br>文章讲解数据响应式系统及其构建，分步骤实现了<code>vue2.0</code>的响应式，还有详细的代码示例及注释。</p>
-</li>
-<li><p><a href="https://segmentfault.com/a/1190000000317146" target="_blank" rel="external">关于前端开发谈谈单元测试</a><br>阐述了做单元测试的必要性，<br>着重介绍了<code>Jasmine</code>的常用语法，<br>并对其他流行测试框架和工具做了介绍。</p>
-</li>
-<li><p><a href="http://www.ituring.com.cn/book/1272" target="_blank" rel="external">Three.js入门指南</a><br>关于<code>Three.js</code>中文文章资料还是不够丰富，以至于这本免费小书时至今日还是<code>Three.js</code>入门的最佳选择之一。</p>
-</li>
-<li><ol>
-<li><a href="https://mp.weixin.qq.com/s/jUJXmis0_u6BzQDT2mCltA" target="_blank" rel="external">测试你的前端代码 – part1（介绍篇）</a></li>
-<li><a href="https://mp.weixin.qq.com/s/pYUePHOsZegMf4MmJCoJeA" target="_blank" rel="external">测试你的前端代码 – part2（单元测试）</a></li>
-<li><a href="https://mp.weixin.qq.com/s/8UfR8bsPd2bkmPg_xkAKKg" target="_blank" rel="external">测试你的前端代码 – part3（端到端测试）</a></li>
-<li><a href="https://mp.weixin.qq.com/s/CpNUn5AWbP4aH0yirwuizQ" target="_blank" rel="external">测试你的前端代码 – part4（集成测试）</a><br><br><br>文章由浅入深的介绍前端工程的测试，覆盖单元测试、端到端测试、集成测试，较为简单的事例介绍有利于你快速掌握这些知识。</li>
-</ol>
-</li>
-<li><p><a href="http://www.oschina.net/translate/learning-javascript-design-patterns?cmp" target="_blank" rel="external">学用 JavaScript 设计模式</a><br>文章讲解数据响应式系统及其构建，分步骤实现了 vue2.0的响应式，还有详细的代码示例及注释。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/框架/">框架</a><a href="/fsd/tags/测试/">测试</a><a href="/fsd/tags/设计模式/">设计模式</a><a href="/fsd/tags/three-js/">three.js</a>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/es6/">es6</a><a href="/fsd/tags/vue/">vue</a><a href="/fsd/tags/算法/">算法</a><a href="/fsd/tags/工具/">工具</a><a href="/fsd/tags/必备技能/">必备技能</a>
     </span>
     
 
