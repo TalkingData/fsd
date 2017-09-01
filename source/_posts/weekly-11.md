@@ -51,7 +51,7 @@ let debounce = (func, wait) => {
 
 ## 工具和模块
 
-推荐功能强大的`HTTP`抓包调试工具：Fiddler。假如有这样一个场景，线上突然出现bug，而你正在休假、手头有没有源码，但又急需你参与问题排查，怎么办？Fiddler 便是你的救活利器。
+推荐功能强大的`HTTP`抓包调试工具：Fiddler。假如有这样一个场景，线上突然出现bug，而你正在休假、手头又没有源码，但又急需你参与问题排查，怎么办？Fiddler 便是你的救🔥利器。
 
 1. 官网：http://www.telerik.com/fiddler
 2. 插件（官方&第三方）：http://www.telerik.com/fiddler/add-ons
