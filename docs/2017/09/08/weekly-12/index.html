@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>大前端周刊 第12期 （本期小编：李志伟） | FSD Weekly</title>
+
+  
+  <meta name="author" content="FSD Weekly">
+  
+
+  
+  <meta name="description" content="Show me the code
+回调地狱
+
+需求：异步读取多个文件，等到所有文件读取完毕执行特定操作。简单实现：1234567891011121314151617181920212223242526272829303132// badfs.readFile(&#39;./config/test.txt&#39;)">
+  
+
+  
+  
+  <meta name="keywords" content="weekly,ES6,http,webpack,koa,web安全">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="大前端周刊 第12期 （本期小编：李志伟）"/>
+
+  <meta property="og:site_name" content="FSD Weekly"/>
+
+  
+  <meta property="og:image" content="/fsd/favicon.ico"/>
+  
+
+  <link href="/fsd/favicon.ico" rel="icon">
+  <link rel="alternate" href="/fsd/atom.xml" title="FSD Weekly" type="application/atom+xml">
+  <link rel="stylesheet" href="/fsd/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/fsd/">FSD Weekly</a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/fsd/">主页</a></li>
+      
+        <li><a href="/fsd/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>大前端周刊 第12期 （本期小编：李志伟）</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/fsd/2017/09/08/weekly-12/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-09-08T06:55:47.000Z">
+          2017-09-08
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><ul>
+<li>回调地狱</li>
+</ul>
+<p>需求：异步读取多个文件，等到所有文件读取完毕执行特定操作。<br>简单实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bad</span></div><div class="line">fs.readFile(<span class="string">'./config/test.txt'</span>), (err, data) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err</div><div class="line">    fs.readFile(<span class="string">'./config/test1.txt'</span>), (err, data1) =&gt; &#123;</div><div class="line">      <span class="keyword">if</span> (err) <span class="keyword">throw</span> err</div><div class="line">      fs.readFile(<span class="string">'./config/test2.txt'</span>), (err, data2) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="keyword">throw</span> err</div><div class="line">        fs.readFile(<span class="string">'./config/test3.txt'</span>), (err, data3) =&gt; &#123;</div><div class="line">          <span class="keyword">if</span> (err) <span class="keyword">throw</span> err</div><div class="line">          <span class="built_in">console</span>.log(<span class="string">'success'</span>);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// good</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">asyncReadFile</span> (<span class="params">filePath, options</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</div><div class="line">    fs.readFile(filePath, options, (err, data) =&gt; &#123;</div><div class="line">      <span class="keyword">if</span> (err) reject(err);</div><div class="line">      resolve(data);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">asyncReadFile(<span class="string">'./config/test.txt'</span>).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> asyncReadFile(<span class="string">'./config/test1.txt'</span>);</div><div class="line">&#125;).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> asyncReadFile(<span class="string">'./config/test2.txt'</span>);</div><div class="line">&#125;).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> asyncReadFile(<span class="string">'./config/test3.txt'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>小结：Promise 是一种对异步操作的封装，在异步操作执行成功或者失败时执行指定方法。将横向的异步调用转换为纵向，因此更符合人类的思维方式。</p>
+<ul>
+<li>async和await</li>
+</ul>
+<p>小小面试题：每隔一秒输出一个数字，顺序是：0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5</p>
+<p>简单实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 你首先想到的可能是这样</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;  <span class="comment">// j = i</span></div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, j);</div><div class="line">    &#125;, <span class="number">1000</span>);</div><div class="line">  &#125;)(i);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line"></div><div class="line"><span class="comment">// 利用es7的async和await 你还可以这样</span></div><div class="line"><span class="keyword">const</span> sleep = <span class="function">(<span class="params">timeountMS</span>) =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</div><div class="line">  setTimeout(resolve, timeountMS);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="function">(<span class="params"><span class="keyword">async</span> (</span>) =&gt;</span> &#123;  <span class="comment">// 声明即执行的 async 函数表达式</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">    <span class="keyword">await</span> sleep(<span class="number">1000</span>);</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">await</span> sleep(<span class="number">1000</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<h2 id="工具和模块"><a href="#工具和模块" class="headerlink" title="工具和模块"></a>工具和模块</h2><p>推荐简单易用的git客户端管理工具——Source Tree，支持创建、克隆、提交、push、pull 和合并等操作，其最大优点是拥有可视化界面，大大简化了开发者与代码库之间的Git操作方式，这对于那些不熟悉Git命令的开发者来说非常实用。</p>
+<ol>
+<li><p>官网：<a href="https://www.sourcetreeapp.com/" target="_blank" rel="external">https://www.sourcetreeapp.com/</a></p>
+</li>
+<li><p>git学习教程：<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000</a></p>
+</li>
+</ol>
+<h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
+<li><p><a href="https://mp.weixin.qq.com/s/mblUhRMgyWUBhtIOaN6bGg" target="_blank" rel="external">从攻击看防御-前端视野下的web安全思考</a><br>文章基于笔者对自身业务的web安全梳理，引起对web安全的一定思考。因其岗位视野以web前端为主，在对web安全的思考上，难免会有一定的局限性，故题目加上了“前端视野下”这样的修饰词。</p>
+</li>
+<li><p><a href="http://www.cnblogs.com/coco1s/p/5499469.html" target="_blank" rel="external">高性能滚动 scroll 及页面渲染优化</a><br>本文算是对上一期关于函数节流与防抖的实际场景中的实践，阅读本文以助于更好好的理解函数节流与防抖，并且本文也提供了一些其他的优化思路。</p>
+</li>
+<li><p><a href="http://cnodejs.org/topic/57b062ed144011da12ff4183" target="_blank" rel="external">基于koajs的前后端分离实践</a><br>要实现前后端分离框架，无非要满足这样几点：<br>更便捷地创建路由、更高效地代理数据请求、更灵活地环境部署</p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000011019534" target="_blank" rel="external">深入理解CSS时序函数</a><br>本文非常详细的介绍制作动画时所使用的时序函数，对于动画的实现有详细的demo和说明。总之对于CSS动画来说，还是要看大家怎么玩这些属性了。</p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651225513&amp;idx=1&amp;sn=d247881a71f06e75478611e40b3d4e01&amp;chksm=bd49a42d8a3e2d3bc783fc1b75672b3e2069b48c1add29f64dd626b0b8d4c5c6c1bdb09e2565&amp;mpshare=1&amp;scene=1&amp;srcid=09081NPEMSgj7Z8J7G4807ps#rd" target="_blank" rel="external">Webpack 的静态资源持久缓存</a><br>代码每次更新-&gt;服务器重新部署-&gt;客户端重新下载资源，显然低效。所以这就是浏览器会缓存静态资源的原因，但存在缺陷：文件不修改文件名，浏览器会认为没有更新，就会使用缓存中的版本。文章介绍webpack如何配置以开启静态资源的持久缓存，内置详细代码示例，易懂易用。</p>
+</li>
+<li><p><a href="https://juejin.im/post/59ac1c4ef265da248e75892b" target="_blank" rel="external">js 深拷贝 vs 浅拷贝</a><br>主要讲一下 js 的基本数据类型以及一些堆和栈的知识和什么是深拷贝、什么是浅拷贝、深拷贝与浅拷贝的区别，以及怎么进行深拷贝和怎么进行浅拷贝。</p>
+</li>
+<li><p><a href="http://www.jianshu.com/p/80e25cb1d81a" target="_blank" rel="external">关于HTTP协议</a><br>http协议作为连接浏览器和服务器之间的协议，有着重要的作用，为前端开发必了解内容之一。<br>下文介绍了http的概要，偏理论，可作为了解。</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/29010060" target="_blank" rel="external">前端校招面试该考察什么？</a><br>文章总结了腾讯的校招流程和校招（实习生）对候选人技能的侧重方面。除了招聘，文章还对前端工程师的技术栈做了非常全面的总结。</p>
+</li>
+</ul>
+<h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p>
+<ul>
+<li>资深前端工程师</li>
+<li>前端实习生</li>
+</ul>
+<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</div><div class="line"><span class="built_in">console</span>.log(email);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/ES6/">ES6</a><a href="/fsd/tags/http/">http</a><a href="/fsd/tags/webpack/">webpack</a><a href="/fsd/tags/koa/">koa</a><a href="/fsd/tags/web安全/">web安全</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 FSD Weekly
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>
