@@ -79,7 +79,23 @@
   <div class="article-content">
     <div class="entry">
       
-        <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ul>
+        <h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><ul>
+<li>剩余参数</li>
+</ul>
+<p>概念：剩余参数（rest parameter）语法允许我们将一个不定数量的参数表示为一个数组。<br>使用场景：在不确定参数个数的函数中，设置部分行参。<br>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function(a, b, ...restArgs) &#123;</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function multiply(multiplier, ...theArgs) &#123;</div><div class="line">  return theArgs.map(function (element) &#123;</div><div class="line">    return multiplier * element;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var arr = multiply(2, 1, 2, 3); </div><div class="line">console.log(arr);  // [2, 4, 6]</div></pre></td></tr></table></figure></p>
+<p>说明：<br>剩余参数和 arguments 对象的区别：</p>
+<ol>
+<li>剩余参数只包含那些没有对应形参的实参，而 arguments 对象包含了传给函数的所有实参。</li>
+<li>arguments 对象不是一个真实的数组,而剩余参数是真实的 Array实例，也就是说你能够在它上面直接使用所有的数组方法，比如 sort，map，forEach，pop。</li>
+<li>arguments 对象对象还有一些附加的属性 (比如callee属性)。</li>
+</ol>
+<ul>
+<li>逗号操作符</li>
+</ul>
+<p>概念：逗号操作符  对它的每个操作数求值（从左到右），并返回最后一个操作数的值。<br>语法：expr1, expr2, expr3…<br>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function a(num) &#123;</div><div class="line">  console.log(num);</div><div class="line">&#125;</div><div class="line"></div><div class="line">function b(num) &#123;</div><div class="line">  console.log(num * 2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">a(1), b(1); // 1  2</div><div class="line">b(1), a(1); // 2  1</div></pre></td></tr></table></figure></p>
+<p>小结：<br>逗号表达式最常用的地方是是用一句代码定义多个变量的场景。在许多大厂的源码中也被用在如上示例的函数调用。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ul>
 <li>Trackingjs</li>
 </ul>
 <p>js实现人脸识别，看这里：<a href="https://trackingjs.com/" target="_blank" rel="external">https://trackingjs.com</a>，文章推荐板块中有成功的实践案例。</p>
