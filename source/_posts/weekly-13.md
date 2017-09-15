@@ -3,6 +3,57 @@ title: 大前端周刊 第13期 （本期小编：李丽娇）
 date: 2017-09-15 14:55:47
 tags: [weekly,Trackingjs,flex,postman,神经网络,DOM,Nodejs,Web Worker,GitHub插件,人脸识别,流体排版]
 ---
+## Show me the code
+
+* 剩余参数
+
+概念：剩余参数（rest parameter）语法允许我们将一个不定数量的参数表示为一个数组。
+使用场景：在不确定参数个数的函数中，设置部分行参。
+语法：
+```
+function(a, b, ...restArgs) {
+  // ...
+}
+```
+示例：
+```
+function multiply(multiplier, ...theArgs) {
+  return theArgs.map(function (element) {
+    return multiplier * element;
+  });
+}
+
+var arr = multiply(2, 1, 2, 3); 
+console.log(arr);  // [2, 4, 6]
+```
+说明：
+剩余参数和 arguments 对象的区别：
+1. 剩余参数只包含那些没有对应形参的实参，而 arguments 对象包含了传给函数的所有实参。
+2. arguments 对象不是一个真实的数组,而剩余参数是真实的 Array实例，也就是说你能够在它上面直接使用所有的数组方法，比如 sort，map，forEach，pop。
+3. arguments 对象对象还有一些附加的属性 (比如callee属性)。
+
+
+* 逗号操作符
+
+概念：逗号操作符  对它的每个操作数求值（从左到右），并返回最后一个操作数的值。
+语法：expr1, expr2, expr3...
+示例：
+```
+function a(num) {
+  console.log(num);
+}
+
+function b(num) {
+  console.log(num * 2);
+}
+
+a(1), b(1); // 1  2
+b(1), a(1); // 2  1
+```
+小结：
+逗号表达式最常用的地方是是用一句代码定义多个变量的场景。在许多大厂的源码中也被用在如上示例的函数调用。
+
+
 ## 解决方案
 
 * Trackingjs
