@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>大前端周刊 第14期 （本期小编：陶明） | FSD Weekly</title>
+
+  
+  <meta name="author" content="FSD Weekly">
+  
+
+  
+  <meta name="description" content="Show me the code
+Set
+
+语法：new Set([iterable])
+
+参数介绍：
+
+iterable如果传递一个可迭代对象，它的所有元素将被添加到新的 Set中。如果不指定此参数或其值为null，则新的 Set为空。
+
+
+返回值一个新的Set对象。
+简单说一下为什么要用 Set">
+  
+
+  
+  
+  <meta name="keywords" content="Webpack,内存管理,散点图,正则,AR,IOT,虚拟DOM">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="大前端周刊 第14期 （本期小编：陶明）"/>
+
+  <meta property="og:site_name" content="FSD Weekly"/>
+
+  
+  <meta property="og:image" content="/fsd/favicon.ico"/>
+  
+
+  <link href="/fsd/favicon.ico" rel="icon">
+  <link rel="alternate" href="/fsd/atom.xml" title="FSD Weekly" type="application/atom+xml">
+  <link rel="stylesheet" href="/fsd/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/fsd/">FSD Weekly</a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/fsd/">主页</a></li>
+      
+        <li><a href="/fsd/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>大前端周刊 第14期 （本期小编：陶明）</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/fsd/2017/09/22/weekly-14/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-09-22T07:56:42.000Z">
+          2017-09-22
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><ul>
+<li>Set</li>
+</ul>
+<p>语法：new Set([iterable])</p>
+<ul>
+<li><p>参数介绍：</p>
+<ul>
+<li>iterable<br>如果传递一个可迭代对象，它的所有元素将被添加到新的 Set中。如果不指定此参数或其值为null，则新的 Set为空。</li>
+</ul>
+</li>
+<li><p>返回值<br>一个新的Set对象。</p>
+<p>简单说一下为什么要用 Set，因为 Set中的值具有唯一性（划重点！！！）。<br>唯一性！<br>所以，我就用它来去重。<br>嗯，对。<br>只用来数组去重！！！</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">const arr = [1, 2, 3, 4, 5, 5, 4, 3, 2, 0];</div><div class="line">const ArraySet = new Set(arr);</div><div class="line"></div><div class="line">Array.from(ArraySet); // [1, 2, 3, 4, 5, 0]</div><div class="line">[...ArraySet]; // [1, 2, 3, 4, 5, 0]</div><div class="line"></div><div class="line">const emoji = [&apos;↖&apos;, &apos;💎&apos;, &apos;↗&apos;, &apos;♠&apos;, &apos;↖&apos;, &apos;😏&apos;, &apos;💎&apos;, &apos;😍&apos;, &apos;😏&apos;,];</div><div class="line">const emojiSet = new Set(arr);</div><div class="line"></div><div class="line">Array.from(emojiSet) // [&quot;↖&quot;, &quot;💎&quot;, &quot;↗&quot;, &quot;♠&quot;, &quot;😏&quot;, &quot;😍&quot;]</div><div class="line">[...emojiSet] // [&quot;↖&quot;, &quot;💎&quot;, &quot;↗&quot;, &quot;♠&quot;, &quot;😏&quot;, &quot;😍&quot;]</div></pre></td></tr></table></figure>
+<p>  只能 Array？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const text = &apos;prototype&apos;;</div><div class="line">new Set(text); // Set &#123;&quot;p&quot;, &quot;r&quot;, &quot;o&quot;, &quot;t&quot;, &quot;y&quot;, &quot;e&quot;&#125; 我是 String Set的</div></pre></td></tr></table></figure></p>
+<p>  上面说到它的返回值是一个对象<br>  So, 它有自己属性及方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">const arr = [1, 2, 3, 4, 5, 5, 4, 3, 2, 0];</div><div class="line">const mySet = new Set(arr);</div><div class="line"></div><div class="line">mySet.size; // 6 剩 6 个了</div><div class="line">mySet.length; // undefined</div></pre></td></tr></table></figure></p>
+<p>  都叫 ‘size’了，当然是它的个数啊,<br>  没 length（手动痴呆脸）我就试试看而已…<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">const arr = [1, 2, 3, 4, 5, 5, 4, 3, 2, 0];</div><div class="line">const mySet = new Set(arr);</div><div class="line"></div><div class="line">/* 我要加个 10 */</div><div class="line">mySet.add(10) // [1, 2, 3, 4, 5, 0, 10] 加上了！</div><div class="line"></div><div class="line">/* 我要加个 1 */</div><div class="line">mySet.add(1) // [1, 2, 3, 4, 5, 0] 233 加不上！说了 Set有唯一性了！</div><div class="line"></div><div class="line">/* 我不要 0 了 */</div><div class="line">mySet.clear(0) // undefined !!!</div><div class="line">mySet.clear() // undefined !!!</div></pre></td></tr></table></figure></p>
+<p>  刷出来算我输…<br>  Set.prototype.clear()，没参数，调用就清空啦.</p>
+<p>  当然是可以删除了，开了一个好冷的笑话（故作镇定接着写…）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">const arr = [1, 2, 3, 4, 5, 5, 4, 3, 2, 0];</div><div class="line">const mySet = new Set(arr);</div><div class="line"></div><div class="line">/* 我不要 0 了  */</div><div class="line">mySet.delete(0) // [1, 2, 3, 4, 5] 删掉了！</div><div class="line"></div><div class="line">/* 有 1 吗？ */</div><div class="line">mySet.has(1); // true 有的！</div><div class="line"></div><div class="line">/* 有 2 吗？ */</div><div class="line">mySet.has(2); // true 有的！</div><div class="line"></div><div class="line">/* 有 0 吗？ */</div><div class="line">mySet.has(0); // false 没有！刚才删了！</div></pre></td></tr></table></figure></p>
+<p>  其实还有几个方法，<br>  这里只是简单的说一下这个 Set 而已<br>  你以为我结束了？<br>  我再说最后一个！<br>  嗯！<br>  最后一个！<br>  我保证！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/* 用 forEach 能干点什么？ */</div><div class="line">mySet.forEach(function(value) &#123;</div><div class="line">  // use value do something ...</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>  OK，能力有限…</p>
+<h2 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h2><ul>
+<li><p><a href="https://github.com/lucefer/vue-bubble" target="_blank" rel="external">消息气泡拖拽插件, 基于vue实现的仿QQ消息气泡拖拽插件</a></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install vue-bubble</div></pre></td></tr></table></figure>
+<h4 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const vueBubble from &apos;vue-bubble&apos;</div><div class="line">Vue.use(vueBubble)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
+<li><p><a href="https://segmentfault.com/a/1190000011229300" target="_blank" rel="external">JavaScript 工作原理：内存管理与常见内存泄露分析</a><br>本系列文章皆着眼于深度解析 JavaScript 内部运行原理，而本文则重点讨论编程语言中常见的内存管理问题；并且还提出了对于处理常见的内存泄露的建议。</p>
+</li>
+<li><p><a href="https://antv.alipay.com/vis/doc/chart/details/scatter-plot.html" target="_blank" rel="external">可视化基础之散点图介绍</a><br>这篇文章介绍了散点图的科学意义，推荐大家阅读学习。可视化是前端发展的一个大方向，可视化工程师除了技术实现之外，还应该学习各种图表所能表达的科学含义。感谢蚂蚁金服体验技术部同学们，整理了一整套科学规范的可视化图表“字典”，让大家详细了解每种图表背后的含义。扩展阅读：<a href="https://antv.alipay.com/vis/doc/chart/classify/compare.html" target="_blank" rel="external">可视化基础</a></p>
+</li>
+<li><p><a href="https://juejin.im/post/5965943ff265da6c30653879" target="_blank" rel="external">JS正则表达式完整教程</a><br>非常详细的介绍了JS中和正则相关的知识，文章很长，适合慢慢研读</p>
+</li>
+<li><p><a href="https://juejin.im/post/59bb37fa6fb9a00a554f89d2" target="_blank" rel="external">webpack：从入门到真实项目配置</a><br>文章主要介绍webpack配置，由简入繁、逐步优化，从简单的打包为一个bundle到分离代码、抽离共同代码、按需加载代码、自动刷新，每一步都非常详细，适合初学者快速入门。</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/26364493" target="_blank" rel="external">AR.js 初探</a><br>AR技术（增强现实技术Augmented Reality，简称 AR），AR技术在Native中已经兴起了，并且市场上有许多成功的APP，但是对于JavaScript怎么来玩转AR呢？下面我来简单的给大家演示两个不同版本，不同场景的AR小例子。</p>
+</li>
+<li><p><a href="https://github.com/zuopf769/notebook/blob/master/fe/BFC%E5%8E%9F%E7%90%86%E5%89%96%E6%9E%90/README.md" target="_blank" rel="external">史上最全面、最透彻的BFC原理剖析</a><br>介绍FC的概念是什么； BFC的约束规则；咋样才能触发生成新的BFC；BFC在布局中的应用：防止margin重叠(塌陷,以最大的为准)； 清除内部浮动；自适应两（多）栏布局。 </p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/29137921" target="_blank" rel="external">JS遇上IOT</a><br>IOT是 Internet of Things 的缩写，字面翻译是“物体组成的因特网”，准确的翻译应该为“物联网”。凡是可以用 JavaScript 来写的应用，最终都会用 JavaScript ——Atwood 定律。逃不出这个定律，JavaScript 也能用于物联网开发了。本文介绍了使用 JavaScript 在 ruff 开发平台上的小实例，有树莓派的小伙伴可以尝试把玩一下。</p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000010921801" target="_blank" rel="external">上手 Webpack ? 这篇就够了！</a><br>文章系统的概述了 Webpack 从安装到配置以及插件等等；讲述的还是比较全面。对于使用 Webpack 来说，完全可以说是够用。</p>
+</li>
+<li><p><a href="http://www.cnblogs.com/giggle/p/7538533.html" target="_blank" rel="external">实现一个简单的虚拟DOM</a><br>现在的流行框架，无论React还是Vue，都采用虚拟DOM。文中介绍了虚拟DOM的实现原理，能帮助更好理解双向绑定实现。</p>
+</li>
+</ul>
+<h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p>
+<ul>
+<li>资深前端工程师</li>
+<li>前端实习生</li>
+</ul>
+<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</div><div class="line"><span class="built_in">console</span>.log(email);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/fsd/tags/Webpack/">Webpack</a><a href="/fsd/tags/内存管理/">内存管理</a><a href="/fsd/tags/散点图/">散点图</a><a href="/fsd/tags/正则/">正则</a><a href="/fsd/tags/AR/">AR</a><a href="/fsd/tags/IOT/">IOT</a><a href="/fsd/tags/虚拟DOM/">虚拟DOM</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 FSD Weekly
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>
