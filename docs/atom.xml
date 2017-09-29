@@ -5,7 +5,7 @@
   <link href="/fsd/atom.xml" rel="self"/>
   
   <link href="https://talkingdata.github.io/"/>
-  <updated>2017-09-22T10:35:31.966Z</updated>
+  <updated>2017-09-29T08:23:40.953Z</updated>
   <id>https://talkingdata.github.io/</id>
   
   <author>
@@ -16,11 +16,78 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>大前端周刊 第15期 （本期小编：郭俊兵）</title>
+    <link href="https://talkingdata.github.io/2017/09/29/weekly-15/"/>
+    <id>https://talkingdata.github.io/2017/09/29/weekly-15/</id>
+    <published>2017-09-29T08:23:27.000Z</published>
+    <updated>2017-09-29T08:23:40.953Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><ul>
+<li>对象数组排序</li>
+</ul>
+<p>概念：javascript实现多维数组、对象数组排序，其实用的就是原生的sort()方法，用于对数组的元素进行排序。</p>
+<p>语法：arr.sort(by(‘xx’))</p>
+<ul>
+<li><p>参数介绍：</p>
+<ul>
+<li>function, key<br>使用回调函数，处理需要排序的对象key。</li>
+</ul>
+</li>
+<li><p>返回值<br>排序以后的数组。</p>
+<p>针对于偶尔需要前端排序的情况，可以使用该方式。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// 回调函数</div><div class="line">function by(name) &#123;</div><div class="line">  return function(o, p) &#123;</div><div class="line">    let a;</div><div class="line">    let b;</div><div class="line">    if (typeof o === &apos;object&apos; &amp;&amp; typeof p === &apos;object&apos; &amp;&amp; o &amp;&amp; p) &#123;</div><div class="line">      a = o[name];</div><div class="line">      b = p[name];</div><div class="line">      if (a === b) &#123;</div><div class="line">        return 0;</div><div class="line">      &#125;</div><div class="line">      if (typeof a === typeof b) &#123;</div><div class="line">        return a &lt; b ? -1 : 1;</div><div class="line">      &#125;</div><div class="line">      return typeof a &lt; typeof b ? -1 : 1;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  需要排序的 Array：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">const employees = [&#123;</div><div class="line">  name: &apos;George&apos;,</div><div class="line">  age: 32,</div><div class="line">  retiredate: &apos;March 12, 2014&apos;</div><div class="line">&#125;, &#123;</div><div class="line">  name: &apos;Edward&apos;,</div><div class="line">  age: 17,</div><div class="line">  retiredate: &apos;June 2, 2023&apos;</div><div class="line">&#125;, &#123;</div><div class="line">  name: &apos;Christine&apos;,</div><div class="line">  age: 58,</div><div class="line">  retiredate: &apos;December 20, 2036&apos;</div><div class="line">&#125;, &#123;</div><div class="line">  name: &apos;Sarah&apos;,</div><div class="line">  age: 62,</div><div class="line">  retiredate: &apos;April 30, 2020&apos;</div><div class="line">&#125;];</div></pre></td></tr></table></figure></p>
+<p>  通过 age 排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">employees.sort(by(&apos;age&apos;));</div></pre></td></tr></table></figure></p>
+<p>  结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[&#123;&quot;name&quot;:&quot;Edward&quot;,&quot;age&quot;:17,&quot;retiredate&quot;:&quot;June 2, 2023&quot;&#125;,</div><div class="line">&#123;&quot;name&quot;:&quot;George&quot;,&quot;age&quot;:32,&quot;retiredate&quot;:&quot;March 12, 2014&quot;&#125;,</div><div class="line">&#123;&quot;name&quot;:&quot;Christine&quot;,&quot;age&quot;:58,&quot;retiredate&quot;:&quot;December 20, 2036&quot;&#125;,</div><div class="line">&#123;&quot;name&quot;:&quot;Sarah&quot;,&quot;age&quot;:62,&quot;retiredate&quot;:&quot;April 30, 2020&quot;&#125;]</div></pre></td></tr></table></figure></p>
+<p>  到这里，对象数组排序就算基本实现了。那如何实现多个键值排序呢？意思就是先是对age排序，如果age相同，再比较name。<br>    这时，我们可以进一步修改by函数，让其可以接受第二个参数，当主要的键值产生一个匹配的时候，另一个compare方法将被调用以决出高下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// by函数接受一个成员名字符串和一个可选的次要比较函数做为参数</div><div class="line">// 并返回一个可以用来包含该成员的对象数组进行排序的比较函数</div><div class="line">// 当o[age]和 p[age] 相等时， 次要比较函数被用来决出高下</div><div class="line">function by(name, minor) &#123;</div><div class="line">  return function(o, p) &#123;</div><div class="line">    let a;</div><div class="line">    let b;</div><div class="line">    if (o &amp;&amp; p &amp;&amp; typeof o === &apos;object&apos; &amp;&amp; typeof p === &apos;object&apos;) &#123;</div><div class="line">      a = o[name];</div><div class="line">      b = p[name];</div><div class="line">      if (a === b) &#123;</div><div class="line">        return typeof minor === &apos;function&apos; ? minor(o, p) : 0;</div><div class="line">      &#125;</div><div class="line">      if (typeof a === typeof b) &#123;</div><div class="line">        return a &lt; b ? -1 : 1;</div><div class="line">      &#125;</div><div class="line">      return typeof a &lt; typeof b ? -1 : 1;</div><div class="line">    &#125; else &#123;</div><div class="line">      thro(&quot;error&quot;);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>  待排序数组：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">const employees = [&#123;</div><div class="line">  name: &apos;George&apos;,</div><div class="line">  age: 32,</div><div class="line">  retiredate: &apos;March 12, 2014&apos;</div><div class="line">&#125;, &#123;</div><div class="line">  name: &apos;Edward&apos;,</div><div class="line">  age: 17,</div><div class="line">  retiredate: &apos;June 2, 2023&apos;</div><div class="line">&#125;, &#123;</div><div class="line">  name: &apos;Christine&apos;,</div><div class="line">  age: 32,</div><div class="line">  retiredate: &apos;December 20, 2036&apos;</div><div class="line">&#125;, &#123;</div><div class="line">  name: &apos;Sarah&apos;,</div><div class="line">  age: 62,</div><div class="line">  retiredate: &apos;April 30, 2020&apos;</div><div class="line">&#125;];</div><div class="line">// 排序操作</div><div class="line">employees.sort(by(&apos;age&apos;, by(&apos;name&apos;)))</div></pre></td></tr></table></figure></p>
+<p>  结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[&#123;&quot;name&quot;:&quot;Edward&quot;,&quot;age&quot;:17,&quot;retiredate&quot;:&quot;June 2, 2023&quot;&#125;,</div><div class="line">&#123;&quot;name&quot;:&quot;George&quot;,&quot;age&quot;:32,&quot;retiredate&quot;:&quot;March 12, 2014&quot;&#125;,</div><div class="line">&#123;&quot;name&quot;:&quot;Sarah&quot;,&quot;age&quot;:32,&quot;retiredate&quot;:&quot;April 30, 2020&quot;&#125;,</div><div class="line">&#123;&quot;name&quot;:&quot;Christine&quot;,&quot;age&quot;:58,&quot;retiredate&quot;:&quot;December 20, 2036&quot;&#125;]</div></pre></td></tr></table></figure></p>
+<h2 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h2><ul>
+<li><p><a href="https://github.com/josdejong/jsoneditor/" target="_blank" rel="external">jsoneditor JOSN格式编辑器</a></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install jsoneditor</div></pre></td></tr></table></figure>
+<h4 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import JSONEditor from &apos;jsoneditor/dist/jsoneditor&apos;;</div><div class="line">const container = document.getElementById(&apos;jsonEdit&apos;);</div><div class="line">container.innerHTML = &apos;&apos;;</div><div class="line">const options = &#123;</div><div class="line">  mode: &apos;code&apos;,</div><div class="line">&#125;;</div><div class="line">const editor = new JSONEditor(container, options);</div><div class="line">// 添加数据</div><div class="line">editor.set(JSON);</div><div class="line">// 获取数据</div><div class="line">editor.get();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzAwNTAzMjcxNg==&amp;mid=2651425040&amp;idx=1&amp;sn=523695a371f87ce6f4f1c003ef937f0b&amp;chksm=80dff773b7a87e65fa93ce9f059d3b1f6af1c2115c3bf5356357f25fab730cab4f8ae67cb70d&amp;mpshare=1&amp;scene=1&amp;srcid=0929ZyVAlRQeJ9EX6qEuuq5C#rd" target="_blank" rel="external">实现达到 60FPS 的高性能交互动画</a><br>  对于页面优化而言，开发者往往会花大量精力在优化首屏加载，为了几毫秒锱铢必较，但忽略了页面交互动画所带来的性能问题。本文从浏览器渲染原理的角度，给出了实现60FPS交互动画的方法。</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/27069865" target="_blank" rel="external">Node.js cluster 踩坑小结</a><br>  推荐大家深入阅读这篇来自饿了么 Node 大神黄鼎恒的文章，内容深入介绍了进程与 process 对象、子进程 和 IPC ，负载实现等知识点和踩过的坑。</p>
+</li>
+<li><p><a href="https://juejin.im/post/59b9ffa8f265da06710d8e89" target="_blank" rel="external">你真的会用 Babel 吗</a><br>  对于 babel 的使用，大部分同学一直停留在与 webpack 结合使用，以及在浏览器开发环境下。导致很多 babel 的包，都不清楚他们是干嘛的。本篇文章可以当个入门来读</p>
+</li>
+<li><p><a href="http://www.zcfy.cc/article/diving-deep-into-javascript-array-8211-evolution-038-performance-void-canvas-4202.html?t=new" target="_blank" rel="external">JavaScript 数组的演进及其性能</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Typed_arrays" target="_blank" rel="external">MDN JavaScript typed arrays</a><br>  文章通过数组与类型化数组（Typed Arrays）进行对比，从创建，插入，读取等方面进行性能比较；从而直观的介绍类型化数组的，并没有深入Typed Arrays。</p>
+</li>
+<li><p><a href="http://web.jobbole.com/86941/" target="_blank" rel="external">RAIL 性能模型</a><br>  资源加载之后的性能，因为大多数用户关注的不是应用如何加载而是具体的使用。所以要快速响应用户，尤其是无线端，我们有必要了解浏览器渲染性能。</p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000011354975" target="_blank" rel="external">CSS 黑魔法小技巧，让你少写不必要的JS，代码更优雅</a><br>  <a href="https://github.com/jawil/blog/issues/24" target="_blank" rel="external">这些JavaScript编程黑科技，装逼指南，高逼格代码，让你惊叹不已</a><br>  很有意思的两篇代码小技巧，几行代码实现让人惊诧的功能、效果。思路清奇，仔细阅读代码相信会沉淀不少有用的东西。</p>
+</li>
+<li><p><a href="http://web.jobbole.com/92207/" target="_blank" rel="external">javascript 函数中的 this 的四种绑定形式</a><br>   javascript中的this和函数息息相关，谈到this很多让人晕晕乎乎的抽象概念就跑出来了，这里只说最核心的一点——函数中的this总指向调用它的对象</p>
+</li>
+<li><p><a href="https://fed.renren.com/2017/09/23/http2/" target="_blank" rel="external">怎样把网站升级到http/2</a><br>  为何升级http/2理由<a href="https://fed.renren.com/2017/09/03/upgrade-to-https/" target="_blank" rel="external">在这里</a>，本文是实践部分。http/2给前端优化带来了<a href="https://imququ.com/post/http2-new-opportunities-and-challenges.html" target="_blank" rel="external">新的机遇与挑战</a>，有兴趣的小伙伴可以了解下。</p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000007484357" target="_blank" rel="external">JavaScript 开发者所需要知道的 V8（一）：V8 In NodeJS</a><br>  V8做为Javascript引擎，使用范围已经越来越广泛。文中简单介绍了V8引擎在NodeJS的中运用。</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Show-me-the-code&quot;&gt;&lt;a href=&quot;#Show-me-the-code&quot; class=&quot;headerlink&quot; title=&quot;Show me the code&quot;&gt;&lt;/a&gt;Show me the code&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;对象数组排序&lt;/
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>大前端周刊 第14期 （本期小编：陶明）</title>
     <link href="https://talkingdata.github.io/2017/09/22/weekly-14/"/>
     <id>https://talkingdata.github.io/2017/09/22/weekly-14/</id>
     <published>2017-09-22T07:56:42.000Z</published>
-    <updated>2017-09-22T10:35:31.966Z</updated>
+    <updated>2017-09-29T01:53:35.431Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><ul>
 <li>Set</li>
@@ -107,7 +174,7 @@
     <link href="https://talkingdata.github.io/2017/09/15/weekly-13/"/>
     <id>https://talkingdata.github.io/2017/09/15/weekly-13/</id>
     <published>2017-09-15T06:55:47.000Z</published>
-    <updated>2017-09-22T07:57:33.191Z</updated>
+    <updated>2017-09-29T01:44:11.557Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><ul>
 <li>剩余参数</li>
@@ -211,7 +278,7 @@
     <link href="https://talkingdata.github.io/2017/09/08/weekly-12/"/>
     <id>https://talkingdata.github.io/2017/09/08/weekly-12/</id>
     <published>2017-09-08T06:55:47.000Z</published>
-    <updated>2017-09-22T07:55:04.983Z</updated>
+    <updated>2017-09-29T01:44:11.554Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><ul>
 <li>回调地狱</li>
@@ -222,7 +289,7 @@
 <li>async和await</li>
 </ul>
 <p>小小面试题：每隔一秒输出一个数字，顺序是：0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5</p>
-<p>简单实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 你首先想到的可能是这样</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;  <span class="comment">// j = i</span></div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, j);</div><div class="line">    &#125;, <span class="number">1000</span>);</div><div class="line">  &#125;)(i);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line"></div><div class="line"><span class="comment">// 利用es7的async和await 你还可以这样</span></div><div class="line"><span class="keyword">const</span> sleep = <span class="function">(<span class="params">timeountMS</span>) =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</div><div class="line">  setTimeout(resolve, timeountMS);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="function">(<span class="params"><span class="keyword">async</span> (</span>) =&gt;</span> &#123;  <span class="comment">// 声明即执行的 async 函数表达式</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">    <span class="keyword">await</span> sleep(<span class="number">1000</span>);</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">await</span> sleep(<span class="number">1000</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>简单实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 你首先想到的可能是这样</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;  <span class="comment">// j = i</span></div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, j);</div><div class="line">    &#125;, <span class="number">1000</span>);</div><div class="line">  &#125;)(i);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line"></div><div class="line"><span class="comment">// 利用es7的async和await 你还可以这样</span></div><div class="line"><span class="keyword">const</span> sleep = <span class="function">(<span class="params">timeountMS</span>) =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</div><div class="line">  setTimeout(resolve, timeountMS);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">(<span class="keyword">async</span> () =&gt; &#123;  <span class="comment">// 声明即执行的 async 函数表达式</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">    <span class="keyword">await</span> sleep(<span class="number">1000</span>);</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">await</span> sleep(<span class="number">1000</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
 <h2 id="工具和模块"><a href="#工具和模块" class="headerlink" title="工具和模块"></a>工具和模块</h2><p>推荐简单易用的git客户端管理工具——Source Tree，支持创建、克隆、提交、push、pull 和合并等操作，其最大优点是拥有可视化界面，大大简化了开发者与代码库之间的Git操作方式，这对于那些不熟悉Git命令的开发者来说非常实用。</p>
 <ol>
 <li><p>官网：<a href="https://www.sourcetreeapp.com/" target="_blank" rel="external">https://www.sourcetreeapp.com/</a></p>
@@ -266,13 +333,13 @@
     
       <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
     
-      <category term="ES6" scheme="https://talkingdata.github.io/tags/ES6/"/>
-    
       <category term="webpack" scheme="https://talkingdata.github.io/tags/webpack/"/>
     
       <category term="koa" scheme="https://talkingdata.github.io/tags/koa/"/>
     
       <category term="web安全" scheme="https://talkingdata.github.io/tags/web%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="ES6" scheme="https://talkingdata.github.io/tags/ES6/"/>
     
       <category term="http" scheme="https://talkingdata.github.io/tags/http/"/>
     
@@ -283,7 +350,7 @@
     <link href="https://talkingdata.github.io/2017/09/01/weekly-11/"/>
     <id>https://talkingdata.github.io/2017/09/01/weekly-11/</id>
     <published>2017-09-01T09:00:00.000Z</published>
-    <updated>2017-09-22T07:55:04.982Z</updated>
+    <updated>2017-09-29T01:44:11.550Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><h4 id="截流-throttle"><a href="#截流-throttle" class="headerlink" title="截流(throttle)"></a>截流(throttle)</h4><p>概念理解：固定函数执行的速率。<br>使用场景：DOM 事件绑定，短时间内触发多次绑定事件造成性能问题，如 <code>onresize</code>,<code>onscroll</code>等，使用节流函数可确保在指定时间内只触发一次。<br>简单实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> throttle = <span class="function">(<span class="params">func, wait</span>) =&gt;</span> &#123;</div><div class="line">	<span class="keyword">let</span> context, args;</div><div class="line">	<span class="keyword">let</span> previous = <span class="number">0</span>;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">let</span> now = +<span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">		context = <span class="keyword">this</span>;</div><div class="line">		args = <span class="built_in">arguments</span>;</div><div class="line">		<span class="keyword">if</span> (now - previous &gt; wait) &#123;</div><div class="line">			func.apply(context, args);</div><div class="line">			previous = now;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 <h4 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖(debounce)"></a>防抖(debounce)</h4><p>概念理解：强制一个函数在某个连续时间段内只执行一次，哪怕它本来会被调用多次。<br>使用场景：</p>
@@ -352,15 +419,15 @@
     
       <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
     
+      <category term="ES6" scheme="https://talkingdata.github.io/tags/ES6/"/>
+    
+      <category term="设计模式" scheme="https://talkingdata.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
       <category term="开发工具" scheme="https://talkingdata.github.io/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
       <category term="测试工具" scheme="https://talkingdata.github.io/tags/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/"/>
     
       <category term="Vue" scheme="https://talkingdata.github.io/tags/Vue/"/>
-    
-      <category term="ES6" scheme="https://talkingdata.github.io/tags/ES6/"/>
-    
-      <category term="设计模式" scheme="https://talkingdata.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
@@ -369,7 +436,7 @@
     <link href="https://talkingdata.github.io/2017/08/25/weekly-10/"/>
     <id>https://talkingdata.github.io/2017/08/25/weekly-10/</id>
     <published>2017-08-25T02:30:30.000Z</published>
-    <updated>2017-09-22T07:55:04.981Z</updated>
+    <updated>2017-09-29T01:44:11.547Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><p>ES 6 中引入了很多让代码看起来更简洁的新特性，比如展开运算符 (spread operator)。下面的三段代码，展示了 ES6 更简洁的对象拷贝、数组复制和可变参数的写法。</p>
 <ul>
@@ -463,7 +530,7 @@
     <link href="https://talkingdata.github.io/2017/08/18/weekly-9/"/>
     <id>https://talkingdata.github.io/2017/08/18/weekly-9/</id>
     <published>2017-08-18T06:57:34.000Z</published>
-    <updated>2017-09-22T07:55:04.994Z</updated>
+    <updated>2017-09-29T01:44:11.603Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="http://blog.benoitvallon.com/data-structures-in-javascript/data-structures-in-javascript/" target="_blank" rel="external">javascript数据结构</a><br><strong>用javascript创建并分析各种常见数据结构</strong></p>
@@ -522,7 +589,7 @@
     <link href="https://talkingdata.github.io/2017/08/11/weekly-8/"/>
     <id>https://talkingdata.github.io/2017/08/11/weekly-8/</id>
     <published>2017-08-11T06:57:34.000Z</published>
-    <updated>2017-09-22T07:55:04.993Z</updated>
+    <updated>2017-09-29T01:44:11.601Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="http://www.zcfy.cc/article/mastering-chrome-developer-tools-next-level-front-end-development-techniques-3722.html?t=selection" target="_blank" rel="external">掌握Chrome开发工具</a><br><strong>熟悉Chrome开发工具的基本功能: DOM检查器、样式面板和JavaScript控制台和一些不太为人所知的特性</strong></p>
@@ -572,9 +639,9 @@
     
       <category term="Vue" scheme="https://talkingdata.github.io/tags/Vue/"/>
     
-      <category term="node" scheme="https://talkingdata.github.io/tags/node/"/>
-    
       <category term="模块" scheme="https://talkingdata.github.io/tags/%E6%A8%A1%E5%9D%97/"/>
+    
+      <category term="node" scheme="https://talkingdata.github.io/tags/node/"/>
     
       <category term="API设计，单元测试" scheme="https://talkingdata.github.io/tags/API%E8%AE%BE%E8%AE%A1%EF%BC%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
     
@@ -585,7 +652,7 @@
     <link href="https://talkingdata.github.io/2017/08/04/weekly-7/"/>
     <id>https://talkingdata.github.io/2017/08/04/weekly-7/</id>
     <published>2017-08-04T02:32:34.000Z</published>
-    <updated>2017-09-22T07:55:04.992Z</updated>
+    <updated>2017-09-29T01:44:11.598Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="https://juejin.im/post/597ec55a51882556a234fcef" target="_blank" rel="external">exports、module.exports 和 export、export default 到底是咋回事</a><br><strong>模块引入方式的一个梳理</strong></p>
@@ -631,9 +698,9 @@
     
       <category term="Vue" scheme="https://talkingdata.github.io/tags/Vue/"/>
     
-      <category term="node" scheme="https://talkingdata.github.io/tags/node/"/>
-    
       <category term="模块" scheme="https://talkingdata.github.io/tags/%E6%A8%A1%E5%9D%97/"/>
+    
+      <category term="node" scheme="https://talkingdata.github.io/tags/node/"/>
     
       <category term="函数式" scheme="https://talkingdata.github.io/tags/%E5%87%BD%E6%95%B0%E5%BC%8F/"/>
     
@@ -644,7 +711,7 @@
     <link href="https://talkingdata.github.io/2017/07/28/weekly-6/"/>
     <id>https://talkingdata.github.io/2017/07/28/weekly-6/</id>
     <published>2017-07-28T04:09:40.000Z</published>
-    <updated>2017-09-22T07:55:04.990Z</updated>
+    <updated>2017-09-29T01:44:11.594Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&amp;mid=2651552360&amp;idx=1&amp;sn=8d2bc092405fc23379a786a6b7a36274&amp;chksm=8025ada9b75224bfd372ce168cb0f9cb6959255e2a7e94556eacea5d1d8e4b559dd494704ae5&amp;mpshare=1&amp;scene=1&amp;srcid=0720bFFOVROJ90Pe2ZutzpQz#rd" target="_blank" rel="external">CSS 样式书写规范</a><br><strong>不同的规范都有各自的长处与缺陷，对待所谓的规范最好的方式不是人云亦云，拿来就用，而是应该结合实际情况及需求，取长补短，取其精华去其糟粕。</strong></p>
@@ -692,11 +759,11 @@
     
       <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
     
-      <category term="Vue" scheme="https://talkingdata.github.io/tags/Vue/"/>
+      <category term="Vuex" scheme="https://talkingdata.github.io/tags/Vuex/"/>
     
       <category term="http" scheme="https://talkingdata.github.io/tags/http/"/>
     
-      <category term="Vuex" scheme="https://talkingdata.github.io/tags/Vuex/"/>
+      <category term="Vue" scheme="https://talkingdata.github.io/tags/Vue/"/>
     
       <category term="node" scheme="https://talkingdata.github.io/tags/node/"/>
     
@@ -713,7 +780,7 @@
     <link href="https://talkingdata.github.io/2017/07/21/weekly-5/"/>
     <id>https://talkingdata.github.io/2017/07/21/weekly-5/</id>
     <published>2017-07-21T06:21:43.000Z</published>
-    <updated>2017-09-22T07:55:04.989Z</updated>
+    <updated>2017-09-29T01:44:11.588Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="https://kongchenglc.github.io/blog/%E5%85%B3%E4%BA%8Ethis20170716/" target="_blank" rel="external">JS中关于this</a><br><strong>关于this的几种绑定规则以及优先级</strong></p>
@@ -765,11 +832,11 @@
     
       <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
     
-      <category term="Vue" scheme="https://talkingdata.github.io/tags/Vue/"/>
-    
       <category term="ES6" scheme="https://talkingdata.github.io/tags/ES6/"/>
     
       <category term="three.js" scheme="https://talkingdata.github.io/tags/three-js/"/>
+    
+      <category term="Vue" scheme="https://talkingdata.github.io/tags/Vue/"/>
     
       <category term="Zepto" scheme="https://talkingdata.github.io/tags/Zepto/"/>
     
@@ -782,7 +849,7 @@
     <link href="https://talkingdata.github.io/2017/07/21/5-protocols-for-event-driven-api-architectures/"/>
     <id>https://talkingdata.github.io/2017/07/21/5-protocols-for-event-driven-api-architectures/</id>
     <published>2017-07-21T04:00:00.000Z</published>
-    <updated>2017-07-21T05:27:22.757Z</updated>
+    <updated>2017-07-28T03:52:09.671Z</updated>
     
     <content type="html"><![CDATA[<p>原文：<a href="http://nordicapis.com/5-protocols-for-event-driven-api-architectures/" target="_blank" rel="external">5 Protocols For Event-Driven API Architectures</a></p>
 <p>The internet is a system of communication, and as such, the relationship between client and server, as well as server to server, is one of the most oft-discussed and hotly contested concepts. <strong>event-driven architecture</strong> is a methodology of defining these relationships, and creating systems within a specific set of relationships that allow for extensive functionality.</p>
@@ -904,7 +971,7 @@
     <link href="https://talkingdata.github.io/2017/07/12/weekly-4/"/>
     <id>https://talkingdata.github.io/2017/07/12/weekly-4/</id>
     <published>2017-07-12T07:16:43.000Z</published>
-    <updated>2017-09-22T07:55:04.988Z</updated>
+    <updated>2017-09-29T01:44:11.582Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="http://www.webhek.com/post/svg.html" target="_blank" rel="external">SVG的用法</a><br><strong>SVG基础和使用介绍</strong></p>
@@ -954,15 +1021,15 @@
     
       <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
     
+      <category term="ES6" scheme="https://talkingdata.github.io/tags/ES6/"/>
+    
       <category term="Vue" scheme="https://talkingdata.github.io/tags/Vue/"/>
     
-      <category term="ES6" scheme="https://talkingdata.github.io/tags/ES6/"/>
+      <category term="算法" scheme="https://talkingdata.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="Echarts" scheme="https://talkingdata.github.io/tags/Echarts/"/>
     
       <category term="SVG" scheme="https://talkingdata.github.io/tags/SVG/"/>
-    
-      <category term="算法" scheme="https://talkingdata.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="模块化" scheme="https://talkingdata.github.io/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
     
@@ -975,7 +1042,7 @@
     <link href="https://talkingdata.github.io/2017/07/07/weekly-3/"/>
     <id>https://talkingdata.github.io/2017/07/07/weekly-3/</id>
     <published>2017-07-07T05:10:51.000Z</published>
-    <updated>2017-09-22T07:55:04.987Z</updated>
+    <updated>2017-09-29T01:44:11.575Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="https://juejin.im/post/59278e312f301e006c2e1510" target="_blank" rel="external">JavaScript系列</a><br>相信作为“前端程序猿(媛)”的你一定了解作用域、原型、原型链、继承、闭包……在前端框架的盛行之下，却让初学者忽略了JS基础的学习，但基础不稳必然限制你的发展空间，当你了解了底层，就能很轻松明白框架的原理。</p>
@@ -1027,11 +1094,11 @@
     
       <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
     
-      <category term="算法" scheme="https://talkingdata.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="es6" scheme="https://talkingdata.github.io/tags/es6/"/>
     
       <category term="vue" scheme="https://talkingdata.github.io/tags/vue/"/>
+    
+      <category term="算法" scheme="https://talkingdata.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="工具" scheme="https://talkingdata.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
     
@@ -1044,7 +1111,7 @@
     <link href="https://talkingdata.github.io/2017/06/30/weekly-2/"/>
     <id>https://talkingdata.github.io/2017/06/30/weekly-2/</id>
     <published>2017-06-30T03:18:25.000Z</published>
-    <updated>2017-09-22T07:55:04.985Z</updated>
+    <updated>2017-09-29T01:44:11.569Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="http://es6.ruanyifeng.com/#docs/class" target="_blank" rel="external">Class 的基本语法</a><br>尽管基本上，<code>ES6</code>的<code>class</code>可以看作只是一个语法糖，但使得<code>JavaScript</code>对象原型的写法更加清晰、更像面向对象编程的语法，更接近传统语言的写法。</p>
@@ -1096,11 +1163,11 @@
     
       <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
     
-      <category term="设计模式" scheme="https://talkingdata.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
       <category term="框架" scheme="https://talkingdata.github.io/tags/%E6%A1%86%E6%9E%B6/"/>
     
       <category term="测试" scheme="https://talkingdata.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="设计模式" scheme="https://talkingdata.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
       <category term="three.js" scheme="https://talkingdata.github.io/tags/three-js/"/>
     
@@ -1111,7 +1178,7 @@
     <link href="https://talkingdata.github.io/2017/06/23/weekly-1/"/>
     <id>https://talkingdata.github.io/2017/06/23/weekly-1/</id>
     <published>2017-06-23T03:18:25.000Z</published>
-    <updated>2017-09-22T07:55:04.980Z</updated>
+    <updated>2017-09-29T01:44:11.545Z</updated>
     
     <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li><p><a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="external">Promise</a><br>在Javascript的单线程异步架构下，Promise会是很多异步服务的核心知识点，Node 8.X已经可以方便的将回调方式转换为Promise。</p>

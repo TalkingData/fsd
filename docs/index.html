@@ -59,6 +59,99 @@
 
   
     
+    <h3 class="article-title"><a href="/fsd/2017/09/29/weekly-15/"><span>大前端周刊 第15期 （本期小编：郭俊兵）</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/fsd/2017/09/29/weekly-15/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-09-29T08:23:27.000Z">
+          2017-09-29
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><ul>
+<li>对象数组排序</li>
+</ul>
+<p>概念：javascript实现多维数组、对象数组排序，其实用的就是原生的sort()方法，用于对数组的元素进行排序。</p>
+<p>语法：arr.sort(by(‘xx’))</p>
+<ul>
+<li><p>参数介绍：</p>
+<ul>
+<li>function, key<br>使用回调函数，处理需要排序的对象key。</li>
+</ul>
+</li>
+<li><p>返回值<br>排序以后的数组。</p>
+<p>针对于偶尔需要前端排序的情况，可以使用该方式。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// 回调函数</div><div class="line">function by(name) &#123;</div><div class="line">  return function(o, p) &#123;</div><div class="line">    let a;</div><div class="line">    let b;</div><div class="line">    if (typeof o === &apos;object&apos; &amp;&amp; typeof p === &apos;object&apos; &amp;&amp; o &amp;&amp; p) &#123;</div><div class="line">      a = o[name];</div><div class="line">      b = p[name];</div><div class="line">      if (a === b) &#123;</div><div class="line">        return 0;</div><div class="line">      &#125;</div><div class="line">      if (typeof a === typeof b) &#123;</div><div class="line">        return a &lt; b ? -1 : 1;</div><div class="line">      &#125;</div><div class="line">      return typeof a &lt; typeof b ? -1 : 1;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  需要排序的 Array：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">const employees = [&#123;</div><div class="line">  name: &apos;George&apos;,</div><div class="line">  age: 32,</div><div class="line">  retiredate: &apos;March 12, 2014&apos;</div><div class="line">&#125;, &#123;</div><div class="line">  name: &apos;Edward&apos;,</div><div class="line">  age: 17,</div><div class="line">  retiredate: &apos;June 2, 2023&apos;</div><div class="line">&#125;, &#123;</div><div class="line">  name: &apos;Christine&apos;,</div><div class="line">  age: 58,</div><div class="line">  retiredate: &apos;December 20, 2036&apos;</div><div class="line">&#125;, &#123;</div><div class="line">  name: &apos;Sarah&apos;,</div><div class="line">  age: 62,</div><div class="line">  retiredate: &apos;April 30, 2020&apos;</div><div class="line">&#125;];</div></pre></td></tr></table></figure></p>
+<p>  通过 age 排序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">employees.sort(by(&apos;age&apos;));</div></pre></td></tr></table></figure></p>
+<p>  结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[&#123;&quot;name&quot;:&quot;Edward&quot;,&quot;age&quot;:17,&quot;retiredate&quot;:&quot;June 2, 2023&quot;&#125;,</div><div class="line">&#123;&quot;name&quot;:&quot;George&quot;,&quot;age&quot;:32,&quot;retiredate&quot;:&quot;March 12, 2014&quot;&#125;,</div><div class="line">&#123;&quot;name&quot;:&quot;Christine&quot;,&quot;age&quot;:58,&quot;retiredate&quot;:&quot;December 20, 2036&quot;&#125;,</div><div class="line">&#123;&quot;name&quot;:&quot;Sarah&quot;,&quot;age&quot;:62,&quot;retiredate&quot;:&quot;April 30, 2020&quot;&#125;]</div></pre></td></tr></table></figure></p>
+<p>  到这里，对象数组排序就算基本实现了。那如何实现多个键值排序呢？意思就是先是对age排序，如果age相同，再比较name。<br>    这时，我们可以进一步修改by函数，让其可以接受第二个参数，当主要的键值产生一个匹配的时候，另一个compare方法将被调用以决出高下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">// by函数接受一个成员名字符串和一个可选的次要比较函数做为参数</div><div class="line">// 并返回一个可以用来包含该成员的对象数组进行排序的比较函数</div><div class="line">// 当o[age]和 p[age] 相等时， 次要比较函数被用来决出高下</div><div class="line">function by(name, minor) &#123;</div><div class="line">  return function(o, p) &#123;</div><div class="line">    let a;</div><div class="line">    let b;</div><div class="line">    if (o &amp;&amp; p &amp;&amp; typeof o === &apos;object&apos; &amp;&amp; typeof p === &apos;object&apos;) &#123;</div><div class="line">      a = o[name];</div><div class="line">      b = p[name];</div><div class="line">      if (a === b) &#123;</div><div class="line">        return typeof minor === &apos;function&apos; ? minor(o, p) : 0;</div><div class="line">      &#125;</div><div class="line">      if (typeof a === typeof b) &#123;</div><div class="line">        return a &lt; b ? -1 : 1;</div><div class="line">      &#125;</div><div class="line">      return typeof a &lt; typeof b ? -1 : 1;</div><div class="line">    &#125; else &#123;</div><div class="line">      thro(&quot;error&quot;);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>  待排序数组：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">const employees = [&#123;</div><div class="line">  name: &apos;George&apos;,</div><div class="line">  age: 32,</div><div class="line">  retiredate: &apos;March 12, 2014&apos;</div><div class="line">&#125;, &#123;</div><div class="line">  name: &apos;Edward&apos;,</div><div class="line">  age: 17,</div><div class="line">  retiredate: &apos;June 2, 2023&apos;</div><div class="line">&#125;, &#123;</div><div class="line">  name: &apos;Christine&apos;,</div><div class="line">  age: 32,</div><div class="line">  retiredate: &apos;December 20, 2036&apos;</div><div class="line">&#125;, &#123;</div><div class="line">  name: &apos;Sarah&apos;,</div><div class="line">  age: 62,</div><div class="line">  retiredate: &apos;April 30, 2020&apos;</div><div class="line">&#125;];</div><div class="line">// 排序操作</div><div class="line">employees.sort(by(&apos;age&apos;, by(&apos;name&apos;)))</div></pre></td></tr></table></figure></p>
+<p>  结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[&#123;&quot;name&quot;:&quot;Edward&quot;,&quot;age&quot;:17,&quot;retiredate&quot;:&quot;June 2, 2023&quot;&#125;,</div><div class="line">&#123;&quot;name&quot;:&quot;George&quot;,&quot;age&quot;:32,&quot;retiredate&quot;:&quot;March 12, 2014&quot;&#125;,</div><div class="line">&#123;&quot;name&quot;:&quot;Sarah&quot;,&quot;age&quot;:32,&quot;retiredate&quot;:&quot;April 30, 2020&quot;&#125;,</div><div class="line">&#123;&quot;name&quot;:&quot;Christine&quot;,&quot;age&quot;:58,&quot;retiredate&quot;:&quot;December 20, 2036&quot;&#125;]</div></pre></td></tr></table></figure></p>
+<h2 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h2><ul>
+<li><p><a href="https://github.com/josdejong/jsoneditor/" target="_blank" rel="external">jsoneditor JOSN格式编辑器</a></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install jsoneditor</div></pre></td></tr></table></figure>
+<h4 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import JSONEditor from &apos;jsoneditor/dist/jsoneditor&apos;;</div><div class="line">const container = document.getElementById(&apos;jsonEdit&apos;);</div><div class="line">container.innerHTML = &apos;&apos;;</div><div class="line">const options = &#123;</div><div class="line">  mode: &apos;code&apos;,</div><div class="line">&#125;;</div><div class="line">const editor = new JSONEditor(container, options);</div><div class="line">// 添加数据</div><div class="line">editor.set(JSON);</div><div class="line">// 获取数据</div><div class="line">editor.get();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzAwNTAzMjcxNg==&amp;mid=2651425040&amp;idx=1&amp;sn=523695a371f87ce6f4f1c003ef937f0b&amp;chksm=80dff773b7a87e65fa93ce9f059d3b1f6af1c2115c3bf5356357f25fab730cab4f8ae67cb70d&amp;mpshare=1&amp;scene=1&amp;srcid=0929ZyVAlRQeJ9EX6qEuuq5C#rd" target="_blank" rel="external">实现达到 60FPS 的高性能交互动画</a><br>  对于页面优化而言，开发者往往会花大量精力在优化首屏加载，为了几毫秒锱铢必较，但忽略了页面交互动画所带来的性能问题。本文从浏览器渲染原理的角度，给出了实现60FPS交互动画的方法。</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/27069865" target="_blank" rel="external">Node.js cluster 踩坑小结</a><br>  推荐大家深入阅读这篇来自饿了么 Node 大神黄鼎恒的文章，内容深入介绍了进程与 process 对象、子进程 和 IPC ，负载实现等知识点和踩过的坑。</p>
+</li>
+<li><p><a href="https://juejin.im/post/59b9ffa8f265da06710d8e89" target="_blank" rel="external">你真的会用 Babel 吗</a><br>  对于 babel 的使用，大部分同学一直停留在与 webpack 结合使用，以及在浏览器开发环境下。导致很多 babel 的包，都不清楚他们是干嘛的。本篇文章可以当个入门来读</p>
+</li>
+<li><p><a href="http://www.zcfy.cc/article/diving-deep-into-javascript-array-8211-evolution-038-performance-void-canvas-4202.html?t=new" target="_blank" rel="external">JavaScript 数组的演进及其性能</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Typed_arrays" target="_blank" rel="external">MDN JavaScript typed arrays</a><br>  文章通过数组与类型化数组（Typed Arrays）进行对比，从创建，插入，读取等方面进行性能比较；从而直观的介绍类型化数组的，并没有深入Typed Arrays。</p>
+</li>
+<li><p><a href="http://web.jobbole.com/86941/" target="_blank" rel="external">RAIL 性能模型</a><br>  资源加载之后的性能，因为大多数用户关注的不是应用如何加载而是具体的使用。所以要快速响应用户，尤其是无线端，我们有必要了解浏览器渲染性能。</p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000011354975" target="_blank" rel="external">CSS 黑魔法小技巧，让你少写不必要的JS，代码更优雅</a><br>  <a href="https://github.com/jawil/blog/issues/24" target="_blank" rel="external">这些JavaScript编程黑科技，装逼指南，高逼格代码，让你惊叹不已</a><br>  很有意思的两篇代码小技巧，几行代码实现让人惊诧的功能、效果。思路清奇，仔细阅读代码相信会沉淀不少有用的东西。</p>
+</li>
+<li><p><a href="http://web.jobbole.com/92207/" target="_blank" rel="external">javascript 函数中的 this 的四种绑定形式</a><br>   javascript中的this和函数息息相关，谈到this很多让人晕晕乎乎的抽象概念就跑出来了，这里只说最核心的一点——函数中的this总指向调用它的对象</p>
+</li>
+<li><p><a href="https://fed.renren.com/2017/09/23/http2/" target="_blank" rel="external">怎样把网站升级到http/2</a><br>  为何升级http/2理由<a href="https://fed.renren.com/2017/09/03/upgrade-to-https/" target="_blank" rel="external">在这里</a>，本文是实践部分。http/2给前端优化带来了<a href="https://imququ.com/post/http2-new-opportunities-and-challenges.html" target="_blank" rel="external">新的机遇与挑战</a>，有兴趣的小伙伴可以了解下。</p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000007484357" target="_blank" rel="external">JavaScript 开发者所需要知道的 V8（一）：V8 In NodeJS</a><br>  V8做为Javascript引擎，使用范围已经越来越广泛。文中简单介绍了V8引擎在NodeJS的中运用。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
     <h3 class="article-title"><a href="/fsd/2017/09/22/weekly-14/"><span>大前端周刊 第14期 （本期小编：陶明）</span></a></h3>
     
   
@@ -309,7 +402,7 @@
 <li>async和await</li>
 </ul>
 <p>小小面试题：每隔一秒输出一个数字，顺序是：0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5</p>
-<p>简单实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 你首先想到的可能是这样</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;  <span class="comment">// j = i</span></div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, j);</div><div class="line">    &#125;, <span class="number">1000</span>);</div><div class="line">  &#125;)(i);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line"></div><div class="line"><span class="comment">// 利用es7的async和await 你还可以这样</span></div><div class="line"><span class="keyword">const</span> sleep = <span class="function">(<span class="params">timeountMS</span>) =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</div><div class="line">  setTimeout(resolve, timeountMS);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="function">(<span class="params"><span class="keyword">async</span> (</span>) =&gt;</span> &#123;  <span class="comment">// 声明即执行的 async 函数表达式</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">    <span class="keyword">await</span> sleep(<span class="number">1000</span>);</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">await</span> sleep(<span class="number">1000</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>简单实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 你首先想到的可能是这样</span></div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">j</span>) </span>&#123;  <span class="comment">// j = i</span></div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, j);</div><div class="line">    &#125;, <span class="number">1000</span>);</div><div class="line">  &#125;)(i);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line"></div><div class="line"><span class="comment">// 利用es7的async和await 你还可以这样</span></div><div class="line"><span class="keyword">const</span> sleep = <span class="function">(<span class="params">timeountMS</span>) =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</div><div class="line">  setTimeout(resolve, timeountMS);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">(<span class="keyword">async</span> () =&gt; &#123;  <span class="comment">// 声明即执行的 async 函数表达式</span></div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">    <span class="keyword">await</span> sleep(<span class="number">1000</span>);</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">await</span> sleep(<span class="number">1000</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Date</span>, i);</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
 <h2 id="工具和模块"><a href="#工具和模块" class="headerlink" title="工具和模块"></a>工具和模块</h2><p>推荐简单易用的git客户端管理工具——Source Tree，支持创建、克隆、提交、push、pull 和合并等操作，其最大优点是拥有可视化界面，大大简化了开发者与代码库之间的Git操作方式，这对于那些不熟悉Git命令的开发者来说非常实用。</p>
 <ol>
 <li><p>官网：<a href="https://www.sourcetreeapp.com/" target="_blank" rel="external">https://www.sourcetreeapp.com/</a></p>
@@ -357,7 +450,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/ES6/">ES6</a><a href="/fsd/tags/webpack/">webpack</a><a href="/fsd/tags/koa/">koa</a><a href="/fsd/tags/web安全/">web安全</a><a href="/fsd/tags/http/">http</a>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/webpack/">webpack</a><a href="/fsd/tags/koa/">koa</a><a href="/fsd/tags/web安全/">web安全</a><a href="/fsd/tags/ES6/">ES6</a><a href="/fsd/tags/http/">http</a>
     </span>
     
 
@@ -465,7 +558,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/开发工具/">开发工具</a><a href="/fsd/tags/测试工具/">测试工具</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/ES6/">ES6</a><a href="/fsd/tags/设计模式/">设计模式</a>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/ES6/">ES6</a><a href="/fsd/tags/设计模式/">设计模式</a><a href="/fsd/tags/开发工具/">开发工具</a><a href="/fsd/tags/测试工具/">测试工具</a><a href="/fsd/tags/Vue/">Vue</a>
     </span>
     
 
@@ -747,7 +840,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/node/">node</a><a href="/fsd/tags/模块/">模块</a><a href="/fsd/tags/API设计，单元测试/">API设计，单元测试</a>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/模块/">模块</a><a href="/fsd/tags/node/">node</a><a href="/fsd/tags/API设计，单元测试/">API设计，单元测试</a>
     </span>
     
 
@@ -829,7 +922,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/node/">node</a><a href="/fsd/tags/模块/">模块</a><a href="/fsd/tags/函数式/">函数式</a>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/模块/">模块</a><a href="/fsd/tags/node/">node</a><a href="/fsd/tags/函数式/">函数式</a>
     </span>
     
 
@@ -915,97 +1008,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/http/">http</a><a href="/fsd/tags/Vuex/">Vuex</a><a href="/fsd/tags/node/">node</a><a href="/fsd/tags/WebSocket/">WebSocket</a><a href="/fsd/tags/iView/">iView</a><a href="/fsd/tags/Git/">Git</a>
-    </span>
-    
-
-    </div>
-
-    
-  </div>
-</article>
-
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/fsd/2017/07/21/weekly-5/"><span>大前端周刊 第5期 （本期小编：陶明）</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/fsd/2017/07/21/weekly-5/" rel="bookmark">
-        <time class="entry-date published" datetime="2017-07-21T06:21:43.000Z">
-          2017-07-21
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li><p><a href="https://kongchenglc.github.io/blog/%E5%85%B3%E4%BA%8Ethis20170716/" target="_blank" rel="external">JS中关于this</a><br><strong>关于this的几种绑定规则以及优先级</strong></p>
-</li>
-<li><p><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="external">跨域资源共享 CORS</a><br><strong>一个option请求引发的疑惑</strong></p>
-</li>
-<li><p><a href="http://www.jianshu.com/p/fc2017f18525" target="_blank" rel="external">表单脚本的基础知识</a><br><strong>详细的总结了表单的属性、方法及事件</strong></p>
-</li>
-</ul>
-<h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
-<li><p><a href="https://talkingdata.github.io/fsd/2017/07/21/5-protocols-for-event-driven-api-architectures/">五种事件驱动的API架构</a><br><small><em>推荐人：王祥</em></small><br>本文会介绍 5 种事件驱动的 API 架构：WebSockets、WebHooks、REST Hooks、Pub-Sub， 以及 Server Sent Events，并分别介绍这几种架构的基础功能、使用方式以及各自的优缺点。<br>对于 Node.js 开发者来说，我们天生就在使用事件驱动的架构，业界也越来越认可事件驱动架构和异步系统的优势，了解本文介绍的 5 种事件驱动API 架构。</p>
-</li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/27296011" target="_blank" rel="external">推荐一篇Three.js入门文章</a><br><small><em>推荐人：张成斌</em></small><br>文章把学习Three.js需要掌握的基本概念和知识点讲解的很详细。并且结合代码实现了一个demo。对于Three.js有兴趣的同学，是一篇不错的入门文章。</p>
-</li>
-<li><p><a href="https://segmentfault.com/a/1190000010261115" target="_blank" rel="external">推荐一篇介绍RESTful API的文章</a><br><small><em>推荐人：李丽娇</em></small><br>介绍了RESTful API的实现思想，并从http请求方式和相应内容等方面给出详细示例。<br>在项目接口设计和接口对接中可做实质性参考。</p>
-</li>
-<li><p><a href="https://juejin.im/post/596d45d96fb9a06ba2688e44/?utm_source=weixinqun&amp;utm_medium=feZeptoEvent" target="_blank" rel="external">读 Zepto 源码之 Event 模块</a><br><small><em>推荐人：胡国伟</em></small><br>如何自己实现事件处理，本文通过深入浅出解读 Zepto Event 模块源码，给我们提供了很好的答案。</p>
-</li>
-<li><p><a href="https://www.404forest.com/2017/07/18/how-javascript-actually-works-eventloop-and-uirendering/" target="_blank" rel="external">深入探究 eventloop 与浏览器渲染的时序问题</a><br><small><em>推荐人：陶明</em></small><br>文章通过对那些『延迟』执行的函数思考，深入的对event loop和task进行了拆分讲解，通过实例与图示详细讲解了整个执行渲染过程。</p>
-</li>
-<li><p><a href="http://www.cnblogs.com/xuntu/p/6800547.html" target="_blank" rel="external">vue的Virtual Dom实现- snabbdom解密</a><br><small><em>推荐人：李志伟</em></small><br>文章通过详细的图文对照、算法代码解析讲述了虚拟dom的实现，Virtual Node作为纯数据对象，patch创建或者更新DOM树，diff算法用来比较同层级，然后通过钩子和扩展模块创建有attribute、props、eventlistener的复杂dom。</p>
-</li>
-<li><p><a href="https://github.com/ruanyf/es6tutorial/blob/8c8be74712a9e0d1a5dbcc855fe3e574b9fd4e6b/docs/array.md" target="_blank" rel="external">ES6数组的扩展(rest参数和扩展运算符)</a><br><small><em>推荐人：耿少真</em></small><br>rest参数和扩展运算符都是ES6新增的特性。<br>rest参数的形式为：…变量名；扩展运算符是三个点（…）。</p>
-<h5 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数:"></a>rest参数:</h5><ul>
-<li>rest参数用于获取函数的多余参数，这样就不需要使用arguments对象了, rest参数搭配的变量是一个数组，该变量将多余的参数放入数组中</li>
-</ul>
-<h5 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符:"></a>扩展运算符:</h5><ul>
-<li>扩展运算符可以看做是 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列</li>
-</ul>
-</li>
-<li><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5Mjg4NDMwMA==&amp;mid=2652975196&amp;idx=1&amp;sn=7775588a3e5a9cd44090f379766d2354&amp;chksm=bd4ae37f8a3d6a69d00df95143c477440c4c494df56a101e4e076911a615e75f5b194cd4e182&amp;mpshare=1&amp;scene=1&amp;srcid=0720soS6N4MjqELSisDoyamI#rd" target="_blank" rel="external">程序员如何快速学习新的框架</a><br><small><em>推荐人：郭俊兵</em></small><br>前端框架丰富多彩的今天，快速学习新的框架是每个前端程序员的必备技能。</p>
-</li>
-<li><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226710&amp;idx=1&amp;sn=3c6848e002aabeb55d6e9456b646d03d&amp;chksm=bd495bd28a3ed2c43c34afb19a4fb0aedfb489b847f5e27348b9a021242e115d6ddb158c9e32&amp;mpshare=1&amp;scene=1&amp;srcid=0721vFmgm9iqGHwNUyqboDb3&amp;pass_ticket=E7F2%2BBqX9jvbMHf320yfzDVuT2rXz5tmHzjKDL3CgheMLCPvEi2MI8tlg%2FO3xRtu#rd" target="_blank" rel="external">4种使用webpack提升vue应用的方式</a><br><small><em>推荐人：包京京</em></small><br>本篇文章所提到的几个措施大家可能都曾经在项目里用过，但是就如作者所言：你只是在用，并不知道为什么用，本文最大的价值在于提供了系统的优化方案并解释了原因</p>
-</li>
-</ul>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
-<li><a href="https://github.com/jaredreich/pell" target="_blank" rel="external">pell</a><br><strong>一个非常轻的开源WYSIWYG 编辑器</strong></li>
-<li><a href="https://threejs.org/examples/#webgl_animation_cloth" target="_blank" rel="external">three.js</a><br><strong>three.js的Demo</strong></li>
-</ul>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/ES6/">ES6</a><a href="/fsd/tags/three-js/">three.js</a><a href="/fsd/tags/Zepto/">Zepto</a><a href="/fsd/tags/事件驱动/">事件驱动</a>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vuex/">Vuex</a><a href="/fsd/tags/http/">http</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/node/">node</a><a href="/fsd/tags/WebSocket/">WebSocket</a><a href="/fsd/tags/iView/">iView</a><a href="/fsd/tags/Git/">Git</a>
     </span>
     
 
