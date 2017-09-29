@@ -1,7 +1,7 @@
 ---
 title: 大前端周刊 第15期 （本期小编：郭俊兵）
 date: 2017-09-29 16:23:27
-tags:
+tags: [动画, Node, Babels, 渲染性能, this关键字, http/2升级, CSS黑魔法]
 ---
 ## Show me the code
 
@@ -179,3 +179,14 @@ tags:
 
 - [JavaScript 开发者所需要知道的 V8（一）：V8 In NodeJS](https://segmentfault.com/a/1190000007484357)
 	V8做为Javascript引擎，使用范围已经越来越广泛。文中简单介绍了V8引擎在NodeJS的中运用。
+
+## 招聘
+TalkingData DTU 可视化团队招聘：
+* 资深前端工程师
+* 前端实习生
+
+简历投递：
+``` javascript
+const email = 'xiang.wang#tendcloud.com'.replace('#', '@');
+console.log(email);
+```

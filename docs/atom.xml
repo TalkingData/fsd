@@ -5,7 +5,7 @@
   <link href="/fsd/atom.xml" rel="self"/>
   
   <link href="https://talkingdata.github.io/"/>
-  <updated>2017-09-29T08:23:40.953Z</updated>
+  <updated>2017-09-29T08:37:40.649Z</updated>
   <id>https://talkingdata.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://talkingdata.github.io/2017/09/29/weekly-15/"/>
     <id>https://talkingdata.github.io/2017/09/29/weekly-15/</id>
     <published>2017-09-29T08:23:27.000Z</published>
-    <updated>2017-09-29T08:23:40.953Z</updated>
+    <updated>2017-09-29T08:37:40.649Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><ul>
 <li>对象数组排序</li>
@@ -70,6 +70,12 @@
 <li><p><a href="https://segmentfault.com/a/1190000007484357" target="_blank" rel="external">JavaScript 开发者所需要知道的 V8（一）：V8 In NodeJS</a><br>  V8做为Javascript引擎，使用范围已经越来越广泛。文中简单介绍了V8引擎在NodeJS的中运用。</p>
 </li>
 </ul>
+<h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p>
+<ul>
+<li>资深前端工程师</li>
+<li>前端实习生</li>
+</ul>
+<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</div><div class="line"><span class="built_in">console</span>.log(email);</div></pre></td></tr></table></figure></p>
 ]]></content>
     
     <summary type="html">
@@ -79,6 +85,20 @@
     
     </summary>
     
+    
+      <category term="Node" scheme="https://talkingdata.github.io/tags/Node/"/>
+    
+      <category term="动画" scheme="https://talkingdata.github.io/tags/%E5%8A%A8%E7%94%BB/"/>
+    
+      <category term="Babels" scheme="https://talkingdata.github.io/tags/Babels/"/>
+    
+      <category term="渲染性能" scheme="https://talkingdata.github.io/tags/%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD/"/>
+    
+      <category term="this关键字" scheme="https://talkingdata.github.io/tags/this%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    
+      <category term="http/2升级" scheme="https://talkingdata.github.io/tags/http-2%E5%8D%87%E7%BA%A7/"/>
+    
+      <category term="CSS黑魔法" scheme="https://talkingdata.github.io/tags/CSS%E9%BB%91%E9%AD%94%E6%B3%95/"/>
     
   </entry>
   
