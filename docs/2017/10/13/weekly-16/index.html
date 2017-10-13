@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>大前端周刊 第16期 （本期小编：张成斌） | FSD Weekly</title>
+
+  
+  <meta name="author" content="FSD Weekly">
+  
+
+  
+  <meta name="description" content="Show me the codeES6中的class语法JavaScript 语言中，生成实例对象的传统方法是通过构造函数。这种写法跟传统的面向对象语言（比如 C++ 和 Java）差异很大。ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过class关键字，">
+  
+
+  
+  
+  <meta name="keywords" content="">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="大前端周刊 第16期 （本期小编：张成斌）"/>
+
+  <meta property="og:site_name" content="FSD Weekly"/>
+
+  
+  <meta property="og:image" content="/fsd/favicon.ico"/>
+  
+
+  <link href="/fsd/favicon.ico" rel="icon">
+  <link rel="alternate" href="/fsd/atom.xml" title="FSD Weekly" type="application/atom+xml">
+  <link rel="stylesheet" href="/fsd/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/fsd/">FSD Weekly</a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/fsd/">主页</a></li>
+      
+        <li><a href="/fsd/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>大前端周刊 第16期 （本期小编：张成斌）</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/fsd/2017/10/13/weekly-16/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-10-13T02:24:12.000Z">
+          2017-10-13
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><h3 id="ES6中的class语法"><a href="#ES6中的class语法" class="headerlink" title="ES6中的class语法"></a>ES6中的<code>class</code>语法</h3><p>JavaScript 语言中，生成实例对象的传统方法是通过构造函数。这种写法跟传统的面向对象语言（比如 C++ 和 Java）差异很大。ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过class关键字，可以定义类。基本上，ES6 的class可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的class写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。</p>
+<h4 id="Class-Definition"><a href="#Class-Definition" class="headerlink" title="Class Definition"></a>Class Definition</h4><p>ES6语法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="keyword">constructor</span> (id, x, y) &#123;</div><div class="line">        <span class="keyword">this</span>.id = id;</div><div class="line">        <span class="keyword">this</span>.move(x, y);</div><div class="line">    &#125;</div><div class="line">    move (x, y) &#123;</div><div class="line">        <span class="keyword">this</span>.x = x;</div><div class="line">        <span class="keyword">this</span>.y = y;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ES5语法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Shape = <span class="function"><span class="keyword">function</span> (<span class="params">id, x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.id = id;</div><div class="line">    <span class="keyword">this</span>.move(x, y);</div><div class="line">&#125;;</div><div class="line">Shape.prototype.move = <span class="function"><span class="keyword">function</span> (<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>上面ES6代码定义了一个“类”，可以看到里面有一个constructor方法，这就是构造方法，而this关键字则代表实例对象。也就是说，ES5 的构造函数Shape，对应 ES6 的Shape类的构造方法。Shape类除了构造方法，还定义了一个move方法。注意，定义“类”的方法的时候，前面不需要加上function这个关键字，直接把函数定义放进去了就可以了。另外，方法之间不需要逗号分隔，加了会报错。</p>
+<h4 id="Class-Inheritance"><a href="#Class-Inheritance" class="headerlink" title="Class Inheritance"></a>Class Inheritance</h4><p>ES6语法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="keyword">constructor</span> (id, x, y) &#123;</div><div class="line">        <span class="keyword">this</span>.id = id;</div><div class="line">        <span class="keyword">this</span>.move(x, y);</div><div class="line">    &#125;</div><div class="line">    move (x, y) &#123;</div><div class="line">        <span class="keyword">this</span>.x = x;</div><div class="line">        <span class="keyword">this</span>.y = y;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="keyword">constructor</span> (id, x, y, width, height) &#123;</div><div class="line">        <span class="keyword">super</span>(id, x, y);</div><div class="line">        <span class="keyword">this</span>.width  = width;</div><div class="line">        <span class="keyword">this</span>.height = height;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="keyword">constructor</span> (id, x, y, radius) &#123;</div><div class="line">        <span class="keyword">super</span>(id, x, y);</div><div class="line">        <span class="keyword">this</span>.radius = radius;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>ES5语法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Shape = <span class="function"><span class="keyword">function</span> (<span class="params">id, x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.id = id;</div><div class="line">    <span class="keyword">this</span>.move(x, y);</div><div class="line">&#125;;</div><div class="line">Shape.prototype.move = <span class="function"><span class="keyword">function</span> (<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x = x;</div><div class="line">    <span class="keyword">this</span>.y = y;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> Rectangle = <span class="function"><span class="keyword">function</span> (<span class="params">id, x, y, width, height</span>) </span>&#123;</div><div class="line">    Shape.call(<span class="keyword">this</span>, id, x, y);</div><div class="line">    <span class="keyword">this</span>.width  = width;</div><div class="line">    <span class="keyword">this</span>.height = height;</div><div class="line">&#125;;</div><div class="line">Rectangle.prototype = <span class="built_in">Object</span>.create(Shape.prototype);</div><div class="line">Rectangle.prototype.constructor = Rectangle;</div><div class="line"><span class="keyword">var</span> Circle = <span class="function"><span class="keyword">function</span> (<span class="params">id, x, y, radius</span>) </span>&#123;</div><div class="line">    Shape.call(<span class="keyword">this</span>, id, x, y);</div><div class="line">    <span class="keyword">this</span>.radius = radius;</div><div class="line">&#125;;</div><div class="line">Circle.prototype = <span class="built_in">Object</span>.create(Shape.prototype);</div><div class="line">Circle.prototype.constructor = Circle;</div></pre></td></tr></table></figure></p>
+<p>上面的ES6代码定义了一个Rectangle类和一个Circle类，它们通过extends关键字，继承了Shape类的所有属性和方法。子类里都出现了super关键字，它在这里表示父类的构造函数，用来新建父类的this对象。子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。对照ES5语法我们可以发现使用class语法更简洁明了。</p>
+<h2 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h2><ul>
+<li><a href="https://www.whatruns.com/" target="_blank" rel="external">whatruns</a></li>
+</ul>
+<p>这个chrome插件可以查看网站，包括但不限于web框架、web服务器、js框架、js图表插件、字体、CDN。可以很方便的查看你感兴趣的网站所使用的技术。直接在chrome扩展商店里面搜whatruns就能安装。</p>
+<h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
+<li><p><a href="https://zhuanlan.zhihu.com/p/27288444" target="_blank" rel="external">美团外卖前端可视化界面组装平台</a><br>前端如何才能提高生产效率，普遍的共识是要做到组件化开发，很多团队已经这样做了。虽然很多的产品已经实现了组件化开发，但不同产品间依然存在很多重复的劳动，比如登录框、导航等等。这里推荐一篇美团外卖在效率方面尝试的一个解决方案。</p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzA4NjE3MDg4OQ==&amp;mid=2650965216&amp;idx=1&amp;sn=758f45497eb1755c84de7c4afbd494eb&amp;chksm=843ae886b34d6190e9c720c495952b8c7e045e6af40b35c5192d1f0450856f4d44c2536a970d&amp;mpshare=1&amp;scene=1&amp;srcid=1001pdkcvIK6jOSK62fc15aq#" target="_blank" rel="external">如何处理 JavaScript 内存泄露</a></p>
+</li>
+</ul>
+<p>讨论开发者容易忽视的重要主题 ：内存管理。文章也提供一些关于如何处理JavaScript内存泄露的技巧。在SessionStack，我们需要确保不会造成内存泄露或者不会增加我们集成的Web应用的内存消耗。</p>
+<ul>
+<li><p><a href="https://juejin.im/entry/59deb55951882578c2084a63" target="_blank" rel="external">反击爬虫，前端工程师的脑洞可以有多大？</a><br>关于反击爬虫，本文给了很多前端反爬虫例子；<br>真的感叹为了反爬虫，前段工程师真的费尽心思，脑洞大开！</p>
+</li>
+<li><p><a href="http://web.jobbole.com/92605/" target="_blank" rel="external">Promise 异步流程控制</a><br>网页中预加载20张图片资源，分步加载，一次加载10张，两次完成，怎么控制图片请求的并发，怎样感知当前异步请求是否已完成？</p>
+</li>
+<li><p><a href="http://www.cnblogs.com/TomXu/archive/2012/03/02/2355128.html" target="_blank" rel="external">设计模式之观察者模式</a><br>观察者模式是一种常用的设置模式。文中提供了多种实现观察者模式的方式，并带有调用方式。可作为实现观察者模式的源码和研究观察者模式使用。</p>
+</li>
+<li><p><a href="http://www.alloyteam.com/2017/09/13139/" target="_blank" rel="external">用 threejs 制作一款简单的赛车游戏</a><br>通过学习本教程，可以熟悉 <code>webgl</code> 和 <code>threejs</code> 相关的知识。</p>
+</li>
+<li><p><a href="https://imququ.com/post/enhance-security-for-ls-code.html" target="_blank" rel="external">使用 SRI 增强 localStorage 代码安全</a><br>大部分 Web 应用从 localStorage 中获取缓存代码后，没有任何检测机制，直接执行。而 localStorage 是跨页面的，同域下任何页面有 XSS 漏洞，就可以被攻击者用来往 localStorage 写入恶意代码，可以使用 SRI 增强 localStorage 代码安全。</p>
+</li>
+<li><p><a href="http://mp.weixin.qq.com/s/a7UtcAUnifrNCzegfDYaig" target="_blank" rel="external">浏览器缓存机制小结</a><br>本文总结了浏览器缓存的基本机制，将各种情况分为：强缓存和协商缓存两种方式。对三组核心的HTTP请求以及响应头参数：cache-control和expire， last-modified和if-modified-since，etag和if-none-matched，做了清晰的解释，很好理解它们之间的区别、优先级等关系。</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/29750583" target="_blank" rel="external">HTTP 缓存机制一二三</a><br>作为前端，常与请求打交道，HTTP缓存应该作为基本知识储备。文章介绍了强缓存和协商缓存，响应头各个字段的含义简单了解下，具体业务需要后端配合设置。</p>
+</li>
+</ul>
+<h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p>
+<ul>
+<li>资深前端工程师</li>
+</ul>
+<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</div><div class="line"><span class="built_in">console</span>.log(email);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 FSD Weekly
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>
