@@ -4,8 +4,8 @@ date: 2017-10-13 10:24:12
 tags:
 ---
 
-## Show me the code
-
+## Show me the code   
+      
 ### ES6中的`class`语法
 
 JavaScript 语言中，生成实例对象的传统方法是通过构造函数。这种写法跟传统的面向对象语言（比如 C++ 和 Java）差异很大。ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过class关键字，可以定义类。基本上，ES6 的class可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的class写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。
@@ -109,7 +109,6 @@ Circle.prototype.constructor = Circle;
 前端如何才能提高生产效率，普遍的共识是要做到组件化开发，很多团队已经这样做了。虽然很多的产品已经实现了组件化开发，但不同产品间依然存在很多重复的劳动，比如登录框、导航等等。这里推荐一篇美团外卖在效率方面尝试的一个解决方案。
 
 - [如何处理 JavaScript 内存泄露](https://mp.weixin.qq.com/s?__biz=MzA4NjE3MDg4OQ==&amp;mid=2650965216&amp;idx=1&amp;sn=758f45497eb1755c84de7c4afbd494eb&amp;chksm=843ae886b34d6190e9c720c495952b8c7e045e6af40b35c5192d1f0450856f4d44c2536a970d&amp;mpshare=1&amp;scene=1&amp;srcid=1001pdkcvIK6jOSK62fc15aq#)
-
 讨论开发者容易忽视的重要主题 ：内存管理。文章也提供一些关于如何处理JavaScript内存泄露的技巧。在SessionStack，我们需要确保不会造成内存泄露或者不会增加我们集成的Web应用的内存消耗。
 
 - [反击爬虫，前端工程师的脑洞可以有多大？](https://juejin.im/entry/59deb55951882578c2084a63)
