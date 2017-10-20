@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>大前端周刊 第17期 （本期小编：耿少真） | FSD Weekly</title>
+
+  
+  <meta name="author" content="FSD Weekly">
+  
+
+  
+  <meta name="description" content="Show me the code柯里化柯里化就是函数和参数值结合产生一个新的函数，如下代码，假设有一个curry的函数：
+1234567function add(a, b) &amp;#123;    return a + b;&amp;#125;let add1 = add.curry(1);console.lo">
+  
+
+  
+  
+  <meta name="keywords" content="">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="大前端周刊 第17期 （本期小编：耿少真）"/>
+
+  <meta property="og:site_name" content="FSD Weekly"/>
+
+  
+  <meta property="og:image" content="/fsd/favicon.ico"/>
+  
+
+  <link href="/fsd/favicon.ico" rel="icon">
+  <link rel="alternate" href="/fsd/atom.xml" title="FSD Weekly" type="application/atom+xml">
+  <link rel="stylesheet" href="/fsd/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/fsd/">FSD Weekly</a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/fsd/">主页</a></li>
+      
+        <li><a href="/fsd/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>大前端周刊 第17期 （本期小编：耿少真）</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/fsd/2017/10/20/weekly-17/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-10-20T02:24:12.000Z">
+          2017-10-20
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><h3 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h3><p>柯里化就是函数和参数值结合产生一个新的函数，如下代码，假设有一个curry的函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a, b</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> a + b;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> add1 = add.curry(<span class="number">1</span>);</div><div class="line"><span class="built_in">console</span>.log(add1(<span class="number">5</span>)); <span class="comment">// 6</span></div><div class="line"><span class="built_in">console</span>.log(add1(<span class="number">2</span>)); <span class="comment">// 3</span></div></pre></td></tr></table></figure>
+<p>怎么实现这样一个curry的函数？它的重点是要返回一个函数，这个函数有一些闭包的变量记录了创建时的默认参数，然后执行这个返回函数的时候，把新传进来的参数和默认参数拼一下变成完整参数列表去调原本的函数，所以有了以下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Function</span>.prototype.curry = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> defaultArgs = <span class="built_in">arguments</span>;</div><div class="line">    <span class="keyword">let</span> that = <span class="keyword">this</span>;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> that.apply(<span class="keyword">this</span>, defaultArgs.concat(<span class="built_in">arguments</span>));    </div><div class="line">        &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure></p>
+<p>但是由于参数不是一个数组，没有concat函数，所以需要把伪数组转成一个伪数组，可以用Array.prototype.slice：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Function</span>.prototype.curry = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> slice = <span class="built_in">Array</span>.prototype.slice;</div><div class="line">    <span class="keyword">let</span> defaultArgs = slice.call(<span class="built_in">arguments</span>);</div><div class="line">    <span class="keyword">let</span> that = <span class="keyword">this</span>;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">         <span class="keyword">return</span> that.apply(<span class="keyword">this</span>, defaultArgs.concat(slice.call(<span class="built_in">arguments</span>)));    </div><div class="line">        &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
+<h3 id="复杂选择器的查DOM"><a href="#复杂选择器的查DOM" class="headerlink" title="复杂选择器的查DOM"></a>复杂选择器的查DOM</h3><p>如实现一个document.querySelector：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.querySelector(<span class="string">".mls-info &gt; div .copyright-content"</span>)</div></pre></td></tr></table></figure>
+<p>首先把复杂选择器做一个解析，序列为以下格式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//把selector解析为</span></div><div class="line"><span class="keyword">var</span> selectors = [</div><div class="line">&#123;<span class="attr">relation</span>: <span class="string">"descendant"</span>,  <span class="attr">matchType</span>: <span class="string">"class"</span>, <span class="attr">value</span>: <span class="string">"copyright-content"</span>&#125;,</div><div class="line">&#123;<span class="attr">relation</span>: <span class="string">"child"</span>,       <span class="attr">matchType</span>: <span class="string">"tag"</span>,   <span class="attr">value</span>: <span class="string">"div"</span>&#125;,</div><div class="line">&#123;<span class="attr">relation</span>: <span class="string">"subSelector"</span>, <span class="attr">matchType</span>: <span class="string">"class"</span>, <span class="attr">value</span>: <span class="string">"mls-info"</span>&#125;];</div></pre></td></tr></table></figure></p>
+<p>从右往左，第一个selector是.copyright-content，它是一个类选择器，所以它的matchType是class，它和第二个选择器是祖先和子孙关系，因此它的relation是descendant；同理第二个选择器的matchType是tag，而relation是child，表示是第三个选择器的直接子结点；第三个选择器也是class，但是它没有下一个选择器了，relation用subSelector表示。</p>
+<p>matchType的作用就在于用来比较当前选择器是否match，如下代码所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">match</span>(<span class="params">node, selector</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(node === <span class="built_in">document</span>) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">switch</span>(selector.matchType)&#123;</div><div class="line">        <span class="comment">//如果是类选择器</span></div><div class="line">        <span class="keyword">case</span> <span class="string">"class"</span>:</div><div class="line">            <span class="keyword">return</span> node.className.trim().split(<span class="regexp">/ +/</span>).indexOf(selector.value) &gt;= <span class="number">0</span>;</div><div class="line"></div><div class="line">        <span class="comment">//如果是标签选择器</span></div><div class="line">        <span class="keyword">case</span> <span class="string">"tag"</span>:</div><div class="line">            <span class="keyword">return</span> node.tagName.toLowerCase() === selector.value. toLowerCase();</div><div class="line"></div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">throw</span> <span class="string">"unknown selector match type"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>根据不同的matchType做不同的匹配。</p>
+<p>在匹配的时候，从右往左，依次比较每个选择器是否match. 在比较下一个选择器的时候，需要找到相应的DOM结点，如果当前选择器是下一个选择器的子孙时，则需要比较当前选择器所有的祖先结点，一直往上直到document；而如果是直接子元素的关系，则比较它的父结点即可。所以需要有一个找到下一个目标结点的函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">nextTarget</span>(<span class="params">node, selector</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(!node || node === <span class="built_in">document</span>) <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">    <span class="keyword">switch</span>(selector.relation)&#123;</div><div class="line">        <span class="keyword">case</span> <span class="string">"descendant"</span>:</div><div class="line">            <span class="keyword">return</span> &#123;<span class="attr">node</span>: node.parentNode, <span class="attr">hasNext</span>: <span class="literal">true</span>&#125;;</div><div class="line">        <span class="keyword">case</span> <span class="string">"child"</span>:</div><div class="line">            <span class="keyword">return</span> &#123;<span class="attr">node</span>: node.parentNode, <span class="attr">hasNext</span>: <span class="literal">false</span>&#125;;</div><div class="line">        <span class="keyword">case</span> <span class="string">"sibling"</span>:</div><div class="line">            <span class="keyword">return</span> &#123;<span class="attr">node</span>: node.previousSibling, <span class="attr">hasNext</span>: <span class="literal">true</span>&#125;;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">throw</span> <span class="string">"unknown selector relation type"</span>;</div><div class="line">          <span class="comment">//hasNext表示当前选择器relation是否允许继续找下一个节点</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>有了nextTarge和match这两个函数就可以开始遍历DOM，如下代码所示：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">querySelector</span>(<span class="params">node, selectors</span>)</span>&#123;</div><div class="line">    <span class="keyword">while</span>(node)&#123; <span class="comment">// 遍历节点</span></div><div class="line">        <span class="keyword">var</span> currentNode = node;</div><div class="line">        <span class="keyword">if</span>(!match(node, selectors[<span class="number">0</span>]))&#123;</div><div class="line">            node = nextElement(currentNode);</div><div class="line">            <span class="keyword">continue</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">var</span> next = <span class="literal">null</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; selectors.length;i++)&#123;</div><div class="line">            <span class="keyword">var</span> matchIt = <span class="literal">false</span>;</div><div class="line">            <span class="keyword">do</span> &#123;</div><div class="line">                next = nextTarget(node, selectors[i]);</div><div class="line">                node = next.node;</div><div class="line">                <span class="keyword">if</span>(!node)&#123;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">if</span>(match(node, selectors[i+<span class="number">1</span>]))&#123;</div><div class="line">                    matchIt = <span class="literal">true</span>;  <span class="comment">// 有一个符合就继续</span></div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">while</span> (next.hasNext);</div><div class="line">            <span class="keyword">if</span>(!matchIt) <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(matchIt &amp;&amp; i === selectors.length - <span class="number">1</span>)&#123;</div><div class="line">            <span class="keyword">return</span> currentNode; <span class="comment">// 全部匹配完</span></div><div class="line">        &#125;</div><div class="line">        node = nextElement(currentNode);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>最外层的while循环和简单选择器一样，都是要遍历所有DOM结点。对于每个结点，先判断第一个选择器是否match，如果不match的话，则继续下一个结点，如果不是标签选择器，对于绝大多数结点将会在这里判断不通过。如果第一个选择器match了，则根据第一个选择器的relation，找到下一个target，判断下一个targe是否match下一个selector，只要有一个target匹配上了，则退出里层的while循环，继续下一个选择器，如果所有的selector都能匹配上说明匹配成功。如果有一个selecotr的所有target都没有match，则说明匹配失败，退出selector的for循环，直接从头开始对下一个DOM结点进行匹配。</p>
+<h2 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h2><ul>
+<li><a href="https://dwqs.github.io/vue-area-linkage/" target="_blank" rel="external">vue-area-linkage</a></li>
+</ul>
+<p>Vue Area Linkage: 中国行政区联动选择器，省、市、区、街道联动选择</p>
+<h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
+<li><p><a href="http://www.cnblogs.com/penghuwan/p/7356210.html" target="_blank" rel="external">换种方式解读this</a><br>文中用一种全新的形式解读this的几种绑定形式，不论是新入门还是大牛都可以看看这种新的解读形式。</p>
+</li>
+<li><p><a href="http://web.jobbole.com/92760/" target="_blank" rel="external">谈谈 PostCSS</a><br>现在的前端，javascript的发展有目共睹，框架林立。同时，html也是齐头并进，推出了HTML5标准，并且得到了普及。这样的发展却唯独少了一个角色？</p>
+</li>
+<li><p><a href="http://geek.csdn.net/news/detail/240600" target="_blank" rel="external">前端：常见的6种HTML5错误用法</a><br>人们在标签使用中最常见到的错误之一就是随意将HTML5的<section>等价于<div>——具体地说，就是直接用作替代品(用于样式)。</div></section></p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000011612365" target="_blank" rel="external">vuejs 路由基础入门实战操作详细指南</a><br>Vue.js + vue-router 创建单页应用，是非常简单的。使用 Vue.js ，我们已经可以通过组合组件来组成应用程序，当你要把 vue-router 添加进来，我们需要做的是，将组件(components)映射到路由(routes)，然后告诉 vue-router 在哪里渲染它们。</p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000011623637#articleHeader17" target="_blank" rel="external">JavaScript专题之解读 v8 排序源码</a><br>文章对于插入排序与快速排序原理、实现讲解非常详细，并且在 V8排序的源码进行了实例分析。</p>
+</li>
+<li><p><a href="https://juejin.im/post/59c7b25a5188257a125d7a98" target="_blank" rel="external">从Vue.js源码看异步更新DOM策略及nextTick</a><br>文章以实际问题为引，从源码入手，吸收别人的思路，一步步得到解决问题方案。首先，我觉得作者这种解决问题的方式以及刨根问底的精神首先值得我们学习；其次，文章总结的很到位，配合代码示例，让人清晰理解nextTick的实现。</p>
+</li>
+<li><p><a href="https://www.sitepen.com/blog/2017/10/02/a-guide-to-faster-web-app-io-and-data-operations-with-streams/" target="_blank" rel="external">更快速的Web应用程序I / O和流数据操作</a><br>使用流更改您读取，写入和处理数据的方式。根据您的用例，代码复杂度可能会增加。然而，流可以实现数据的高效处理，从而导致更好的存储器性能。</p>
+</li>
+<li><p><a href="https://qianduan.group/posts/59e8be1b0119753d067b40cc" target="_blank" rel="external">使用Nuxt.js改善现有项目</a><br><code>SPA</code> 应用有其天生的问题：搜索引擎爬虫抓不到，无法满足 <code>SEO</code> 的需求。这可以可以通过 <code>SSR</code> 解决，<code>Nuxt.js</code> 是由一对法国的兄弟基于 vue 2.0 提供的 ssr 能力开发的框架，基于恰到好处的约定与配置，可以显著的降低开发者创建服务端渲染 web app 的门槛。</p>
+</li>
+<li><p><a href="http://www.jianshu.com/p/ab2741f78858" target="_blank" rel="external">浅析nodejs的http模块</a><br>HTTP模块是Node内置的核心模块之一，node入门的课程都会讲，通过createServer就可以得到一个server对象，关于它内部实现的理解，可以帮助你提高技能。本文讲解了HTTP模块的大致流程，对一些关键点进行了充分的分析。</p>
+</li>
+<li><p><a href="https://juejin.im/post/59a8f15ef265da246c4a3822" target="_blank" rel="external">数据模拟神器 easy-mock</a><br>如何提高前端开发效率？当前端UI及逻辑都写完而后端接口还没有完成，怎样不打断开发进程？  因此一款简单、高效、可视化并能快速生成模拟数据 的在线mock服务诞生。</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/26216336" target="_blank" rel="external">如何使用koa2+es6/7打造高质量Restful API</a><br>如今nodejs变得越来越火热，采用nodejs实现前后端分离架构已被多数大公司所采用。在过去，使用nodejs大家首先想到的是express.js，而发展到如今，更轻量，性能更好的koa已然成为主流不仅性能优异，它还支持async/await, 堪称回调地狱的终结者。</p>
+</li>
+</ul>
+<h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p>
+<ul>
+<li>资深前端工程师</li>
+</ul>
+<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</div><div class="line"><span class="built_in">console</span>.log(email);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 FSD Weekly
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>
