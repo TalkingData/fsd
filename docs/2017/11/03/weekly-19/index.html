@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>大前端周刊 第19期 （本期小编：段扬帅） | FSD Weekly</title>
+
+  
+  <meta name="author" content="FSD Weekly">
+  
+
+  
+  <meta name="description" content="Show me the codeHTML5 桌面通知(Notification API)HTML5新增的桌面通知API：Notification API是用于向用户推送通知消息的API。值得注意的是，该通知不管用户在不在当前标签页都会进行推送
+权限该API需要用户明确授权同意推送后，才能进行推送！那">
+  
+
+  
+  
+  <meta name="keywords" content="">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="大前端周刊 第19期 （本期小编：段扬帅）"/>
+
+  <meta property="og:site_name" content="FSD Weekly"/>
+
+  
+  <meta property="og:image" content="/fsd/favicon.ico"/>
+  
+
+  <link href="/fsd/favicon.ico" rel="icon">
+  <link rel="alternate" href="/fsd/atom.xml" title="FSD Weekly" type="application/atom+xml">
+  <link rel="stylesheet" href="/fsd/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/fsd/">FSD Weekly</a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/fsd/">主页</a></li>
+      
+        <li><a href="/fsd/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>大前端周刊 第19期 （本期小编：段扬帅）</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/fsd/2017/11/03/weekly-19/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-11-03T03:08:59.000Z">
+          2017-11-03
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><h3 id="HTML5-桌面通知-Notification-API"><a href="#HTML5-桌面通知-Notification-API" class="headerlink" title="HTML5 桌面通知(Notification API)"></a>HTML5 桌面通知(Notification API)</h3><p>HTML5新增的桌面通知API：Notification API是用于向用户推送通知消息的API。<br>值得注意的是，该通知不管用户在不在当前标签页都会进行推送</p>
+<h4 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h4><p>该API需要用户明确授权同意推送后，才能进行推送！<br>那么怎么才能知道用户有没有同意呢？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Notification.permission</div></pre></td></tr></table></figure>
+<p>返回值：granted（用户同意） 、 denied（用户拒绝） 、 default（用户还没有选择）</p>
+<h4 id="获取权限"><a href="#获取权限" class="headerlink" title="获取权限"></a>获取权限</h4><p>Notification 对象提供了requestPermission():</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Notification.requestPermission().then(<span class="function"><span class="keyword">function</span>(<span class="params">permission</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(permission)  <span class="comment">// 返回用户的选择</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="推送"><a href="#推送" class="headerlink" title="推送"></a>推送</h4><p>得到用户的许可后，就可以愉快的进行推送了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Notification(title, options)</div></pre></td></tr></table></figure>
+<p>参数说明：<br>title:  通知的标题。 必传<br>options：通知的设置选项。 可选：</p>
+<ul>
+<li>dir：默认值是auto, 可以是ltr或rtl，表示提示主体内容的水平书写顺序。</li>
+<li>body：通知的内容。</li>
+<li>tag：代表通知的唯一标识，相同tag时只会打开同一个通知窗口。</li>
+<li>icon：要在通知中显示的图标的URL。</li>
+<li>data：想要和通知关联的数据。</li>
+<li>requireInteraction：通知保持有效不自动关闭，默认为false。</li>
+<li>vibrate: 通知显示时候，设备震动硬件需要的振动模式。所谓振动模式，指的是一个描述交替时间的数组，分别表示振动和不振动的毫秒数，一直交替下去,例如[200, 100, 200]表示设备振动200毫秒，然后停止100毫秒，再振动200毫秒。</li>
+<li>renotify: 布尔值。新通知出现的时候是否替换之前的。如果设为true，则表示替换，表示当前标记的通知只会出现一个。</li>
+<li>silent: 布尔值。通知出现的时候，是否要有声音。默认false, 表示无声。</li>
+<li>sound: 字符串。音频地址。表示通知出现要播放的声音资源。</li>
+<li>noscreen: 布尔值。是否不再屏幕上显示通知信息。默认false, 表示要在屏幕上显示通知内容。</li>
+<li>sticky: 布尔值。是否通知具有粘性，这样用户不太容易清除通知。默认false, 表示没有粘性。</li>
+</ul>
+<h4 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h4><p>Notification.close() 关闭通知</p>
+<h4 id="支持事件"><a href="#支持事件" class="headerlink" title="支持事件"></a>支持事件</h4><p>onclick 点击触发<br>onerror 显示异常触发<br>onclose 消息关闭时触发<br>onshow  消息显示的时候触发</p>
+<h4 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h4><p>移动端几乎都不支持，PC端大部分都支持，IE需要14.0版本以上</p>
+<h2 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h2><ul>
+<li><a href="https://github.com/gpujs/gpu.js/tree/develop" target="_blank" rel="external">gpu.js</a><br>gpu.js这个库会把你写的js编译成GLSL然后在GPU上执行，以达到加速的效果。并且，如果电脑不支持GPU，它还会当成普通的js执行。</li>
+</ul>
+<h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
+<li><p><a href="https://zhuanlan.zhihu.com/p/26300877" target="_blank" rel="external">探索nodeJS事件机制源码 打造属于自己的事件发布订阅系统</a><br>本文探索并解析了nodejs的event实现和设计原理，解释了“事件发布订阅模式”，详细介绍了eventEmitter的一些核心属性和方法。另外，还基于ES6语法，DIY了一个简单的事件订阅发布系统。</p>
+</li>
+<li><p><a href="https://blog.souche.com/jie-kou-ce-shi-zhi-httpqing-qiu-de-li-jie/" target="_blank" rel="external">http请求的理解</a><br>从tcp到http，从计算机网络来看一个http请求，理解前后端网络通讯</p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000011643581?_ea=2709729" target="_blank" rel="external">深入认识vue-cli：能做的不仅仅是初始化vue工程</a><br>有许多同学没有搞清楚vue-cli和vue工程之间的关系，导致没有充分发挥vue-cli的功能。在这篇文章中，我将从底层原理开始并结合几个例子，告诉大家vue-cli还能这样用</p>
+</li>
+<li><p><a href="http://www.ruanyifeng.com/blog/2016/06/css_modules.html" target="_blank" rel="external">CSS Modules 用法教程</a><br>在前端模块化大行其道的今天，开发者发布的开源模块，如何避免 CSS 样式被宿主页面的样式所覆盖是非常重要的问题。CSS Modules 加入了局部作用域和模块依赖，这恰恰是网页组件最急需的功能。</p>
+</li>
+<li><p><a href="https://scotch.io/bar-talk/copying-objects-in-javascript#toc-the-naive-way-of-copying-objects" target="_blank" rel="external">JavaScript 中的对象拷贝</a><br>在 JavaScript 中拷贝一个对象可能会碰到各种各样的问题，本文详细描述了各种拷贝的方法及注意点</p>
+</li>
+<li><p><a href="https://github.com/DDFE/DDFE-blog/issues/17" target="_blank" rel="external">Vue 2.0 的数据依赖实现原理简析</a><br>源码解析，一步一步讲解 vue 的响应式是如何实现的，信息量比较大。</p>
+</li>
+<li><p><a href="http://zzfe.org/#/detail/59e42c3b91d3e35ba880fd0e" target="_blank" rel="external">在js里写SQL</a><br>在日新月异的前端领域中，前端工程师能做的事情越来越多，前端页面可能出现一些数据逻辑复杂的页面，传统的js逻辑处理起来比较复杂，因此需要引入新的东西来简化逻辑。</p>
+</li>
+<li><p><a href="http://www.zcfy.cc/article/es6-modules-in-depth-4436.html?t=new" target="_blank" rel="external">ES6 模块系统</a><br>对于ES6的模块系统，文章首先是对严格模式的一些总结，然后是对export 和 import 展开总结性的说明了各种绑定方式。</p>
+</li>
+<li><p><a href="https://github.com/berwin/Blog/issues/14" target="_blank" rel="external">Vue 项目架构设计与工程化实践 </a><br>作者详述了自己Vue搭建项目的过程：技术选型(Vue全家桶)-&gt;架构设计(不同层面的职责)-&gt;发布上线。整个过程较为详细，举例项目遇到的问题及解决方案，对于搭建项目有一定的参考价值。</p>
+</li>
+<li><p><a href="http://web.jobbole.com/92879/" target="_blank" rel="external">深入探讨前端组件化开发</a><br>这几年，从陷入 “React、Vue 和 Angular 哪个性能好？”的争论，到现在的各个框架（库）的生态越来越完善，讨论性能差距已经没有价值了。而国内的前端娱乐圈，最火的就是 React 和 Vue 了，而 Angular 由于历史原因，在国内的占有率确实不高。</p>
+</li>
+<li><p><a href="http://fex.baidu.com/blog/2017/10/build-a-silky-smooth-slide-library/" target="_blank" rel="external">打造丝般顺滑的 H5 翻页库</a><br>翻页组件实现起来并不难，本文在此基础上进一步尝试打造丝般顺滑的效果，各种优化手段值得学习。</p>
+</li>
+<li><p><a href="http://blog.csdn.net/wclimb/article/details/77890793" target="_blank" rel="external">使用Node+Koa2+Mysql搭建简易博客</a><br>Koa2使用实例，从Koa安装到项目建立模版使用，代码很详细的项目实例。</p>
+</li>
+</ul>
+<h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p>
+<ul>
+<li>资深前端工程师</li>
+</ul>
+<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</div><div class="line"><span class="built_in">console</span>.log(email);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 FSD Weekly
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>
