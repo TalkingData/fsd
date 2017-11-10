@@ -59,6 +59,90 @@
 
   
     
+    <h3 class="article-title"><a href="/fsd/2017/11/10/weekly-20/"><span>大前端周刊 第20期 （本期小编：杨齐）</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/fsd/2017/11/10/weekly-20/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-11-10T07:08:59.000Z">
+          2017-11-10
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><h3 id="前端工程化工具-Dawn-来自阿里云开源"><a href="#前端工程化工具-Dawn-来自阿里云开源" class="headerlink" title="前端工程化工具 Dawn (来自阿里云开源)"></a>前端工程化工具 Dawn (来自阿里云开源)</h3><p>阿里云内部的前端构建和工程化工具，现已完全开源。它通过 pipeline 和 middleware 将开发过程抽象为相对固定的阶段和有限的操作，简化并统一了开发人员的日常构建与开发相关的工作。</p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p>采用中间件技术，封装常用功能，易于扩展，方便重用<br>支持 pipeline 让多个 task 协同完成构建任务<br>简单、一致的命令行接口，易于开发人员使用<br>支持基于「中心服务」管理中件间和工程模板<br>支持搭建私有中心服务，并统一下发构建规则，易于团队统一管理</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install dawn -g</div></pre></td></tr></table></figure>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># 1. 创建 &amp; 初始化</div><div class="line">$ dn init -t front</div><div class="line"></div><div class="line"># 2. 开发 &amp; 实时编译</div><div class="line">$ dn dev</div><div class="line"></div><div class="line"># 3. 语法检查 &amp; 测试</div><div class="line">$ dn test</div><div class="line"></div><div class="line"># 4. 构建 &amp; 打包</div><div class="line">$ dn build</div></pre></td></tr></table></figure>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"># 启动开发服务</div><div class="line">dev:</div><div class="line">  - name: webpack</div><div class="line">    entry: ./src/.js</div><div class="line">    template: ./assets/.html</div><div class="line">    watch: <span class="literal">true</span></div><div class="line">  - name: server</div><div class="line">    port: <span class="number">8001</span></div><div class="line"></div><div class="line"># 直接构建</div><div class="line">buid:</div><div class="line">  - name: webpack</div><div class="line">    entry: ./src/.js</div><div class="line">    template: ./assets/.html</div></pre></td></tr></table></figure>
+<h4 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h4><p>使用入门：  <a href="https://user-gold-cdn.xitu.io/2017/11/2/68184fa8fc078832871f8ef138b9a8bf" target="_blank" rel="external">getting-started</a></p>
+<p>配置Pipeline： <a href="https://github.com/alibaba/dawn/blob/master/docs/markdowns/pipeline.md" target="_blank" rel="external">pipeline.md</a></p>
+<h2 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h2><ul>
+<li><a href="https://github.com/Pgyer/frontend-tracker" target="_blank" rel="external">Frontend Tracker</a><br>Frontend Tracker 可以发现前端页面的错误，并且用户察觉错误前将错误发送至指定服务器。</li>
+</ul>
+<h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
+<li><p><a href="http://blog.fens.me/nodejs-crypto/" target="_blank" rel="external">Node.js加密算法库Crypto</a><br>用Node做web服务进行用户认证的场合下，经常需要对用户密码进行加密和解码的操作。Crypto是NodeJS的内置库，提供了必要的功能，值得学习收藏。</p>
+</li>
+<li><p><a href="https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Modern-Web-Engineering-Practices/%E8%B0%83%E8%AF%95/%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90%E4%B8%8E%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%AE%9A%E4%BD%8D.md" target="_blank" rel="external">Web 应用内存分析与内存泄漏定位</a><br>无论是分布式计算系统、服务端应用程序还是 iOS、Android 原生应用都会存在内存泄漏问题，Web 应用自然也不可避免地存在着类似的问题。虽然因为网页往往都是即用即走，较少地存在某个网页长期运行的问题，即使存在内存泄漏可能表现地也不明显；但是在某些数据展示型的，需要长期运行的页面上，如果不及时解决内存泄漏可能会导致网页占据过大地内存，不仅影响页面性能，还可能导致整个系统的崩溃。</p>
+</li>
+<li><p><a href="https://juejin.im/post/59fd94475188254115703461" target="_blank" rel="external">前端状态管理请三思</a><br>有关前端状态管理的一篇文章，结合实际中的问题，实现一个好用的状态机。</p>
+</li>
+<li><p><a href="https://juejin.im/entry/5a0149a9f265da431f4a7999" target="_blank" rel="external">前端API备忘录</a><br>好脑筋不如烂笔头，平时还是要多写，多记，推荐一个比较常用的前端API合集，忘得时候查一下，很方便</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/29433875" target="_blank" rel="external">性能优化之组件懒加载</a><br>文章首先抛出实际场景遇到的性能问题，给出现象，然后分析问题，提出两个解决思路，最后梳理优化并产出通用的Vue 2.x 组件级懒加载解决方案（Vue Lazy Component ）。</p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000011303679" target="_blank" rel="external">JavaScript 在 V8 中的元素种类及性能优化</a><br>JavaScript 对象可以具有与它们相关联的任意属性。对象属性的名称可以包含任何字符。JavaScript 引擎可以进行优化的一个有趣的例子是当属性名是纯数字时，一个特例就是数组索引的属性。</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/30623057?utm_medium=social&amp;utm_source=wechat_session" target="_blank" rel="external">Webpack 热更新实现原理分析</a><br>在使用 Webpack 构建开发期时，Webpack 提供热更新功能为开发带来良好的体验和开发效率，该文分析关于webpack热更新技术的实现原理。</p>
+</li>
+<li><p><a href="https://segmentfault.com/a/1190000011044242" target="_blank" rel="external">JavaScript Event Loop 机制详解与 Vue.js 中实践应用</a><br>依次介绍了函数调用栈、MacroTask 与 MicroTask 执行顺序、浅析 Vue.js 中 nextTick 实现等内容</p>
+</li>
+<li><p><a href="https://fed.renren.com/2017/10/29/chrome-fetch-resource/" target="_blank" rel="external">从Chrome源码看浏览器如何加载资源</a><br>本文通过源码层面解释了浏览器如何加载资源，解决了前端对浏览器加载资源有很多不确定性的困惑，非常实用。</p>
+</li>
+<li><p><a href="http://www.jianshu.com/p/e139d449f5bb" target="_blank" rel="external">sass语法总结</a><br>CSS 本身是非常强大的，但随着样式表变大，变复杂，维护 CSS 变得越来越难。这时候预处理就有用了。Sass 是一种预处理，它能让你使用一些 CSS 中没有的特性，比如：变量，嵌套（nesting），混入（mixins），继承等。这些特性能让 CSS 变的容易维护。</p>
+</li>
+<li><p><a href="http://bbs.thankbabe.com/topic/72/99-%E7%9A%84%E4%BA%BA%E9%83%BD%E7%90%86%E8%A7%A3%E9%94%99%E4%BA%86http%E4%B8%ADget%E4%B8%8Epost%E7%9A%84%E5%8C%BA%E5%88%AB" target="_blank" rel="external">HTTP中GET与POST的区别</a><br>看这霸气的文章标题！快来看看和自己理解的是否一致吧</p>
+</li>
+</ul>
+<h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p>
+<ul>
+<li>资深前端工程师</li>
+</ul>
+<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</div><div class="line"><span class="built_in">console</span>.log(email);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
     <h3 class="article-title"><a href="/fsd/2017/11/03/weekly-19/"><span>大前端周刊 第19期 （本期小编：段扬帅）</span></a></h3>
     
   
@@ -953,122 +1037,6 @@
     <span class="post-tags">
       <i class="icon-tags"></i>
         <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/开发工具/">开发工具</a><a href="/fsd/tags/测试工具/">测试工具</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/ES6/">ES6</a><a href="/fsd/tags/设计模式/">设计模式</a>
-    </span>
-    
-
-    </div>
-
-    
-  </div>
-</article>
-
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/fsd/2017/08/25/weekly-10/"><span>大前端周刊 第10期 （本期小编：王祥）</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/fsd/2017/08/25/weekly-10/" rel="bookmark">
-        <time class="entry-date published" datetime="2017-08-25T02:30:30.000Z">
-          2017-08-25
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><p>ES 6 中引入了很多让代码看起来更简洁的新特性，比如展开运算符 (spread operator)。下面的三段代码，展示了 ES6 更简洁的对象拷贝、数组复制和可变参数的写法。</p>
-<ul>
-<li>对象拷贝</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// very bad</span></div><div class="line"><span class="keyword">const</span> original = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;;</div><div class="line"><span class="keyword">const</span> copy = <span class="built_in">Object</span>.assign(original, &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;); <span class="comment">// this mutates `original` ಠ_ಠ</span></div><div class="line"><span class="keyword">delete</span> copy.a; <span class="comment">// so does this</span></div><div class="line"></div><div class="line"><span class="comment">// bad</span></div><div class="line"><span class="keyword">const</span> original = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;;</div><div class="line"><span class="keyword">const</span> copy = <span class="built_in">Object</span>.assign(&#123;&#125;, original, &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;); <span class="comment">// copy =&gt; &#123; a: 1, b: 2, c: 3 &#125;</span></div><div class="line"></div><div class="line"><span class="comment">// good</span></div><div class="line"><span class="keyword">const</span> original = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;;</div><div class="line"><span class="keyword">const</span> copy = &#123; ...original, <span class="attr">c</span>: <span class="number">3</span> &#125;; <span class="comment">// copy =&gt; &#123; a: 1, b: 2, c: 3 &#125;</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> &#123; a, ...noA &#125; = copy; <span class="comment">// noA =&gt; &#123; b: 2, c: 3 &#125;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>数组复制 (copy arrays)</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bad</span></div><div class="line"><span class="keyword">const</span> len = items.length;</div><div class="line"><span class="keyword">const</span> itemsCopy = [];</div><div class="line"><span class="keyword">let</span> i;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i += <span class="number">1</span>) &#123;</div><div class="line">  itemsCopy[i] = items[i];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// good</span></div><div class="line"><span class="keyword">const</span> itemsCopy = [...items];</div></pre></td></tr></table></figure>
-<ul>
-<li>可变函数 (variadic function)</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bad</span></div><div class="line"><span class="keyword">const</span> x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line"><span class="built_in">console</span>.log.apply(<span class="built_in">console</span>, x);</div><div class="line"></div><div class="line"><span class="comment">// good</span></div><div class="line"><span class="keyword">const</span> x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line"><span class="built_in">console</span>.log(...x);</div><div class="line"></div><div class="line"><span class="comment">// bad</span></div><div class="line"><span class="keyword">new</span> (<span class="built_in">Function</span>.prototype.bind.apply(<span class="built_in">Date</span>, [<span class="literal">null</span>, <span class="number">2016</span>, <span class="number">8</span>, <span class="number">5</span>]));</div><div class="line"></div><div class="line"><span class="comment">// good</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(...[<span class="number">2016</span>, <span class="number">8</span>, <span class="number">5</span>]);</div></pre></td></tr></table></figure>
-<h2 id="工具和模块"><a href="#工具和模块" class="headerlink" title="工具和模块"></a>工具和模块</h2><p>推荐一个 Markdown 生成 Word 文档工具 pandoc。</p>
-<ol>
-<li><p>使用 pandoc 将 Markdown 文件转换为 Word 文档。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pandoc -f markdown -t docx front-end-engineering-practice.md -o mydoc.docx</div></pre></td></tr></table></figure>
-</li>
-<li><p>安装 pandoc ( Mac )</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install pandoc</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
-<li><a href="https://zhuanlan.zhihu.com/p/26709518" target="_blank" rel="external">10 个基于 JavaScript 的机器学习实例</a></li>
-</ul>
-<p>虽然，大多数 JavaScript 机器学习库都是“新轮子”，有的甚至还在研发中，但并不会影响你的使用。在这篇文章中，我们将与你分享这些库，以及一些很酷的 AI Web 应用程序实例，帮助你开启机器学习之旅。</p>
-<ul>
-<li><a href="https://github.com/jawil/blog/issues/14" target="_blank" rel="external">通俗大白话来理解TCP协议的三次握手和四次分手</a></li>
-</ul>
-<p>前端工程师也需要了解HTTP方面的一些知识，本篇文章用通俗易懂的方式讲解了平时经常听到的三次握手和四次分手究竟是什么。</p>
-<ul>
-<li><a href="http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html" target="_blank" rel="external">测试框架 Mocha 实例教程</a></li>
-</ul>
-<p>Mocha 是目前最流行的测试框架之一，支持浏览器端和 Node 端的单元测试。这篇文章非常全面地介绍如何使用Mocha，让你轻松上手。</p>
-<ul>
-<li><a href="https://www.kancloud.cn/kancloud/midway/48192" target="_blank" rel="external">前后端分离的思考与实践</a></li>
-</ul>
-<p>本文是阿里某前端团队，在探索一套基于NodeJS的前后端分离方案的过程中，对于前后端分离的一些认识以及思考。</p>
-<ul>
-<li>Mac <a href="http://blog.devtang.com/2015/11/14/charles-introduction/" target="_blank" rel="external">Charles 从入门到精通</a><br>PC <a href="http://blog.csdn.net/qq_21445563/article/details/51017605" target="_blank" rel="external">Fiddler 抓包工具总结</a></li>
-</ul>
-<p>在PC Web端开发的时候，我们能很方便的从浏览器开发者工具里进行网络接口调试。<br>在移动端开发是面对这样的需求，我们可以通过抓包工具来解决这个问题。<br>在Mac系统常用的抓包工具是Charles，Windows系统中常用的抓包工具是Fiddler。<br>下面的文章分别对Charles和Fiddler进行介绍，并图文显示了使用方法。</p>
-<ul>
-<li><a href="https://github.com/zce/weapp-demo/tree/tutorial" target="_blank" rel="external">微信小程序开发教程</a></li>
-</ul>
-<p>由易到难介绍小程序开发的流程，讲解比较层次化，比较细致，可以让人很快进行上手开发</p>
-<ul>
-<li><a href="https://github.com/Jocs/jocs.github.io/issues/1" target="_blank" rel="external">JavaScript Error 指南</a></li>
-</ul>
-<p>深度的剖析了错误信息和追溯栈，从错误捕获、剖析追溯栈、不同浏览器对于追溯栈格式上的差异等等，讲解相当详细也很透彻。</p>
-<ul>
-<li><a href="http://ifanqi.me/2017/07/25/you-can-understand-closure/" target="_blank" rel="external">浏览器是怎么看闭包的</a></li>
-</ul>
-<p>关于闭包的解释有很多，很多只是从“行”上去解读，理解 JavaScript 闭包绕不开一个问题：闭包是如何实现变量保留在内存中呢？这涉及到浏览器对内存的分配与回收，本文从这个点展开图文详实的解读。拓展阅读：<a href="http://ifanqi.me/2017/07/28/js-variable-memory/" target="_blank" rel="external">可视化分析js的内存分配与回收</a>。</p>
-<ul>
-<li><a href="https://github.com/xieranmaya/blog/issues/3" target="_blank" rel="external">剖析Promise内部结构</a></li>
-</ul>
-<p>一步一步实现一个完整的、能通过所有Test case的Promise类。文章由构造简单的promise对象开始，逐步完善逻辑。抛出问题，介绍思路，给出代码示例，比较清晰合理。自己实现已有的轮子，对于编码能力提升还是很有帮助的。</p>
-<h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p>
-<ul>
-<li>资深前端工程师</li>
-<li>前端实习生</li>
-</ul>
-<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</div><div class="line"><span class="built_in">console</span>.log(email);</div></pre></td></tr></table></figure></p>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/工程化实践/">工程化实践</a><a href="/fsd/tags/Vuex/">Vuex</a><a href="/fsd/tags/Webpack/">Webpack</a><a href="/fsd/tags/PWA/">PWA</a><a href="/fsd/tags/持续部署/">持续部署</a>
     </span>
     
 

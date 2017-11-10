@@ -6,7 +6,7 @@
   <link href="/fsd/atom.xml" rel="self"/>
   
   <link href="https://talkingdata.github.io/"/>
-  <updated>2017-11-03T07:10:25.359Z</updated>
+  <updated>2017-11-10T08:48:11.009Z</updated>
   <id>https://talkingdata.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>大前端周刊 第20期 （本期小编：杨齐）</title>
+    <link href="https://talkingdata.github.io/2017/11/10/weekly-20/"/>
+    <id>https://talkingdata.github.io/2017/11/10/weekly-20/</id>
+    <published>2017-11-10T07:08:59.000Z</published>
+    <updated>2017-11-10T08:48:11.009Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><h3 id="前端工程化工具-Dawn-来自阿里云开源"><a href="#前端工程化工具-Dawn-来自阿里云开源" class="headerlink" title="前端工程化工具 Dawn (来自阿里云开源)"></a>前端工程化工具 Dawn (来自阿里云开源)</h3><p>阿里云内部的前端构建和工程化工具，现已完全开源。它通过 pipeline 和 middleware 将开发过程抽象为相对固定的阶段和有限的操作，简化并统一了开发人员的日常构建与开发相关的工作。</p><h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><p>采用中间件技术，封装常用功能，易于扩展，方便重用<br>支持 pipeline 让多个 task 协同完成构建任务<br>简单、一致的命令行接口，易于开发人员使用<br>支持基于「中心服务」管理中件间和工程模板<br>支持搭建私有中心服务，并统一下发构建规则，易于团队统一管理</p><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install dawn -g</div></pre></td></tr></table></figure><h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># 1. 创建 &amp; 初始化</div><div class="line">$ dn init -t front</div><div class="line"></div><div class="line"># 2. 开发 &amp; 实时编译</div><div class="line">$ dn dev</div><div class="line"></div><div class="line"># 3. 语法检查 &amp; 测试</div><div class="line">$ dn test</div><div class="line"></div><div class="line"># 4. 构建 &amp; 打包</div><div class="line">$ dn build</div></pre></td></tr></table></figure><h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"># 启动开发服务</div><div class="line">dev:</div><div class="line">  - name: webpack</div><div class="line">    entry: ./src/.js</div><div class="line">    template: ./assets/.html</div><div class="line">    watch: <span class="literal">true</span></div><div class="line">  - name: server</div><div class="line">    port: <span class="number">8001</span></div><div class="line"></div><div class="line"># 直接构建</div><div class="line">buid:</div><div class="line">  - name: webpack</div><div class="line">    entry: ./src/.js</div><div class="line">    template: ./assets/.html</div></pre></td></tr></table></figure><h4 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h4><p>使用入门：  <a href="https://user-gold-cdn.xitu.io/2017/11/2/68184fa8fc078832871f8ef138b9a8bf" target="_blank" rel="external">getting-started</a></p><p>配置Pipeline： <a href="https://github.com/alibaba/dawn/blob/master/docs/markdowns/pipeline.md" target="_blank" rel="external">pipeline.md</a></p><h2 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h2><ul><li><a href="https://github.com/Pgyer/frontend-tracker" target="_blank" rel="external">Frontend Tracker</a><br>Frontend Tracker 可以发现前端页面的错误，并且用户察觉错误前将错误发送至指定服务器。</li></ul><h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul><li><p><a href="http://blog.fens.me/nodejs-crypto/" target="_blank" rel="external">Node.js加密算法库Crypto</a><br>用Node做web服务进行用户认证的场合下，经常需要对用户密码进行加密和解码的操作。Crypto是NodeJS的内置库，提供了必要的功能，值得学习收藏。</p></li><li><p><a href="https://github.com/wxyyxc1992/Web-Development-And-Engineering-Practices/blob/master/Modern-Web-Engineering-Practices/%E8%B0%83%E8%AF%95/%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90%E4%B8%8E%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E5%AE%9A%E4%BD%8D.md" target="_blank" rel="external">Web 应用内存分析与内存泄漏定位</a><br>无论是分布式计算系统、服务端应用程序还是 iOS、Android 原生应用都会存在内存泄漏问题，Web 应用自然也不可避免地存在着类似的问题。虽然因为网页往往都是即用即走，较少地存在某个网页长期运行的问题，即使存在内存泄漏可能表现地也不明显；但是在某些数据展示型的，需要长期运行的页面上，如果不及时解决内存泄漏可能会导致网页占据过大地内存，不仅影响页面性能，还可能导致整个系统的崩溃。</p></li><li><p><a href="https://juejin.im/post/59fd94475188254115703461" target="_blank" rel="external">前端状态管理请三思</a><br>有关前端状态管理的一篇文章，结合实际中的问题，实现一个好用的状态机。</p></li><li><p><a href="https://juejin.im/entry/5a0149a9f265da431f4a7999" target="_blank" rel="external">前端API备忘录</a><br>好脑筋不如烂笔头，平时还是要多写，多记，推荐一个比较常用的前端API合集，忘得时候查一下，很方便</p></li><li><p><a href="https://zhuanlan.zhihu.com/p/29433875" target="_blank" rel="external">性能优化之组件懒加载</a><br>文章首先抛出实际场景遇到的性能问题，给出现象，然后分析问题，提出两个解决思路，最后梳理优化并产出通用的Vue 2.x 组件级懒加载解决方案（Vue Lazy Component ）。</p></li><li><p><a href="https://segmentfault.com/a/1190000011303679" target="_blank" rel="external">JavaScript 在 V8 中的元素种类及性能优化</a><br>JavaScript 对象可以具有与它们相关联的任意属性。对象属性的名称可以包含任何字符。JavaScript 引擎可以进行优化的一个有趣的例子是当属性名是纯数字时，一个特例就是数组索引的属性。</p></li><li><p><a href="https://zhuanlan.zhihu.com/p/30623057?utm_medium=social&amp;utm_source=wechat_session" target="_blank" rel="external">Webpack 热更新实现原理分析</a><br>在使用 Webpack 构建开发期时，Webpack 提供热更新功能为开发带来良好的体验和开发效率，该文分析关于webpack热更新技术的实现原理。</p></li><li><p><a href="https://segmentfault.com/a/1190000011044242" target="_blank" rel="external">JavaScript Event Loop 机制详解与 Vue.js 中实践应用</a><br>依次介绍了函数调用栈、MacroTask 与 MicroTask 执行顺序、浅析 Vue.js 中 nextTick 实现等内容</p></li><li><p><a href="https://fed.renren.com/2017/10/29/chrome-fetch-resource/" target="_blank" rel="external">从Chrome源码看浏览器如何加载资源</a><br>本文通过源码层面解释了浏览器如何加载资源，解决了前端对浏览器加载资源有很多不确定性的困惑，非常实用。</p></li><li><p><a href="http://www.jianshu.com/p/e139d449f5bb" target="_blank" rel="external">sass语法总结</a><br>CSS 本身是非常强大的，但随着样式表变大，变复杂，维护 CSS 变得越来越难。这时候预处理就有用了。Sass 是一种预处理，它能让你使用一些 CSS 中没有的特性，比如：变量，嵌套（nesting），混入（mixins），继承等。这些特性能让 CSS 变的容易维护。</p></li><li><p><a href="http://bbs.thankbabe.com/topic/72/99-%E7%9A%84%E4%BA%BA%E9%83%BD%E7%90%86%E8%A7%A3%E9%94%99%E4%BA%86http%E4%B8%ADget%E4%B8%8Epost%E7%9A%84%E5%8C%BA%E5%88%AB" target="_blank" rel="external">HTTP中GET与POST的区别</a><br>看这霸气的文章标题！快来看看和自己理解的是否一致吧</p></li></ul><h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p><ul><li>资深前端工程师</li></ul><p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</div><div class="line"><span class="built_in">console</span>.log(email);</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Show-me-the-code&quot;&gt;&lt;a href=&quot;#Show-me-the-code&quot; class=&quot;headerlink&quot; title=&quot;Show me the code&quot;&gt;&lt;/a&gt;Show me the code&lt;/h2&gt;&lt;h3 id=&quot;前端工程化工具-D
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>大前端周刊 第19期 （本期小编：段扬帅）</title>
@@ -614,34 +635,6 @@
       <category term="测试" scheme="https://talkingdata.github.io/tags/%E6%B5%8B%E8%AF%95/"/>
     
       <category term="three.js" scheme="https://talkingdata.github.io/tags/three-js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大前端周刊 第1期 （本期小编：王祥）</title>
-    <link href="https://talkingdata.github.io/2017/06/23/weekly-1/"/>
-    <id>https://talkingdata.github.io/2017/06/23/weekly-1/</id>
-    <published>2017-06-23T03:18:25.000Z</published>
-    <updated>2017-11-03T02:24:27.267Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul><li><p><a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="external">Promise</a><br>在Javascript的单线程异步架构下，Promise会是很多异步服务的核心知识点，Node 8.X已经可以方便的将回调方式转换为Promise。</p></li><li><p><a href="http://es6.ruanyifeng.com/#docs/async" target="_blank" rel="external">异步函数async</a><br>使用异步函数可以实现“用同步的写法，完成异步的事情”，Node 8.X已经在编译器层面对async做了优化。</p></li><li><a href="http://semver.org/lang/zh-CN/" target="_blank" rel="external">语义化版本 2.0.0</a><br>玩开源项目的基础，组件发布的约定。</li><li><a href="https://docs.npmjs.com/files/package.json" target="_blank" rel="external">package.json规则</a><br>项目的依赖列表，区别开发环境、生产环境、面向的平台和组件的规范（CMD、AMD和UMD）等。</li></ul><h2 id="单元测试工具"><a href="#单元测试工具" class="headerlink" title="单元测试工具"></a>单元测试工具</h2><p>Web 应用中的单元测试更加重要，在 Web 产品快速迭代的时期，每个测试用例都给应用的稳定性提供了一层保障。 API 升级，测试用例可以很好地检查代码是否向下兼容。 对于各种可能的输入，一旦测试覆盖，都能明确它的输出。 代码改动后，可以通过测试结果判断代码的改动是否影响已确定的结果。</p><ul><li><p><a href="https://mochajs.org/" target="_blank" rel="external">mocha单元测试</a><br>NPM里每天有25W的下载量，同时支持Node、浏览器多平台的测试用例的执行。</p></li><li><p><a href="https://www.npmjs.com/package/power-assert" target="_blank" rel="external">power-assert断言库</a><br>power-assert可以零学习成本，直观的展示出判断条件和结果。</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">1) Array #indexOf() should return index when the value is present:</div><div class="line">     AssertionError: # path/to/test/mocha_node.js:10</div><div class="line"></div><div class="line">  assert(ary.indexOf(zero) === two)</div><div class="line">         |   |       |     |   |</div><div class="line">         |   |       |     |   2</div><div class="line">         |   -1      0     false</div><div class="line">         [1,2,3]</div><div class="line"></div><div class="line">  [number] two</div><div class="line">  =&gt; 2</div><div class="line">  [number] ary.indexOf(zero)</div><div class="line">  =&gt; -1</div></pre></td></tr></table></figure><h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul><li><p><a href="https://github.com/mqyqingfeng/Blog/issues/22" target="_blank" rel="external">JavaScript专题之跟着underscore学防抖</a><br>对防抖的原理介绍的很清晰，从最简单的实现版本一步一步讲解到实现复杂的版本。<br>让我对防抖有了重新的认识。</p></li><li><p><a href="http://www.jianshu.com/p/fd7055705c62" target="_blank" rel="external">从前端开发看面向未来的敏捷学习法</a><br>授人以鱼不如授人以渔<br>前端技术更新速度很快，快速学习已经成了每个工程师必备技能。<br>除了掌握技术知识，解决问题的能力在实际项目中也很重要，文中以实际案例给出分解思路和系统敏捷学习新知识思路。</p></li><li><p><a href="https://zhuanlan.zhihu.com/p/26660510" target="_blank" rel="external">前端工程师做事的三重境界：我的进阶之路</a><br>从程序员到工程师的进阶之路，精益求精才能称得上是工程师。作者认为这三个单词（Programmer、Developer、Enginner）对应不用的境界。</p></li><li><p><a href="http://louiszhai.github.io/2017/04/07/http-cache/" target="_blank" rel="external">浏览器缓存机制剖析</a><br>正如文中所述“缓存一直是前端优化的主战场, 利用好缓存就成功了一半”，利用好缓存在前端优化地位中举足轻重，本文能够带领大家对浏览器缓存机制有一个初步了解。</p></li><li><p><a href="https://www.deboy.cn/Vue-mixins-advance-tips.html" target="_blank" rel="external">vue-mixins使用注意事项和高级用法</a><br>在项目开发中经常会碰到两个组件的业务逻辑有所相似，可能共享相同的底层业务逻辑；此时需要考虑如何来合理地划分代码，即避免冗余代码，也不能过度抽象。</p></li><li><p><a href="https://www.toobug.net/article/array_unique_in_javascript.html" target="_blank" rel="external">也谈JavaScript数组去重</a><br>去重，首先要思考什么是相等，从最初的循环，到Set集合。</p></li><li><p><a href="https://mp.weixin.qq.com/s?__biz=MzIwNjQwMzUwMQ==&amp;mid=2247485277&amp;idx=1&amp;sn=82703e13febb1e7947cc18d1f57fc375&amp;key=6b0fbfcb936d93fa91a745202d0f37bffff65fd2cba5ff2cfa25618c8d03951944ae6eb2f4db18aaf1c8893ddaeffb404684dbd7f6159925dbab9411094f960daba3c6f46c1f93d34f9a6d476104fc63&amp;ascene=0&amp;uin=MTQwNzQzODYwMA%3D%3D&amp;version=12020810&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=xJ0pJsFuIsM3Ce35cuVqghSLUWaqU91w%2FEgBgn2%2BhouemlzbFvOIXP3KmJlioe0D" target="_blank" rel="external">大前端公共知识梳理：这些知识你都掌握了吗？</a><br>文章覆盖非常全面，所介绍基础知识、技术栈、能力、领域有很多都是目前我所欠缺的，介于此推荐给大家。。。看完最直观的感受就是自己是个假前端</p></li><li><p><a href="https://segmentfault.com/a/1190000009885614" target="_blank" rel="external">重温ES6核心概念和基本用法</a><br>文章梳理了ES6核心概念及基础用法，推荐给大家。</p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;基础&quot;&gt;&lt;a href=&quot;#基础&quot; class=&quot;headerlink&quot; title=&quot;基础&quot;&gt;&lt;/a&gt;基础&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://es6.ruanyifeng.com/#docs/promise&quot; target=&quot;_bl
-      
-    
-    </summary>
-    
-    
-      <category term="全栈" scheme="https://talkingdata.github.io/tags/%E5%85%A8%E6%A0%88/"/>
-    
-      <category term="Node" scheme="https://talkingdata.github.io/tags/Node/"/>
-    
-      <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
     
   </entry>
   
