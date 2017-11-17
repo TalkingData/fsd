@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>大前端周刊 第21期 （本期小编：李凡） | FSD Weekly</title>
+
+  
+  <meta name="author" content="FSD Weekly">
+  
+
+  
+  <meta name="description" content="Show me the code关于Promise对象容易忽视的几个问题1.resolve后的执行情况
+无论是 resolve, reject，都会将函数剩余的代码执行完1234567891011const promise = new Promise((resolve, reject) =&amp;gt; ">
+  
+
+  
+  
+  <meta name="keywords" content="">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="大前端周刊 第21期 （本期小编：李凡）"/>
+
+  <meta property="og:site_name" content="FSD Weekly"/>
+
+  
+  <meta property="og:image" content="/fsd/favicon.ico"/>
+  
+
+  <link href="/fsd/favicon.ico" rel="icon">
+  <link rel="alternate" href="/fsd/atom.xml" title="FSD Weekly" type="application/atom+xml">
+  <link rel="stylesheet" href="/fsd/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/fsd/">FSD Weekly</a>
+    </h1>
+    <p class="site-description"></p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/fsd/">主页</a></li>
+      
+        <li><a href="/fsd/archives">归档</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>大前端周刊 第21期 （本期小编：李凡）</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/fsd/2017/11/17/weekly-21/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-11-17T04:52:13.000Z">
+          2017-11-17
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><h3 id="关于Promise对象容易忽视的几个问题"><a href="#关于Promise对象容易忽视的几个问题" class="headerlink" title="关于Promise对象容易忽视的几个问题"></a>关于Promise对象容易忽视的几个问题</h3><p>1.resolve后的执行情况</p>
+<p>无论是 resolve, reject，都会将函数剩余的代码执行完<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'mark 1'</span>);</span><br><span class="line">    resolve(<span class="string">'hello world'</span>);     <span class="comment">// reject('hello world');</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'mark 2'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">promise.then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(result);</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>2.调用 then 方法返回新的 Promise 对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise1 = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    resolve(<span class="string">'Hello world'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> promise2 = promise1.then()</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(promise1 === promise2)    <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(promise1 <span class="keyword">instanceof</span> <span class="built_in">Promise</span>)  <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(promise2 <span class="keyword">instanceof</span> <span class="built_in">Promise</span>)  <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>3.串行执行和并行执行</p>
+<ul>
+<li>串行执行：有一堆 Promise 对象，它们的执行顺序是固定的，前一个 promise 执行完后，后一个 promise 才开始执行，比如数据库查询，它们往往有前后的因果关系。</li>
+<li>并行执行：有一堆 Promise 对象，它们的执行顺序是不固定的，没有前后因果关系，可以并发地去执行。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//串行方式一</span></span><br><span class="line"><span class="keyword">const</span> datum = [];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    datum.push(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> serial = <span class="built_in">Promise</span>.resolve();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> datum) &#123;</span><br><span class="line">    serial = serial.then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(data);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">	    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(i * <span class="number">200</span> + <span class="string">" ms 后执行结束"</span>);</span><br><span class="line">		resolve(<span class="string">"第 "</span> + (i + <span class="number">1</span>) + <span class="string">" 个 Promise 执行结束"</span>);</span><br><span class="line">	    &#125;, i * <span class="number">200</span>);</span><br><span class="line">	&#125;)	</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//串行方式二  使用reduce</span></span><br><span class="line"><span class="keyword">const</span> datum = [];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    datum.push(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">datum.reduce(<span class="function">(<span class="params">prev, cur</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> prev.then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(data);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">	    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(cur * <span class="number">200</span> + <span class="string">" ms 后执行结束"</span>);</span><br><span class="line">		resolve(<span class="string">"第 "</span> + (cur + <span class="number">1</span>) + <span class="string">" 个 Promise 执行结束"</span>);</span><br><span class="line">	    &#125;, cur * <span class="number">200</span>);</span><br><span class="line">	&#125;)	</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;, <span class="built_in">Promise</span>.resolve(<span class="literal">true</span>));</span><br></pre></td></tr></table></figure>
+<p>并行执行很好解决，在 Promise中有 all 这个函数支持, Promise.all 方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。当多个 Promise 实例执行完后才去执行最后新的 Promise 实例。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> datum = [];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    datum.push(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.all(datum.map(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">	setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	    <span class="built_in">console</span>.log(i * <span class="number">200</span> + <span class="string">" ms 后执行结束"</span>);</span><br><span class="line">	    resolve(<span class="string">"第 "</span> + (i + <span class="number">1</span>) + <span class="string">" 个 Promise 执行结束"</span>);</span><br><span class="line">	&#125;, i * <span class="number">200</span>);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)).then(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>如果不使用 Promise.all 这个方法的话，你也可以使用像 ES7 的 async/await</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> asyncFun = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> datum = []</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        datum.push(<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(i * <span class="number">200</span> + <span class="string">'ms 后执行结束'</span>)</span><br><span class="line">                resolve(<span class="string">'第 '</span> + (i + <span class="number">1</span>) + <span class="string">' 个 Promise 执行结束'</span>)</span><br><span class="line">            &#125;, i * <span class="number">200</span>)</span><br><span class="line">        &#125;))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> result = []</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> promise <span class="keyword">of</span> datum) &#123;</span><br><span class="line">        result.push(<span class="keyword">await</span> promise)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(result)</span><br><span class="line">&#125;</span><br><span class="line">asyncFun()</span><br></pre></td></tr></table></figure>
+<p>4 . 结合 async/await 编写同步代码</p>
+<ul>
+<li>async/await 函数可以帮助我们彻底摆脱回调地狱的烦恼，用一种同步的方式来编写异步函数。</li>
+<li>await 后面可以接数值，如果是异步请求的话可以接 Thunk 函数和 Promise 对象。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> timeout = <span class="function">(<span class="params">ms</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            resolve(ms + <span class="string">' passed'</span>)</span><br><span class="line">        &#125;, ms)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> asyncFunc =  <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> value1 = <span class="keyword">await</span> timeout(<span class="number">2000</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(value1)</span><br><span class="line">    <span class="keyword">const</span> value2 = <span class="keyword">await</span> timeout(<span class="number">2000</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(value2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">asyncFunc()</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'now'</span>)</span><br></pre></td></tr></table></figure>
+<p>5  .resolved 状态的 Promise 不会立即执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">Promise</span>.resolve(<span class="string">'resolved promise'</span>).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    i += <span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(i)  <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
+<li><a href="http://www.oschina.net/question/12_72250" target="_blank" rel="noopener">TypeScript 入门指南</a><br>TypeScript入门指南，适合入门了解。</li>
+</ul>
+<ul>
+<li><a href="https://juejin.im/post/5a0b29756fb9a045167cb643" target="_blank" rel="noopener">别再拿奇技淫巧搬砖了</a><br>技巧性的知识大家都有掌握，使用场景及方式是否合理也是个问题。<br>文章总结了一些常见的编程技巧的利弊，希望对大家有所帮助。</li>
+</ul>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/30703042?utm_medium=social&amp;utm_source=wechat_session" target="_blank" rel="noopener">抓住数据的小尾巴 - JS浮点数陷阱及解法</a><br>推荐：众所周知，JavaScript 浮点数运算时经常遇到会 0.000000001 和 0.999999999 这样奇怪的结果，如 0.1+0.2=0.30000000000000004、1-0.9=0.09999999999999998，很多人知道这是浮点数误差问题，但具体原因就说不清楚了。本文帮你理清这背后的原理以及解决方案，还会向你解释JS中的大数危机和四则运算中会遇到的坑。</li>
+</ul>
+<ul>
+<li><a href="https://juejin.im/post/5a091afe6fb9a044ff30f402" target="_blank" rel="noopener">打造自己的JavaScript武器库</a><br>作为战斗在业务一线的前端，要想少加班，就要想办法提高工作效率。这里提一个小点，我们在业务开发过程中，经常会重复用到日期格式化、url参数转对象、浏览器类型判断、节流函数等一类函数，这些工具类函数，基本上在每个项目都会用到，为避免不同项目多次复制粘贴的麻烦，我们可以统一封装，发布到npm，以提高开发效率。</li>
+</ul>
+<ul>
+<li><a href="https://juejin.im/post/59f5bbdb6fb9a0451968d851" target="_blank" rel="noopener">浏览器渲染引擎</a><br>浏览器基础是前端知识网中的一个小分支，也是前端开发人员必须掌握的基础知识点。他贯穿着前端的整个网络体系，项目优化也是围绕着浏览器进行的。</li>
+</ul>
+<ul>
+<li><a href="https://www.w3cplus.com/css/advanced-css-form-styling.html" target="_blank" rel="noopener">美化表单的CSS高级技巧</a><br>  通常前端业务离不开表单，而其本身的UI确实不太美观，文章通过一些选择器实现常用表单的美化，相信对有定制化表单需求的小伙伴有所帮助。</li>
+</ul>
+<ul>
+<li><a href="http://blog.fens.me/nodejs-websocket-monitor/" target="_blank" rel="noopener">websocket服务器监控</a><br>  这篇文章解释了一个简单的例子，用NodeJS搭建一个服务器监控程序，核心是socket.io实现的real time通信，另外还有node.js的child_process模块来实现进程管理。从这个简单而有用的例子出发，可以去研究socket.io和child_process的深层用法。</li>
+</ul>
+<ul>
+<li><a href="https://ponyfoo.com/articles/two-way-synchronization-for-a-web-app-and-git" target="_blank" rel="noopener">Web应用程序和Git的双向同步</a><br>通过钩子函数实现数据库与git仓库之间的双向同步，当数据库发生变化时，git仓库也进行相应同步操作。</li>
+</ul>
+<h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p>
+<ul>
+<li>资深前端工程师</li>
+</ul>
+<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(email);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2017 FSD Weekly
+    
+  </p>
+</footer>
+    
+  </div>
+</div>
+</body>
+</html>

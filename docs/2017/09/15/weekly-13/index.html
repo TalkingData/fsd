@@ -90,8 +90,8 @@
         <h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><ul>
 <li>剩余参数</li>
 </ul>
-<p>概念：剩余参数（rest parameter）语法允许我们将一个不定数量的参数表示为一个数组。<br>使用场景：在不确定参数个数的函数中，设置部分行参。<br>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function(a, b, ...restArgs) &#123;</div><div class="line">  // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function multiply(multiplier, ...theArgs) &#123;</div><div class="line">  return theArgs.map(function (element) &#123;</div><div class="line">    return multiplier * element;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var arr = multiply(2, 1, 2, 3); </div><div class="line">console.log(arr);  // [2, 4, 6]</div></pre></td></tr></table></figure></p>
+<p>概念：剩余参数（rest parameter）语法允许我们将一个不定数量的参数表示为一个数组。<br>使用场景：在不确定参数个数的函数中，设置部分行参。<br>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function(a, b, ...restArgs) &#123;</span><br><span class="line">  // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function multiply(multiplier, ...theArgs) &#123;</span><br><span class="line">  return theArgs.map(function (element) &#123;</span><br><span class="line">    return multiplier * element;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var arr = multiply(2, 1, 2, 3); </span><br><span class="line">console.log(arr);  // [2, 4, 6]</span><br></pre></td></tr></table></figure></p>
 <p>说明：<br>剩余参数和 arguments 对象的区别：</p>
 <ol>
 <li>剩余参数只包含那些没有对应形参的实参，而 arguments 对象包含了传给函数的所有实参。</li>
@@ -101,47 +101,47 @@
 <ul>
 <li>逗号操作符</li>
 </ul>
-<p>概念：逗号操作符  对它的每个操作数求值（从左到右），并返回最后一个操作数的值。<br>语法：expr1, expr2, expr3…<br>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function a(num) &#123;</div><div class="line">  console.log(num);</div><div class="line">&#125;</div><div class="line"></div><div class="line">function b(num) &#123;</div><div class="line">  console.log(num * 2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">a(1), b(1); // 1  2</div><div class="line">b(1), a(1); // 2  1</div></pre></td></tr></table></figure></p>
+<p>概念：逗号操作符  对它的每个操作数求值（从左到右），并返回最后一个操作数的值。<br>语法：expr1, expr2, expr3…<br>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function a(num) &#123;</span><br><span class="line">  console.log(num);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function b(num) &#123;</span><br><span class="line">  console.log(num * 2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a(1), b(1); // 1  2</span><br><span class="line">b(1), a(1); // 2  1</span><br></pre></td></tr></table></figure></p>
 <p>小结：<br>逗号表达式最常用的地方是是用一句代码定义多个变量的场景。在许多大厂的源码中也被用在如上示例的函数调用。</p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ul>
 <li>Trackingjs</li>
 </ul>
-<p>js实现人脸识别，看这里：<a href="https://trackingjs.com/" target="_blank" rel="external">https://trackingjs.com</a>，文章推荐板块中有成功的实践案例。</p>
+<p>js实现人脸识别，看这里：<a href="https://trackingjs.com/" target="_blank" rel="noopener">https://trackingjs.com</a>，文章推荐板块中有成功的实践案例。</p>
 <ul>
 <li>图片渐进式加载</li>
 </ul>
-<p>需求：在网速不好的情况下，网站上的某张图片用上向下一点点加载，用户体现不友好。希望先显示整张图片然后渐渐变清晰。<br>方案：使用渐进式加载的图片，详情见文章：<a href="http://www.zhangxinxu.com/wordpress/2013/01/progressive-jpeg-image-and-so-on/" target="_blank" rel="external">渐进式jpeg(progressive jpeg)图片</a>。</p>
+<p>需求：在网速不好的情况下，网站上的某张图片用上向下一点点加载，用户体现不友好。希望先显示整张图片然后渐渐变清晰。<br>方案：使用渐进式加载的图片，详情见文章：<a href="http://www.zhangxinxu.com/wordpress/2013/01/progressive-jpeg-image-and-so-on/" target="_blank" rel="noopener">渐进式jpeg(progressive jpeg)图片</a>。</p>
 <ul>
 <li>Flex布局</li>
 </ul>
-<p>自从有了flex布局，处女座的设计师再也不用担心内容没有中间对其或上下对齐了。图文详解flex语法，戳下文：<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="external">Flex 布局教程－语法篇</a></p>
+<p>自从有了flex布局，处女座的设计师再也不用担心内容没有中间对其或上下对齐了。图文详解flex语法，戳下文：<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">Flex 布局教程－语法篇</a></p>
 <h2 id="工具和模块"><a href="#工具和模块" class="headerlink" title="工具和模块"></a>工具和模块</h2><p>作为前端童鞋，平时开发免不了和接口打交道，拿到接口后需要测试一下接口返回是否正常，这时最后有一款支持各种请求方式的模拟Http请求工具。现在来介绍一些一款解决这个问题的工具－Postman，Postman支持各种请求方式，支持添加各个请求头参数。对写接口或用接口的同学来说都是利器。</p>
 <ol>
-<li><p>官网：<a href="https://www.getpostman.com/" target="_blank" rel="external">https://www.getpostman.com/</a></p>
+<li><p>官网：<a href="https://www.getpostman.com/" target="_blank" rel="noopener">https://www.getpostman.com/</a></p>
 </li>
-<li><p>推荐文章：<a href="http://blog.csdn.net/flowerspring/article/details/52774399" target="_blank" rel="external">Postman用法简介</a></p>
+<li><p>推荐文章：<a href="http://blog.csdn.net/flowerspring/article/details/52774399" target="_blank" rel="noopener">Postman用法简介</a></p>
 </li>
 </ol>
 <h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
-<li><p><a href="https://www.smashingmagazine.com/2017/09/guide-virtual-reality-web-developers/?utm_source=frontendfocus&amp;utm_medium=email" target="_blank" rel="external">面向 Web 开发者的 VR 指南</a><br>近日来，越来越多的浏览器添加了对于 VR 特性的支持，本文即是盘点下目前浏览器中 VR 技术发展的现状，并且对可用的 WebVR 相关 API 进行简要介绍。</p>
+<li><p><a href="https://www.smashingmagazine.com/2017/09/guide-virtual-reality-web-developers/?utm_source=frontendfocus&amp;utm_medium=email" target="_blank" rel="noopener">面向 Web 开发者的 VR 指南</a><br>近日来，越来越多的浏览器添加了对于 VR 特性的支持，本文即是盘点下目前浏览器中 VR 技术发展的现状，并且对可用的 WebVR 相关 API 进行简要介绍。</p>
 </li>
-<li><p><a href="https://segmentfault.com/a/1190000011153487" target="_blank" rel="external">深入浅出基于“依赖收集”的响应式原理</a><br>文章很透彻的解析了对于使用Object.defineProperty()实现的响应式原理；从一个简单的实例逐步分析响应式原理的具体思路。讲解响应式原理的文章很多，这篇还是很形象的。</p>
+<li><p><a href="https://segmentfault.com/a/1190000011153487" target="_blank" rel="noopener">深入浅出基于“依赖收集”的响应式原理</a><br>文章很透彻的解析了对于使用Object.defineProperty()实现的响应式原理；从一个简单的实例逐步分析响应式原理的具体思路。讲解响应式原理的文章很多，这篇还是很形象的。</p>
 </li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/28653993" target="_blank" rel="external">30 行 JavaScript 代码搭建神经网络</a><br>数据科学部的同学推荐的一篇神经网络入门实践文章，这篇文章图文并茂的介绍了神经网络的基础知识：神经元、神经网络等。深入阅读：<a href="http://www.ruanyifeng.com/blog/2017/07/neural-network.html" target="_blank" rel="external">神经网络入门</a></p>
+<li><p><a href="https://zhuanlan.zhihu.com/p/28653993" target="_blank" rel="noopener">30 行 JavaScript 代码搭建神经网络</a><br>数据科学部的同学推荐的一篇神经网络入门实践文章，这篇文章图文并茂的介绍了神经网络的基础知识：神经元、神经网络等。深入阅读：<a href="http://www.ruanyifeng.com/blog/2017/07/neural-network.html" target="_blank" rel="noopener">神经网络入门</a></p>
 </li>
-<li><p><a href="https://github.com/jawil/blog/issues/9" target="_blank" rel="external">深入浅出DOM基础——《DOM探索之基础详解篇》学习笔记</a><br>文章稍长，本文只论述DOM基础概念，不涉及DOM的一些事件原理机制，页面元素的操作和常用API的讲解以及兼容性事项，所以概念性东西比较多，稍微有点抽象。</p>
+<li><p><a href="https://github.com/jawil/blog/issues/9" target="_blank" rel="noopener">深入浅出DOM基础——《DOM探索之基础详解篇》学习笔记</a><br>文章稍长，本文只论述DOM基础概念，不涉及DOM的一些事件原理机制，页面元素的操作和常用API的讲解以及兼容性事项，所以概念性东西比较多，稍微有点抽象。</p>
 </li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/26063036" target="_blank" rel="external">编写可维护代码之“中间件模式”</a><br>中间件可以介入请求和相应的处理,是一个轻量级的模块,每个中间负责完成某个特定的功能。</p>
+<li><p><a href="https://zhuanlan.zhihu.com/p/26063036" target="_blank" rel="noopener">编写可维护代码之“中间件模式”</a><br>中间件可以介入请求和相应的处理,是一个轻量级的模块,每个中间负责完成某个特定的功能。</p>
 </li>
-<li><p><a href="http://mp.weixin.qq.com/s?__biz=MzIyMjYyMzg3MA==&amp;mid=2247484289&amp;idx=1&amp;sn=9e7f6c0c5e6707c8b3d0a73b36bc00c1&amp;chksm=e82be290df5c6b86e2be66f2eea6ee88be1449c3b40d8ebf40932798f95e651fbaf49ca698d0&amp;mpshare=1&amp;scene=1&amp;srcid=0727KaC7tg9V5Sa1mhiVeInx#rd" target="_blank" rel="external">当我们学习 Node.js 时，我们在学习什么？</a><br>大家都说学 Node.js 学 Node.js，到底是学它的什么呢？是学 JavaScript 这门语言，还是学 Node.js 的 API？还是学 Node.js 各种三方库？</p>
+<li><p><a href="http://mp.weixin.qq.com/s?__biz=MzIyMjYyMzg3MA==&amp;mid=2247484289&amp;idx=1&amp;sn=9e7f6c0c5e6707c8b3d0a73b36bc00c1&amp;chksm=e82be290df5c6b86e2be66f2eea6ee88be1449c3b40d8ebf40932798f95e651fbaf49ca698d0&amp;mpshare=1&amp;scene=1&amp;srcid=0727KaC7tg9V5Sa1mhiVeInx#rd" target="_blank" rel="noopener">当我们学习 Node.js 时，我们在学习什么？</a><br>大家都说学 Node.js 学 Node.js，到底是学它的什么呢？是学 JavaScript 这门语言，还是学 Node.js 的 API？还是学 Node.js 各种三方库？</p>
 </li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/29165800" target="_blank" rel="external">石墨表格之 Web Worker 应用实战</a><br>JavaScript 执行是单线程的，如运行 CPU 密集型任务会阻塞线程，此时浏览器会被卡住。解决该问题的办法之一就是引入Web Worker。Web Worker 为前端带来了后台计算的能力，可以实现主 UI 线程与复杂计运算线程的分离，从而极大减轻了因计算量大而造成 UI 阻塞而出现的界面渲染卡、掉帧的情况，从而更大程度地的提高我们的页面性能。</p>
+<li><p><a href="https://zhuanlan.zhihu.com/p/29165800" target="_blank" rel="noopener">石墨表格之 Web Worker 应用实战</a><br>JavaScript 执行是单线程的，如运行 CPU 密集型任务会阻塞线程，此时浏览器会被卡住。解决该问题的办法之一就是引入Web Worker。Web Worker 为前端带来了后台计算的能力，可以实现主 UI 线程与复杂计运算线程的分离，从而极大减轻了因计算量大而造成 UI 阻塞而出现的界面渲染卡、掉帧的情况，从而更大程度地的提高我们的页面性能。</p>
 </li>
-<li><p><a href="https://juejin.im/post/59ade28051882538fd72fa2c" target="_blank" rel="external">那些你不能错过的 GitHub 插件和工具</a><br>既然 GitHub 这么重要，又被我们使用得这么频繁，那关于 GitHub 的一些优秀浏览器插件或者其他工具，我们就一定不可错过啦。本文就来整理一些，都是我平常使用最得心应手的东西，全都倾力推荐出来，绝对干货！</p>
+<li><p><a href="https://juejin.im/post/59ade28051882538fd72fa2c" target="_blank" rel="noopener">那些你不能错过的 GitHub 插件和工具</a><br>既然 GitHub 这么重要，又被我们使用得这么频繁，那关于 GitHub 的一些优秀浏览器插件或者其他工具，我们就一定不可错过啦。本文就来整理一些，都是我平常使用最得心应手的东西，全都倾力推荐出来，绝对干货！</p>
 </li>
-<li><p><a href="http://refined-x.com/2017/09/06/%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB-%E6%8F%90%E5%8F%96-%E5%90%88%E6%88%90/" target="_blank" rel="external">纯前端实现人脸识别-提取-合成</a><br>前段时间火遍朋友圈的军装照竟然是用纯前段实现的！<br>实现原理已在文中揭秘，速度get起来～</p>
+<li><p><a href="http://refined-x.com/2017/09/06/%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB-%E6%8F%90%E5%8F%96-%E5%90%88%E6%88%90/" target="_blank" rel="noopener">纯前端实现人脸识别-提取-合成</a><br>前段时间火遍朋友圈的军装照竟然是用纯前段实现的！<br>实现原理已在文中揭秘，速度get起来～</p>
 </li>
-<li><p><a href="http://www.w3cplus.com/css/css-polyfluidsizing-using-calc-vw-breakpoints-and-linear-equations.html" target="_blank" rel="external">实现精准的流体排版原理</a><br>文章介绍了如何实现精准的流式排版。其中原理非常的简单，通过CSS的Viewport单位和calc()配合一些数学公式，较为精准的实现随着视窗改变，能较为精准的改变font-size的大小，甚至只要是带有长度单位的属性都可以通过这样方式，达到精准的值。</p>
+<li><p><a href="http://www.w3cplus.com/css/css-polyfluidsizing-using-calc-vw-breakpoints-and-linear-equations.html" target="_blank" rel="noopener">实现精准的流体排版原理</a><br>文章介绍了如何实现精准的流式排版。其中原理非常的简单，通过CSS的Viewport单位和calc()配合一些数学公式，较为精准的实现随着视窗改变，能较为精准的改变font-size的大小，甚至只要是带有长度单位的属性都可以通过这样方式，达到精准的值。</p>
 </li>
 </ul>
 <h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p>
@@ -149,7 +149,7 @@
 <li>资深前端工程师</li>
 <li>前端实习生</li>
 </ul>
-<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</div><div class="line"><span class="built_in">console</span>.log(email);</div></pre></td></tr></table></figure></p>
+<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(email);</span><br></pre></td></tr></table></figure></p>
 
       
     </div>

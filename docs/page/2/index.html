@@ -59,6 +59,114 @@
 
   
     
+    <h3 class="article-title"><a href="/fsd/2017/09/01/weekly-11/"><span>大前端周刊 第11期 （本期小编：胡国伟）</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/fsd/2017/09/01/weekly-11/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-09-01T09:00:00.000Z">
+          2017-09-01
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <h2 id="Show-me-the-code"><a href="#Show-me-the-code" class="headerlink" title="Show me the code"></a>Show me the code</h2><h4 id="截流-throttle"><a href="#截流-throttle" class="headerlink" title="截流(throttle)"></a>截流(throttle)</h4><p>概念理解：固定函数执行的速率。<br>使用场景：DOM 事件绑定，短时间内触发多次绑定事件造成性能问题，如 <code>onresize</code>,<code>onscroll</code>等，使用节流函数可确保在指定时间内只触发一次。<br>简单实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> throttle = <span class="function">(<span class="params">func, wait</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">let</span> context, args;</span><br><span class="line">	<span class="keyword">let</span> previous = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">let</span> now = +<span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">		context = <span class="keyword">this</span>;</span><br><span class="line">		args = <span class="built_in">arguments</span>;</span><br><span class="line">		<span class="keyword">if</span> (now - previous &gt; wait) &#123;</span><br><span class="line">			func.apply(context, args);</span><br><span class="line">			previous = now;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h4 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖(debounce)"></a>防抖(debounce)</h4><p>概念理解：强制一个函数在某个连续时间段内只执行一次，哪怕它本来会被调用多次。<br>使用场景：</p>
+<ol>
+<li>表单远程搜索，键盘多次输入取最后一次输入值作为查询关键词。</li>
+<li>下拉菜单的延时消失。</li>
+</ol>
+<p>简单实现：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> debounce = <span class="function">(<span class="params">func, wait</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">let</span> timeout;</span><br><span class="line">  	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    	<span class="keyword">let</span> context = <span class="keyword">this</span>;</span><br><span class="line">    	<span class="keyword">let</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    	clearTimeout(timeout);</span><br><span class="line">    	timeout = setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      		func.apply(context, args)</span><br><span class="line">    	&#125;, wait);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="工具和模块"><a href="#工具和模块" class="headerlink" title="工具和模块"></a>工具和模块</h2><p>推荐功能强大的<code>HTTP</code>抓包调试工具：Fiddler。假如有这样一个场景，线上突然出现bug，而你正在休假、手头又没有源码，但又急需你参与问题排查，怎么办？Fiddler 便是你的救🔥利器。</p>
+<ol>
+<li>官网：<a href="http://www.telerik.com/fiddler" target="_blank" rel="noopener">http://www.telerik.com/fiddler</a></li>
+<li>插件（官方&amp;第三方）：<a href="http://www.telerik.com/fiddler/add-ons" target="_blank" rel="noopener">http://www.telerik.com/fiddler/add-ons</a></li>
+<li>快速上手：<a href="https://www.qcloud.com/community/article/115124?fromSource=gwzcw.93596.93596.93596" target="_blank" rel="noopener">十分钟学会 Fiddler</a></li>
+<li>视频教程：<a href="http://www.imooc.com/learn/37" target="_blank" rel="noopener">http://www.imooc.com/learn/37</a></li>
+<li>系列文章<ul>
+<li><a href="http://blog.csdn.net/ohmygirl/article/details/17846199" target="_blank" rel="noopener">【HTTP】Fiddler（一） - Fiddler简介</a></li>
+<li><a href="http://blog.csdn.net/ohmygirl/article/details/17849983" target="_blank" rel="noopener">【HTTP】Fiddler（二） - 使用Fiddler做抓包分析</a></li>
+<li><a href="http://blog.csdn.net/ohmygirl/article/details/17855031" target="_blank" rel="noopener">【HTTP】Fiddler（三）- Fiddler命令行和HTTP断点调试</a></li>
+</ul>
+</li>
+</ol>
+<h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
+<li><p><a href="http://www.ruanyifeng.com/blog/2015/06/istanbul.html" target="_blank" rel="noopener">代码覆盖率工具 Istanbul 入门教程</a><br>使用 Mocha 进行单元测试时，还需要了解测试的覆盖程度，这个指标就叫做”代码覆盖率”（code coverage）。这篇文章非常全面地介绍了Istanbul，让你轻松上手。深入了解：<a href="https://github.com/istanbuljs/nyc" target="_blank" rel="noopener">nyc</a></p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzIyMjYyMzg3MA==&amp;mid=2247484408&amp;idx=2&amp;sn=456405dd36fd679dea1470b131924980&amp;chksm=e82be2e9df5c6bff70912d297d535bfb747e2598a129641ea3409cedd88f2eac22e2d77dc98b&amp;mpshare=1&amp;scene=1&amp;srcid=0901XT4SSeVjxiKd3Pj6IOvv&amp;pass_ticket=%2BCgbmXT%2FgYy2AZSB%2B2tlPOm2ZM34W2NpPc%2F1G3ifFff91PXQRXcYFvt%2BSdaP7QjU#rd" target="_blank" rel="noopener">深入浅出浏览器渲染原理</a><br>对于 HTTP 协议和浏览器渲染原理都是理解容易但不好讲明白，那么为什么不采用 Node.js 来阐述呢？以实践的方式、最简单的方式来向你展示不好讲的东西，对于 Node.js 开发者和大前端开发来说都是非常实用的。</p>
+</li>
+<li><p><a href="https://github.com/DMQ/mvvm" target="_blank" rel="noopener">剖析Vue实现原理 - 如何实现双向绑定mvvm</a></p>
+<ol>
+<li>了解vue的双向数据绑定原理以及核心代码模块</li>
+<li>了解如何实现双向绑定</li>
+</ol>
+</li>
+<li><p><a href="https://github.com/jawil/blog/issues/16" target="_blank" rel="noopener">不用call和apply方法模拟实现ES5的bind方法</a><br>这个问题是对JavaScript基本功很好的一个检测，看JavaScript掌握的怎么样以及平时有没有去深入研究一些方法的实现，简而言之，就是有没有折腾精神。</p>
+</li>
+<li><p><a href="https://github.com/Jocs/jocs.github.io/issues/11" target="_blank" rel="noopener">通过ES6 Generator函数实现异步操作</a><br>文章对 Generator函数实现异步进行了深入的讲解，最后使用 promise和 generator这样的模式实现异步操作，对于实现的过程进行深入细致的分析。</p>
+</li>
+<li><p><a href="http://mp.weixin.qq.com/s?__biz=MzI2MTY0NTEyMA==&amp;mid=2247483871&amp;idx=1&amp;sn=f717d3c787626d997c410117a1cd7fb9&amp;chksm=ea5677f0dd21fee6c7853b60b7e32d744af1abb183903ce8523954e093263a8c375895f0f193&amp;mpshare=1&amp;scene=1&amp;srcid=06289q8vqWAQUGuqdrMsqEzq#" target="_blank" rel="noopener">你了解CSS设计模式吗？</a><br>简单来了解下CSS设计模式：</p>
+<ol>
+<li>BEM全称（block、element、modifier）是Yandex 团队提出的CSS Class命名法</li>
+<li>OOCSS全称（Object Oriented CSS）由Nicole Sullivan提出的css理论</li>
+<li>SMACSS是Jonathan Snook的一个CSS框架</li>
+<li>Atomic Design，原子设计</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><a href="http://fed.renren.com/2017/07/02/algorithm/" target="_blank" rel="noopener">我接触过的前端数据结构与算法</a><br>  作者总结了前端常常碰到的算法，主要涉及递归、节流、数组去重、栈和堆、图像处理等。代码示例较为清晰，对于初学者还是很有帮助的，比较赞同作者的观点：算法的目的是用最小的时间和最小的空间解决问题。但是有时候不用太拘泥于一定要最优的答案，能够合适地解决问题就是好方法，而且对于不同的应用场景可能要采取不同的策略。</li>
+</ul>
+<ul>
+<li><a href="http://web.jobbole.com/88463/" target="_blank" rel="noopener">JavaScript 中 4 种常见的内存泄露陷阱</a><br>虽然Javascript有内存自动回收机制，但这并不以为着js开发使完全不用关心内存管理。文中详细介绍了什么是内存泄漏和js中容易引起内存泄漏的点，并提供了使用Chrome分析内存的方法。</li>
+</ul>
+<h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p>
+<ul>
+<li>资深前端工程师</li>
+<li>前端实习生</li>
+</ul>
+<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(email);</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/开发工具/">开发工具</a><a href="/fsd/tags/测试工具/">测试工具</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/ES6/">ES6</a><a href="/fsd/tags/设计模式/">设计模式</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
     <h3 class="article-title"><a href="/fsd/2017/08/25/weekly-10/"><span>大前端周刊 第10期 （本期小编：王祥）</span></a></h3>
     
   
@@ -83,58 +191,58 @@
 <ul>
 <li>对象拷贝</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// very bad</span></div><div class="line"><span class="keyword">const</span> original = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;;</div><div class="line"><span class="keyword">const</span> copy = <span class="built_in">Object</span>.assign(original, &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;); <span class="comment">// this mutates `original` ಠ_ಠ</span></div><div class="line"><span class="keyword">delete</span> copy.a; <span class="comment">// so does this</span></div><div class="line"></div><div class="line"><span class="comment">// bad</span></div><div class="line"><span class="keyword">const</span> original = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;;</div><div class="line"><span class="keyword">const</span> copy = <span class="built_in">Object</span>.assign(&#123;&#125;, original, &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;); <span class="comment">// copy =&gt; &#123; a: 1, b: 2, c: 3 &#125;</span></div><div class="line"></div><div class="line"><span class="comment">// good</span></div><div class="line"><span class="keyword">const</span> original = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;;</div><div class="line"><span class="keyword">const</span> copy = &#123; ...original, <span class="attr">c</span>: <span class="number">3</span> &#125;; <span class="comment">// copy =&gt; &#123; a: 1, b: 2, c: 3 &#125;</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> &#123; a, ...noA &#125; = copy; <span class="comment">// noA =&gt; &#123; b: 2, c: 3 &#125;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// very bad</span></span><br><span class="line"><span class="keyword">const</span> original = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> copy = <span class="built_in">Object</span>.assign(original, &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;); <span class="comment">// this mutates `original` ಠ_ಠ</span></span><br><span class="line"><span class="keyword">delete</span> copy.a; <span class="comment">// so does this</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> original = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> copy = <span class="built_in">Object</span>.assign(&#123;&#125;, original, &#123; <span class="attr">c</span>: <span class="number">3</span> &#125;); <span class="comment">// copy =&gt; &#123; a: 1, b: 2, c: 3 &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> original = &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> copy = &#123; ...original, <span class="attr">c</span>: <span class="number">3</span> &#125;; <span class="comment">// copy =&gt; &#123; a: 1, b: 2, c: 3 &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> &#123; a, ...noA &#125; = copy; <span class="comment">// noA =&gt; &#123; b: 2, c: 3 &#125;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>数组复制 (copy arrays)</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bad</span></div><div class="line"><span class="keyword">const</span> len = items.length;</div><div class="line"><span class="keyword">const</span> itemsCopy = [];</div><div class="line"><span class="keyword">let</span> i;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i += <span class="number">1</span>) &#123;</div><div class="line">  itemsCopy[i] = items[i];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// good</span></div><div class="line"><span class="keyword">const</span> itemsCopy = [...items];</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> len = items.length;</span><br><span class="line"><span class="keyword">const</span> itemsCopy = [];</span><br><span class="line"><span class="keyword">let</span> i;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len; i += <span class="number">1</span>) &#123;</span><br><span class="line">  itemsCopy[i] = items[i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> itemsCopy = [...items];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>可变函数 (variadic function)</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// bad</span></div><div class="line"><span class="keyword">const</span> x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line"><span class="built_in">console</span>.log.apply(<span class="built_in">console</span>, x);</div><div class="line"></div><div class="line"><span class="comment">// good</span></div><div class="line"><span class="keyword">const</span> x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</div><div class="line"><span class="built_in">console</span>.log(...x);</div><div class="line"></div><div class="line"><span class="comment">// bad</span></div><div class="line"><span class="keyword">new</span> (<span class="built_in">Function</span>.prototype.bind.apply(<span class="built_in">Date</span>, [<span class="literal">null</span>, <span class="number">2016</span>, <span class="number">8</span>, <span class="number">5</span>]));</div><div class="line"></div><div class="line"><span class="comment">// good</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(...[<span class="number">2016</span>, <span class="number">8</span>, <span class="number">5</span>]);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">const</span> x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="built_in">console</span>.log.apply(<span class="built_in">console</span>, x);</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">const</span> x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="built_in">console</span>.log(...x);</span><br><span class="line"></span><br><span class="line"><span class="comment">// bad</span></span><br><span class="line"><span class="keyword">new</span> (<span class="built_in">Function</span>.prototype.bind.apply(<span class="built_in">Date</span>, [<span class="literal">null</span>, <span class="number">2016</span>, <span class="number">8</span>, <span class="number">5</span>]));</span><br><span class="line"></span><br><span class="line"><span class="comment">// good</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(...[<span class="number">2016</span>, <span class="number">8</span>, <span class="number">5</span>]);</span><br></pre></td></tr></table></figure>
 <h2 id="工具和模块"><a href="#工具和模块" class="headerlink" title="工具和模块"></a>工具和模块</h2><p>推荐一个 Markdown 生成 Word 文档工具 pandoc。</p>
 <ol>
 <li><p>使用 pandoc 将 Markdown 文件转换为 Word 文档。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pandoc -f markdown -t docx front-end-engineering-practice.md -o mydoc.docx</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pandoc -f markdown -t docx front-end-engineering-practice.md -o mydoc.docx</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装 pandoc ( Mac )</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ brew install pandoc</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install pandoc</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="文章推荐"><a href="#文章推荐" class="headerlink" title="文章推荐"></a>文章推荐</h2><ul>
-<li><a href="https://zhuanlan.zhihu.com/p/26709518" target="_blank" rel="external">10 个基于 JavaScript 的机器学习实例</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/26709518" target="_blank" rel="noopener">10 个基于 JavaScript 的机器学习实例</a></li>
 </ul>
 <p>虽然，大多数 JavaScript 机器学习库都是“新轮子”，有的甚至还在研发中，但并不会影响你的使用。在这篇文章中，我们将与你分享这些库，以及一些很酷的 AI Web 应用程序实例，帮助你开启机器学习之旅。</p>
 <ul>
-<li><a href="https://github.com/jawil/blog/issues/14" target="_blank" rel="external">通俗大白话来理解TCP协议的三次握手和四次分手</a></li>
+<li><a href="https://github.com/jawil/blog/issues/14" target="_blank" rel="noopener">通俗大白话来理解TCP协议的三次握手和四次分手</a></li>
 </ul>
 <p>前端工程师也需要了解HTTP方面的一些知识，本篇文章用通俗易懂的方式讲解了平时经常听到的三次握手和四次分手究竟是什么。</p>
 <ul>
-<li><a href="http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html" target="_blank" rel="external">测试框架 Mocha 实例教程</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html" target="_blank" rel="noopener">测试框架 Mocha 实例教程</a></li>
 </ul>
 <p>Mocha 是目前最流行的测试框架之一，支持浏览器端和 Node 端的单元测试。这篇文章非常全面地介绍如何使用Mocha，让你轻松上手。</p>
 <ul>
-<li><a href="https://www.kancloud.cn/kancloud/midway/48192" target="_blank" rel="external">前后端分离的思考与实践</a></li>
+<li><a href="https://www.kancloud.cn/kancloud/midway/48192" target="_blank" rel="noopener">前后端分离的思考与实践</a></li>
 </ul>
 <p>本文是阿里某前端团队，在探索一套基于NodeJS的前后端分离方案的过程中，对于前后端分离的一些认识以及思考。</p>
 <ul>
-<li>Mac <a href="http://blog.devtang.com/2015/11/14/charles-introduction/" target="_blank" rel="external">Charles 从入门到精通</a><br>PC <a href="http://blog.csdn.net/qq_21445563/article/details/51017605" target="_blank" rel="external">Fiddler 抓包工具总结</a></li>
+<li>Mac <a href="http://blog.devtang.com/2015/11/14/charles-introduction/" target="_blank" rel="noopener">Charles 从入门到精通</a><br>PC <a href="http://blog.csdn.net/qq_21445563/article/details/51017605" target="_blank" rel="noopener">Fiddler 抓包工具总结</a></li>
 </ul>
 <p>在PC Web端开发的时候，我们能很方便的从浏览器开发者工具里进行网络接口调试。<br>在移动端开发是面对这样的需求，我们可以通过抓包工具来解决这个问题。<br>在Mac系统常用的抓包工具是Charles，Windows系统中常用的抓包工具是Fiddler。<br>下面的文章分别对Charles和Fiddler进行介绍，并图文显示了使用方法。</p>
 <ul>
-<li><a href="https://github.com/zce/weapp-demo/tree/tutorial" target="_blank" rel="external">微信小程序开发教程</a></li>
+<li><a href="https://github.com/zce/weapp-demo/tree/tutorial" target="_blank" rel="noopener">微信小程序开发教程</a></li>
 </ul>
 <p>由易到难介绍小程序开发的流程，讲解比较层次化，比较细致，可以让人很快进行上手开发</p>
 <ul>
-<li><a href="https://github.com/Jocs/jocs.github.io/issues/1" target="_blank" rel="external">JavaScript Error 指南</a></li>
+<li><a href="https://github.com/Jocs/jocs.github.io/issues/1" target="_blank" rel="noopener">JavaScript Error 指南</a></li>
 </ul>
 <p>深度的剖析了错误信息和追溯栈，从错误捕获、剖析追溯栈、不同浏览器对于追溯栈格式上的差异等等，讲解相当详细也很透彻。</p>
 <ul>
-<li><a href="http://ifanqi.me/2017/07/25/you-can-understand-closure/" target="_blank" rel="external">浏览器是怎么看闭包的</a></li>
+<li><a href="http://ifanqi.me/2017/07/25/you-can-understand-closure/" target="_blank" rel="noopener">浏览器是怎么看闭包的</a></li>
 </ul>
-<p>关于闭包的解释有很多，很多只是从“行”上去解读，理解 JavaScript 闭包绕不开一个问题：闭包是如何实现变量保留在内存中呢？这涉及到浏览器对内存的分配与回收，本文从这个点展开图文详实的解读。拓展阅读：<a href="http://ifanqi.me/2017/07/28/js-variable-memory/" target="_blank" rel="external">可视化分析js的内存分配与回收</a>。</p>
+<p>关于闭包的解释有很多，很多只是从“行”上去解读，理解 JavaScript 闭包绕不开一个问题：闭包是如何实现变量保留在内存中呢？这涉及到浏览器对内存的分配与回收，本文从这个点展开图文详实的解读。拓展阅读：<a href="http://ifanqi.me/2017/07/28/js-variable-memory/" target="_blank" rel="noopener">可视化分析js的内存分配与回收</a>。</p>
 <ul>
-<li><a href="https://github.com/xieranmaya/blog/issues/3" target="_blank" rel="external">剖析Promise内部结构</a></li>
+<li><a href="https://github.com/xieranmaya/blog/issues/3" target="_blank" rel="noopener">剖析Promise内部结构</a></li>
 </ul>
 <p>一步一步实现一个完整的、能通过所有Test case的Promise类。文章由构造简单的promise对象开始，逐步完善逻辑。抛出问题，介绍思路，给出代码示例，比较清晰合理。自己实现已有的轮子，对于编码能力提升还是很有帮助的。</p>
 <h2 id="招聘"><a href="#招聘" class="headerlink" title="招聘"></a>招聘</h2><p>TalkingData DTU 可视化团队招聘：</p>
@@ -142,7 +250,7 @@
 <li>资深前端工程师</li>
 <li>前端实习生</li>
 </ul>
-<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</div><div class="line"><span class="built_in">console</span>.log(email);</div></pre></td></tr></table></figure></p>
+<p>简历投递：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> email = <span class="string">'xiang.wang#tendcloud.com'</span>.replace(<span class="string">'#'</span>, <span class="string">'@'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(email);</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -196,31 +304,31 @@
     <div class="entry">
       
         <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li><p><a href="http://blog.benoitvallon.com/data-structures-in-javascript/data-structures-in-javascript/" target="_blank" rel="external">javascript数据结构</a><br><strong>用javascript创建并分析各种常见数据结构</strong></p>
+<li><p><a href="http://blog.benoitvallon.com/data-structures-in-javascript/data-structures-in-javascript/" target="_blank" rel="noopener">javascript数据结构</a><br><strong>用javascript创建并分析各种常见数据结构</strong></p>
 </li>
-<li><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226809&amp;idx=1&amp;sn=514ca88902bc91840f363348d6c86c39&amp;chksm=bd495b3d8a3ed22bcf78801f96ae5c8d9555792d599004a7dc47a5a528185b9734f78af565fb&amp;mpshare=1&amp;scene=1&amp;srcid=08182YSPaUr4JxGj4iID40gs&amp;pass_ticket=0Et24OmYtRSLgA6Geno1MGBk5RujsQrVbaq%2FwZJ%2BzwtD%2F%2FbnV8lCXfDaw3Z5FpPr#rd" target="_blank" rel="external">理解Service Worker</a><br><strong>PWA是最近前端最火热的一个概念之一，Service Worker是支持PWA的核心技术之一</strong></p>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226809&amp;idx=1&amp;sn=514ca88902bc91840f363348d6c86c39&amp;chksm=bd495b3d8a3ed22bcf78801f96ae5c8d9555792d599004a7dc47a5a528185b9734f78af565fb&amp;mpshare=1&amp;scene=1&amp;srcid=08182YSPaUr4JxGj4iID40gs&amp;pass_ticket=0Et24OmYtRSLgA6Geno1MGBk5RujsQrVbaq%2FwZJ%2BzwtD%2F%2FbnV8lCXfDaw3Z5FpPr#rd" target="_blank" rel="noopener">理解Service Worker</a><br><strong>PWA是最近前端最火热的一个概念之一，Service Worker是支持PWA的核心技术之一</strong></p>
 </li>
-<li><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226816&amp;idx=1&amp;sn=5c2de943a3ff61de10466bfe21f973c2&amp;chksm=bd495b448a3ed2529d674d66eab367d3b2c9c1516f70206ea36aaa5439703288168a6305d48f&amp;mpshare=1&amp;scene=1&amp;srcid=0818znt16EAbHf0IGrXO1guY&amp;pass_ticket=0Et24OmYtRSLgA6Geno1MGBk5RujsQrVbaq%2FwZJ%2BzwtD%2F%2FbnV8lCXfDaw3Z5FpPr#rd" target="_blank" rel="external">常见排序算法之JavaScript实现</a><br><strong>排序算法是基础算法。本文用javascript和算法可视化工具将各种排序算法实现了一遍</strong></p>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226816&amp;idx=1&amp;sn=5c2de943a3ff61de10466bfe21f973c2&amp;chksm=bd495b448a3ed2529d674d66eab367d3b2c9c1516f70206ea36aaa5439703288168a6305d48f&amp;mpshare=1&amp;scene=1&amp;srcid=0818znt16EAbHf0IGrXO1guY&amp;pass_ticket=0Et24OmYtRSLgA6Geno1MGBk5RujsQrVbaq%2FwZJ%2BzwtD%2F%2FbnV8lCXfDaw3Z5FpPr#rd" target="_blank" rel="noopener">常见排序算法之JavaScript实现</a><br><strong>排序算法是基础算法。本文用javascript和算法可视化工具将各种排序算法实现了一遍</strong></p>
 </li>
 </ul>
 <h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
-<li><p><a href="https://zhuanlan.zhihu.com/p/27853228" target="_blank" rel="external">饿了么的 PWA 升级实践</a><br><small><em>推荐人: 胡国伟</em></small><br>饿了吗本次分享了基于 vue.js 的升级实践，踩坑跳坑的过程非常精彩。阅读完本文之余也可了解下Lavas：百度推出的基于 Vue 的 PWA 解决方案，其号称帮助开发者快速搭建 PWA 应用，解决接入 PWA 的各种问题。</p>
+<li><p><a href="https://zhuanlan.zhihu.com/p/27853228" target="_blank" rel="noopener">饿了么的 PWA 升级实践</a><br><small><em>推荐人: 胡国伟</em></small><br>饿了吗本次分享了基于 vue.js 的升级实践，踩坑跳坑的过程非常精彩。阅读完本文之余也可了解下Lavas：百度推出的基于 Vue 的 PWA 解决方案，其号称帮助开发者快速搭建 PWA 应用，解决接入 PWA 的各种问题。</p>
 </li>
-<li><p><a href="https://tech.meituan.com/vuex-code-analysis.html" target="_blank" rel="external">Vuex框架原理与源码分析</a><br><small><em>推荐人：李志伟</em></small><br>文章首先抛出5个核心问题，然后介绍各模块核心流程，结合图解、代码示例更利于理解。理清store构造方法你也就大致明白Vuex的实现了。</p>
+<li><p><a href="https://tech.meituan.com/vuex-code-analysis.html" target="_blank" rel="noopener">Vuex框架原理与源码分析</a><br><small><em>推荐人：李志伟</em></small><br>文章首先抛出5个核心问题，然后介绍各模块核心流程，结合图解、代码示例更利于理解。理清store构造方法你也就大致明白Vuex的实现了。</p>
 </li>
-<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&amp;mid=2651552440&amp;idx=1&amp;sn=01bdb132ed0383a47993d711120b4283&amp;chksm=8025ad79b752246fef6761482dbace0d9899ac00982a238063749400e4b0aed38140005ac869&amp;mpshare=1&amp;scene=1&amp;srcid=0809B7Mm0d6x7DCLtBzpQKer#" target="_blank" rel="external">每个JavaScript开发者都该懂的Unicode</a><br><small><em>推荐人：郭俊兵</em></small><br>如果你觉得理解Unicode很难，那么是时候来面对它了！其实它没你想的那么难。让我们进入抽象概念、字符、星光平面(辅助平面)和代理对的世界。</p>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&amp;mid=2651552440&amp;idx=1&amp;sn=01bdb132ed0383a47993d711120b4283&amp;chksm=8025ad79b752246fef6761482dbace0d9899ac00982a238063749400e4b0aed38140005ac869&amp;mpshare=1&amp;scene=1&amp;srcid=0809B7Mm0d6x7DCLtBzpQKer#" target="_blank" rel="noopener">每个JavaScript开发者都该懂的Unicode</a><br><small><em>推荐人：郭俊兵</em></small><br>如果你觉得理解Unicode很难，那么是时候来面对它了！其实它没你想的那么难。让我们进入抽象概念、字符、星光平面(辅助平面)和代理对的世界。</p>
 </li>
-<li><p><a href="http://code.oneapm.com/javascript/2015/07/07/webpack_performance_1/" target="_blank" rel="external">Webpack 性能优化 （一）</a><br><small><em>推荐人：陶明</em></small><br>文章通过项目打包场景，介绍了 resolve.alias 即利用别名做重定向的方法，在此基础上，配合module.noParse 忽略对某些模块的解析可以进一步加快速度。</p>
+<li><p><a href="http://code.oneapm.com/javascript/2015/07/07/webpack_performance_1/" target="_blank" rel="noopener">Webpack 性能优化 （一）</a><br><small><em>推荐人：陶明</em></small><br>文章通过项目打包场景，介绍了 resolve.alias 即利用别名做重定向的方法，在此基础上，配合module.noParse 忽略对某些模块的解析可以进一步加快速度。</p>
 </li>
-<li><p><a href="http://web.jobbole.com/85503/" target="_blank" rel="external">分享一篇介绍JS调试技巧的文章</a><br><small><em>推荐人：李丽娇</em></small><br>据说程序员不是在改bug就是在写bug的路上，由此可见调试问题这个技能的重要性。文中介绍了多种JS的调试工具和方法，并配有GIF图演示。快GET起来吧！</p>
+<li><p><a href="http://web.jobbole.com/85503/" target="_blank" rel="noopener">分享一篇介绍JS调试技巧的文章</a><br><small><em>推荐人：李丽娇</em></small><br>据说程序员不是在改bug就是在写bug的路上，由此可见调试问题这个技能的重要性。文中介绍了多种JS的调试工具和方法，并配有GIF图演示。快GET起来吧！</p>
 </li>
-<li><p><a href="https://chenshenhai.github.io/koa2-note/" target="_blank" rel="external">Koa2进阶学习笔记</a><br><small><em>推荐人：耿少真</em></small><br>基于async/await实现中间体系的koa2框架将会是是node.js web开发方向大势所趋的普及框架。基于generator/yield的koa1将会逐渐被koa2替代，毕竟使用co.js来处理generator是一种过渡的方式，虽然有其特定的应用场景，但是用async/await会更加优雅地实现同步写法。</p>
+<li><p><a href="https://chenshenhai.github.io/koa2-note/" target="_blank" rel="noopener">Koa2进阶学习笔记</a><br><small><em>推荐人：耿少真</em></small><br>基于async/await实现中间体系的koa2框架将会是是node.js web开发方向大势所趋的普及框架。基于generator/yield的koa1将会逐渐被koa2替代，毕竟使用co.js来处理generator是一种过渡的方式，虽然有其特定的应用场景，但是用async/await会更加优雅地实现同步写法。</p>
 </li>
-<li><p><a href="http://annn.me/frontend-ci-cd/" target="_blank" rel="external">前端开发持续集成/持续部署(CI/CD)实例</a><br><small><em>推荐人：包京京</em></small><br>近几年，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。这样大提高了前端的开发效率和业务交付能力。在项目部署阶段，我们还需要引入 CI / CD 等现代化的软件开发实践，来减少风险，自动化重复操作，节省我们的时间。本文主要分享一下如何基于 gitlab 、 jenkins 让 CI/CD 跑起来。</p>
+<li><p><a href="http://annn.me/frontend-ci-cd/" target="_blank" rel="noopener">前端开发持续集成/持续部署(CI/CD)实例</a><br><small><em>推荐人：包京京</em></small><br>近几年，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。这样大提高了前端的开发效率和业务交付能力。在项目部署阶段，我们还需要引入 CI / CD 等现代化的软件开发实践，来减少风险，自动化重复操作，节省我们的时间。本文主要分享一下如何基于 gitlab 、 jenkins 让 CI/CD 跑起来。</p>
 </li>
-<li><p><a href="https://github.com/DDFE/DDFE-blog/issues/13" target="_blank" rel="external">滴滴 webapp 5.0 Vue 2.0 重构经验分享</a><br><small><em>推荐人：张成斌</em></small><br>滴滴的 webapp 是运行在微信、支付宝、手 Q 以及其它第三方渠道的打车软件。借着产品层面的功能和视觉升级，我们用 Vue 2.0 对它进行了一次技术重构；本文即是本次重构中的经验分享。</p>
+<li><p><a href="https://github.com/DDFE/DDFE-blog/issues/13" target="_blank" rel="noopener">滴滴 webapp 5.0 Vue 2.0 重构经验分享</a><br><small><em>推荐人：张成斌</em></small><br>滴滴的 webapp 是运行在微信、支付宝、手 Q 以及其它第三方渠道的打车软件。借着产品层面的功能和视觉升级，我们用 Vue 2.0 对它进行了一次技术重构；本文即是本次重构中的经验分享。</p>
 </li>
-<li><p><a href="http://wxnet.me/2017/08/18/front-end-engineering-practice/" target="_blank" rel="external">前端工程化实践</a><br><small><em>推荐人：王祥</em></small><br>第一篇原创文章，总结了TalkingData DTU可视化团队，在2017年上半年的实践和尝试。内容包括git工作流、代码规范和大前端的目标确定，总结过往，才能更好的迎接未来。</p>
+<li><p><a href="http://wxnet.me/2017/08/18/front-end-engineering-practice/" target="_blank" rel="noopener">前端工程化实践</a><br><small><em>推荐人：王祥</em></small><br>第一篇原创文章，总结了TalkingData DTU可视化团队，在2017年上半年的实践和尝试。内容包括git工作流、代码规范和大前端的目标确定，总结过往，才能更好的迎接未来。</p>
 </li>
 </ul>
 
@@ -276,37 +384,37 @@
     <div class="entry">
       
         <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li><p><a href="http://www.zcfy.cc/article/mastering-chrome-developer-tools-next-level-front-end-development-techniques-3722.html?t=selection" target="_blank" rel="external">掌握Chrome开发工具</a><br><strong>熟悉Chrome开发工具的基本功能: DOM检查器、样式面板和JavaScript控制台和一些不太为人所知的特性</strong></p>
+<li><p><a href="http://www.zcfy.cc/article/mastering-chrome-developer-tools-next-level-front-end-development-techniques-3722.html?t=selection" target="_blank" rel="noopener">掌握Chrome开发工具</a><br><strong>熟悉Chrome开发工具的基本功能: DOM检查器、样式面板和JavaScript控制台和一些不太为人所知的特性</strong></p>
 </li>
-<li><p><a href="https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese/details" target="_blank" rel="external">JS函数式编程指南</a><br><strong>对函数式编程的目的有一个初步认识，对一个程序之所以是函数式程序的原因有一定了解</strong></p>
+<li><p><a href="https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese/details" target="_blank" rel="noopener">JS函数式编程指南</a><br><strong>对函数式编程的目的有一个初步认识，对一个程序之所以是函数式程序的原因有一定了解</strong></p>
 </li>
-<li><p><a href="https://mp.weixin.qq.com/s/27zpNIGhVbx-on9FDs_6dw" target="_blank" rel="external">HTTP协议详解</a><br><strong>Web服务器是基于HTTP（HyperText Transfer Protocol）协议实现的，所以要实现一个Web服务器就必须了解HTTP协议，本章主要介绍HTTP协议的相关知识，让我们对HTTP协议有个理性的认识。</strong></p>
+<li><p><a href="https://mp.weixin.qq.com/s/27zpNIGhVbx-on9FDs_6dw" target="_blank" rel="noopener">HTTP协议详解</a><br><strong>Web服务器是基于HTTP（HyperText Transfer Protocol）协议实现的，所以要实现一个Web服务器就必须了解HTTP协议，本章主要介绍HTTP协议的相关知识，让我们对HTTP协议有个理性的认识。</strong></p>
 </li>
 </ul>
 <h2 id="资源整理"><a href="#资源整理" class="headerlink" title="资源整理"></a>资源整理</h2><ul>
-<li><p><a href="http://blog.didiaoyuan.com/2017/04/18/%E6%80%BB%E6%9C%89%E4%BD%A0%E8%A6%81%E7%9A%84%E7%BC%96%E7%A8%8B%E4%B9%A6%E5%8D%95%EF%BC%88GitHub-%EF%BC%89/" target="_blank" rel="external">编程书单</a><br><strong>一些 GitHub 上不错的文章或电子书列表与大家分享。不乏有不少经典，可以收起来慢慢阅览。</strong></p>
+<li><p><a href="http://blog.didiaoyuan.com/2017/04/18/%E6%80%BB%E6%9C%89%E4%BD%A0%E8%A6%81%E7%9A%84%E7%BC%96%E7%A8%8B%E4%B9%A6%E5%8D%95%EF%BC%88GitHub-%EF%BC%89/" target="_blank" rel="noopener">编程书单</a><br><strong>一些 GitHub 上不错的文章或电子书列表与大家分享。不乏有不少经典，可以收起来慢慢阅览。</strong></p>
 </li>
-<li><p><a href="http://www.alloyteam.com/nav/" target="_blank" rel="external">Web前端导航网站</a><br><strong>收录了前端开发需要的大部分网站，可以快速找到自己需要的网站</strong></p>
+<li><p><a href="http://www.alloyteam.com/nav/" target="_blank" rel="noopener">Web前端导航网站</a><br><strong>收录了前端开发需要的大部分网站，可以快速找到自己需要的网站</strong></p>
 </li>
 </ul>
 <h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
-<li><p><a href="http://www.cnblogs.com/chenguangliang/p/5856701.html" target="_blank" rel="external">彻底弄懂CommonJS和AMD/CMD</a><br><small><em>推荐人：李丽娇</em></small><br>经常说的CommonJS、AMD、CMD规范具体指什么？实现原理是什么？这些规范有哪些具体实现？来看这篇文章找答案。</p>
+<li><p><a href="http://www.cnblogs.com/chenguangliang/p/5856701.html" target="_blank" rel="noopener">彻底弄懂CommonJS和AMD/CMD</a><br><small><em>推荐人：李丽娇</em></small><br>经常说的CommonJS、AMD、CMD规范具体指什么？实现原理是什么？这些规范有哪些具体实现？来看这篇文章找答案。</p>
 </li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/25367269" target="_blank" rel="external">使用Node.js实现文件流转存服务</a><br><small><em>推荐人：李志伟</em></small><br>文章介绍了基于node实现分片上传大型文件，通过灵活使用Promise和递归，实现非异步模型看起来很复杂的事情。另外文章附有较为完整的单元测试，覆盖分片的缓存与切割、上传前后的md5值。</p>
+<li><p><a href="https://zhuanlan.zhihu.com/p/25367269" target="_blank" rel="noopener">使用Node.js实现文件流转存服务</a><br><small><em>推荐人：李志伟</em></small><br>文章介绍了基于node实现分片上传大型文件，通过灵活使用Promise和递归，实现非异步模型看起来很复杂的事情。另外文章附有较为完整的单元测试，覆盖分片的缓存与切割、上传前后的md5值。</p>
 </li>
-<li><p><a href="http://coolshell.cn/articles/18024.html" target="_blank" rel="external">API设计原则</a><br><small><em>推荐人：胡国伟</em></small><br>我们平时在编写组件或者后端接口的时候都避免不了API 设计，你的API越容易使用，那么就会有越多的人去用它。那么问题来了，怎样才能设计出优秀的 API ？本文是虽然是以<code>C++</code>为例， 其中设计原则和思考是具有普适性的，是关于API设计一篇难得的好文章</p>
+<li><p><a href="http://coolshell.cn/articles/18024.html" target="_blank" rel="noopener">API设计原则</a><br><small><em>推荐人：胡国伟</em></small><br>我们平时在编写组件或者后端接口的时候都避免不了API 设计，你的API越容易使用，那么就会有越多的人去用它。那么问题来了，怎样才能设计出优秀的 API ？本文是虽然是以<code>C++</code>为例， 其中设计原则和思考是具有普适性的，是关于API设计一篇难得的好文章</p>
 </li>
-<li><p><a href="https://github.com/jawil/blog/issues/3" target="_blank" rel="external">一道JS面试题所引发的”血案”，透过现象寻本质，再从本质看现象</a><br><small><em>推荐人：张成斌</em></small><br>对this、执行环境、作用域等概念进行了系统的讲解。加深对于这些易混淆概念的理解。</p>
+<li><p><a href="https://github.com/jawil/blog/issues/3" target="_blank" rel="noopener">一道JS面试题所引发的”血案”，透过现象寻本质，再从本质看现象</a><br><small><em>推荐人：张成斌</em></small><br>对this、执行环境、作用域等概念进行了系统的讲解。加深对于这些易混淆概念的理解。</p>
 </li>
-<li><p><a href="http://www.jianshu.com/p/a515fbbdd1b2" target="_blank" rel="external">karma+webpack搭建vue单元测试环境</a><br><small><em>推荐人：耿少真</em></small><br>karma+webpack搭建vue单元测试环境介绍了vue单元测试环境搭建及查看源文件的测试覆盖覆盖率。<br><a href="http://www.jianshu.com/p/45e8c2b26309" target="_blank" rel="external">Vue单元测试case写法</a><br>测试环境搭建完成后，在此基础上vue单元测试思路介绍和case的写法。测试框架使用jasmine。</p>
+<li><p><a href="http://www.jianshu.com/p/a515fbbdd1b2" target="_blank" rel="noopener">karma+webpack搭建vue单元测试环境</a><br><small><em>推荐人：耿少真</em></small><br>karma+webpack搭建vue单元测试环境介绍了vue单元测试环境搭建及查看源文件的测试覆盖覆盖率。<br><a href="http://www.jianshu.com/p/45e8c2b26309" target="_blank" rel="noopener">Vue单元测试case写法</a><br>测试环境搭建完成后，在此基础上vue单元测试思路介绍和case的写法。测试框架使用jasmine。</p>
 </li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/28396592" target="_blank" rel="external">【源码拾遗】axios —— 极简封装的艺术</a><br><small><em>推荐人：陶明</em></small><br>本文通过axios 功能的使用及源码分析详细说明了axios 对于功能的实现。<br>axios是基于Promise的方式封装，所以分析axios源码也是对Promise的深入学习。</p>
+<li><p><a href="https://zhuanlan.zhihu.com/p/28396592" target="_blank" rel="noopener">【源码拾遗】axios —— 极简封装的艺术</a><br><small><em>推荐人：陶明</em></small><br>本文通过axios 功能的使用及源码分析详细说明了axios 对于功能的实现。<br>axios是基于Promise的方式封装，所以分析axios源码也是对Promise的深入学习。</p>
 </li>
-<li><p><a href="https://rupl.github.io/frontend-ops/#/" target="_blank" rel="external">Intro to Frontend Ops</a><br><small><em>推荐人：包京京</em></small><br>Frontend Ops是这篇文章作者自己定义的一个概念，业界应该还没有统一这种叫法，不过文章作者的意思是，随着前端项目复杂程度的增加，需要类似于DevOps的工程化能力，来进行持续发布、自动化测试等等流程（本文是英文的材料，暂无译文）。</p>
+<li><p><a href="https://rupl.github.io/frontend-ops/#/" target="_blank" rel="noopener">Intro to Frontend Ops</a><br><small><em>推荐人：包京京</em></small><br>Frontend Ops是这篇文章作者自己定义的一个概念，业界应该还没有统一这种叫法，不过文章作者的意思是，随着前端项目复杂程度的增加，需要类似于DevOps的工程化能力，来进行持续发布、自动化测试等等流程（本文是英文的材料，暂无译文）。</p>
 </li>
-<li><p><a href="http://www.ruanyifeng.com/blog/2017/08/koa.html" target="_blank" rel="external">Koa 框架教程</a><br><small><em>推荐人：王祥</em></small><br>本文从零开始，循序渐进，教会你如何使用 Koa 写出自己的 Web 应用。每一步都有简洁易懂的示例，希望让大家一看就懂。</p>
+<li><p><a href="http://www.ruanyifeng.com/blog/2017/08/koa.html" target="_blank" rel="noopener">Koa 框架教程</a><br><small><em>推荐人：王祥</em></small><br>本文从零开始，循序渐进，教会你如何使用 Koa 写出自己的 Web 应用。每一步都有简洁易懂的示例，希望让大家一看就懂。</p>
 </li>
-<li><p><a href="https://juejin.im/post/5988411251882526185d634a" target="_blank" rel="external">一行 JavaScript 代码的逆向工程</a><br><small><em>推荐人：郭俊兵</em></small><br>这一行代码会被渲染成一个矩阵效果，通过一次代码解读，享受理解它的过程。<br><code>&lt;pre id=p&gt;&lt;script&gt;n=setInterval(&quot;for(n+=7,i=k,P=&#39;p.\\n&#39;;i-=1/k;P+=P[i%2?(i%2*j-j+n/k^j)&amp;1:2])j=k/i;p.innerHTML=P&quot;,k=64)&lt;/script&gt;</code></p>
+<li><p><a href="https://juejin.im/post/5988411251882526185d634a" target="_blank" rel="noopener">一行 JavaScript 代码的逆向工程</a><br><small><em>推荐人：郭俊兵</em></small><br>这一行代码会被渲染成一个矩阵效果，通过一次代码解读，享受理解它的过程。<br><code>&lt;pre id=p&gt;&lt;script&gt;n=setInterval(&quot;for(n+=7,i=k,P=&#39;p.\\n&#39;;i-=1/k;P+=P[i%2?(i%2*j-j+n/k^j)&amp;1:2])j=k/i;p.innerHTML=P&quot;,k=64)&lt;/script&gt;</code></p>
 </li>
 </ul>
 
@@ -325,7 +433,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/模块/">模块</a><a href="/fsd/tags/node/">node</a><a href="/fsd/tags/API设计，单元测试/">API设计，单元测试</a>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/node/">node</a><a href="/fsd/tags/模块/">模块</a><a href="/fsd/tags/API设计，单元测试/">API设计，单元测试</a>
     </span>
     
 
@@ -362,33 +470,33 @@
     <div class="entry">
       
         <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li><p><a href="https://juejin.im/post/597ec55a51882556a234fcef" target="_blank" rel="external">exports、module.exports 和 export、export default 到底是咋回事</a><br><strong>模块引入方式的一个梳理</strong></p>
+<li><p><a href="https://juejin.im/post/597ec55a51882556a234fcef" target="_blank" rel="noopener">exports、module.exports 和 export、export default 到底是咋回事</a><br><strong>模块引入方式的一个梳理</strong></p>
 </li>
-<li><p><a href="https://github.com/ElemeFE/node-practice" target="_blank" rel="external">Node.js 实践教程</a><br><strong>饿了么出的一个Node实践教程，还在施工中，有兴趣的小伙伴可以关注一下。前提背景是<a href="https://github.com/ElemeFE/node-interview/tree/master/sections/zh-cn" target="_blank" rel="external">如何通过饿了么 Node.js 面试</a></strong></p>
+<li><p><a href="https://github.com/ElemeFE/node-practice" target="_blank" rel="noopener">Node.js 实践教程</a><br><strong>饿了么出的一个Node实践教程，还在施工中，有兴趣的小伙伴可以关注一下。前提背景是<a href="https://github.com/ElemeFE/node-interview/tree/master/sections/zh-cn" target="_blank" rel="noopener">如何通过饿了么 Node.js 面试</a></strong></p>
 </li>
-<li><p><a href="https://juejin.im/post/5979b5755188253df1067397" target="_blank" rel="external">浏览器是怎么看闭包的</a><br><strong>换个角度来理解闭包，从内存分配与回收的角度阐述，希望能帮助大家真正消化掉所看到的闭包知识</strong></p>
+<li><p><a href="https://juejin.im/post/5979b5755188253df1067397" target="_blank" rel="noopener">浏览器是怎么看闭包的</a><br><strong>换个角度来理解闭包，从内存分配与回收的角度阐述，希望能帮助大家真正消化掉所看到的闭包知识</strong></p>
 </li>
 </ul>
 <h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
-<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzIyMjYyMzg3MA==&amp;mid=2247484289&amp;idx=2&amp;sn=e1d9664d24d7b44bcece7464318a8369&amp;chksm=e82be290df5c6b86f08fa80a5b33e4a3d46daa1093290610d63b47f86f5bdd7d21151b91dd8f&amp;mpshare=1&amp;scene=1&amp;srcid=0804TnxBJbqO63wtfhcXPBra&amp;pass_ticket=lctb96bPZ%2BUbaZfdgO9Bxo8p62cFUW61TN3xhm1p6zgF%2FxcmdmZtIzWeDN%2F7BnNZ#rd" target="_blank" rel="external">深入理解 JavaScript 数据双向绑定</a><br><small><em>推荐人：包京京</em></small><br>首先讲解一下数据双向绑定的基本原理，介绍对比一下三大框架的不同实现方式，同时会一步步完成一个简单的mvvm示例。</p>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzIyMjYyMzg3MA==&amp;mid=2247484289&amp;idx=2&amp;sn=e1d9664d24d7b44bcece7464318a8369&amp;chksm=e82be290df5c6b86f08fa80a5b33e4a3d46daa1093290610d63b47f86f5bdd7d21151b91dd8f&amp;mpshare=1&amp;scene=1&amp;srcid=0804TnxBJbqO63wtfhcXPBra&amp;pass_ticket=lctb96bPZ%2BUbaZfdgO9Bxo8p62cFUW61TN3xhm1p6zgF%2FxcmdmZtIzWeDN%2F7BnNZ#rd" target="_blank" rel="noopener">深入理解 JavaScript 数据双向绑定</a><br><small><em>推荐人：包京京</em></small><br>首先讲解一下数据双向绑定的基本原理，介绍对比一下三大框架的不同实现方式，同时会一步步完成一个简单的mvvm示例。</p>
 </li>
-<li><p><a href="https://juejin.im/post/592faca42f301e006bc791e0" target="_blank" rel="external">前端开发者指南（2017）</a><br><small><em>推荐人：郭俊兵</em></small><br>内容偏向于 WEB 技术（HTML、CSS、DOM、JavaScript）和以这些技术为根基直接构建而成的开源技术。书中引用和讨论的材料要么就是同类翘楚，要么就是解决问题的流行方案。</p>
+<li><p><a href="https://juejin.im/post/592faca42f301e006bc791e0" target="_blank" rel="noopener">前端开发者指南（2017）</a><br><small><em>推荐人：郭俊兵</em></small><br>内容偏向于 WEB 技术（HTML、CSS、DOM、JavaScript）和以这些技术为根基直接构建而成的开源技术。书中引用和讨论的材料要么就是同类翘楚，要么就是解决问题的流行方案。</p>
 </li>
-<li><p><a href="https://juejin.im/post/592faca42f301e006bc791e0" target="_blank" rel="external">关于 Vue App 开发的一些思考</a><br><small><em>推荐人：张成斌</em></small><br>TalkingData实习生写的一篇文章。作者回顾了自己经历三个项目的开发历程，发现了很多问题，也产生了很多思考。该文章有很多值得借鉴的地方。</p>
+<li><p><a href="https://juejin.im/post/592faca42f301e006bc791e0" target="_blank" rel="noopener">关于 Vue App 开发的一些思考</a><br><small><em>推荐人：张成斌</em></small><br>TalkingData实习生写的一篇文章。作者回顾了自己经历三个项目的开发历程，发现了很多问题，也产生了很多思考。该文章有很多值得借鉴的地方。</p>
 </li>
-<li><p><a href="https://segmentfault.com/a/1190000010480396" target="_blank" rel="external">JavaScript专题之jQuery通用遍历方法each的实现</a><br><br><a href="https://github.com/mqyqingfeng/Blog" target="_blank" rel="external">系列目录地址</a><br><small><em>推荐人：陶明</em></small><br>文章从each 的功能实现入手不断完善，整体实现思路清晰，对于问题及解决也有详细的代码实现与解释。这是一个系列内容涵盖防抖、节流、去重、类型判断等。</p>
+<li><p><a href="https://segmentfault.com/a/1190000010480396" target="_blank" rel="noopener">JavaScript专题之jQuery通用遍历方法each的实现</a><br><br><a href="https://github.com/mqyqingfeng/Blog" target="_blank" rel="noopener">系列目录地址</a><br><small><em>推荐人：陶明</em></small><br>文章从each 的功能实现入手不断完善，整体实现思路清晰，对于问题及解决也有详细的代码实现与解释。这是一个系列内容涵盖防抖、节流、去重、类型判断等。</p>
 </li>
-<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures" target="_blank" rel="external">JavaScript 数据类型和数据结构</a><br><small><em>推荐人：李丽娇</em></small><br>作为js权威文档之一，mozilla网站除了对基础只是的介绍，还会有一些总结性的文章和使用注意事项。<br>这篇文章总结性地介绍了Javascript的数据类型和数据结构，并有一些使用中的注意事项。</p>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures" target="_blank" rel="noopener">JavaScript 数据类型和数据结构</a><br><small><em>推荐人：李丽娇</em></small><br>作为js权威文档之一，mozilla网站除了对基础只是的介绍，还会有一些总结性的文章和使用注意事项。<br>这篇文章总结性地介绍了Javascript的数据类型和数据结构，并有一些使用中的注意事项。</p>
 </li>
-<li><p><a href="http://www.ruanyifeng.com/blog/2012/04/functional_programming.html" target="_blank" rel="external">函数式编程初探</a><br><br><a href="http://www.ruanyifeng.com/blog/2017/02/fp-tutorial.html" target="_blank" rel="external">函数式编程入门教程</a><br><small><em>推荐人：王祥</em></small><br>推荐阮一峰老师的两篇函数式入门文章，大家可能无意识的使用函数式编程一段时间了。读这两篇文章，可以将思维里零散的函数式编码习惯系串联起来。</p>
+<li><p><a href="http://www.ruanyifeng.com/blog/2012/04/functional_programming.html" target="_blank" rel="noopener">函数式编程初探</a><br><br><a href="http://www.ruanyifeng.com/blog/2017/02/fp-tutorial.html" target="_blank" rel="noopener">函数式编程入门教程</a><br><small><em>推荐人：王祥</em></small><br>推荐阮一峰老师的两篇函数式入门文章，大家可能无意识的使用函数式编程一段时间了。读这两篇文章，可以将思维里零散的函数式编码习惯系串联起来。</p>
 </li>
-<li><p><a href="http://gitbook.cn/m/mazi/article/5900675d2fde0e5078d4ed5e?readArticle=yes" target="_blank" rel="external">Vue 全站服务器渲染 SSR 实践</a><br><small><em>推荐人：胡国伟</em></small><br>掘金分享了<code>vue</code>实现SSR的实践，目前来看性能问题依然很严重，仅供大家参考。</p>
+<li><p><a href="http://gitbook.cn/m/mazi/article/5900675d2fde0e5078d4ed5e?readArticle=yes" target="_blank" rel="noopener">Vue 全站服务器渲染 SSR 实践</a><br><small><em>推荐人：胡国伟</em></small><br>掘金分享了<code>vue</code>实现SSR的实践，目前来看性能问题依然很严重，仅供大家参考。</p>
 </li>
-<li><p><a href="http://mp.weixin.qq.com/s/fgFOvWBC_P78hG154gyXYQ" target="_blank" rel="external">Vue开发常见问题集锦</a><br><small><em>推荐人：王俐</em></small><br>附：<a href="http://mp.weixin.qq.com/s/fgFOvWBC_P78hG154gyXYQ" target="_blank" rel="external">换个思路理解Javascript中的this</a>实际开发中会遇到的问题，主要涉及技术栈： Vue-CLI、 Element UI、 Pug(Jade)、 Less、ES6；<br>1、涉及问题：ES6语法转换建议使用babel-polyfill；<br>2、对于let和const的使用<br>3、自定义路径别名的设置<br>4、 在使用 Moment.js 遇到一些问题<br>5、CSS 作用域与模块</p>
+<li><p><a href="http://mp.weixin.qq.com/s/fgFOvWBC_P78hG154gyXYQ" target="_blank" rel="noopener">Vue开发常见问题集锦</a><br><small><em>推荐人：王俐</em></small><br>附：<a href="http://mp.weixin.qq.com/s/fgFOvWBC_P78hG154gyXYQ" target="_blank" rel="noopener">换个思路理解Javascript中的this</a>实际开发中会遇到的问题，主要涉及技术栈： Vue-CLI、 Element UI、 Pug(Jade)、 Less、ES6；<br>1、涉及问题：ES6语法转换建议使用babel-polyfill；<br>2、对于let和const的使用<br>3、自定义路径别名的设置<br>4、 在使用 Moment.js 遇到一些问题<br>5、CSS 作用域与模块</p>
 </li>
-<li><p><a href="https://mp.weixin.qq.com/s/qRAdgYxOfBW6xmQUdZcu_A" target="_blank" rel="external">详解 Vue 2.4.0 带来的 4 个重大变化</a><br><small><em>推荐人：李志伟</em></small><br>“异步组件”让你的应用代码分离，使非必要组件在首页加载后延迟加载， 从而让用户更快的看到主页；组件内新增实现“属性继承”，使你的在每个中间组件属性定义变得相当简洁；异步组件支持webpack3，vue-loaderv13.0.0将.vue文件作为ES模块输出，这使得vue能够享受新的变量提升带来的便利；保留HTML注释，咳咳…聊胜于无。</p>
+<li><p><a href="https://mp.weixin.qq.com/s/qRAdgYxOfBW6xmQUdZcu_A" target="_blank" rel="noopener">详解 Vue 2.4.0 带来的 4 个重大变化</a><br><small><em>推荐人：李志伟</em></small><br>“异步组件”让你的应用代码分离，使非必要组件在首页加载后延迟加载， 从而让用户更快的看到主页；组件内新增实现“属性继承”，使你的在每个中间组件属性定义变得相当简洁；异步组件支持webpack3，vue-loaderv13.0.0将.vue文件作为ES模块输出，这使得vue能够享受新的变量提升带来的便利；保留HTML注释，咳咳…聊胜于无。</p>
 </li>
-<li><p><a href="https://i.jakeyu.top/2017/03/15/async/" target="_blank" rel="external">异步编程之async</a><br><small><em>推荐人：耿少真</em></small><br>对async方法的深入理解。</p>
+<li><p><a href="https://i.jakeyu.top/2017/03/15/async/" target="_blank" rel="noopener">异步编程之async</a><br><small><em>推荐人：耿少真</em></small><br>对async方法的深入理解。</p>
 </li>
 </ul>
 
@@ -407,7 +515,7 @@
 
     <span class="post-tags">
       <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/模块/">模块</a><a href="/fsd/tags/node/">node</a><a href="/fsd/tags/函数式/">函数式</a>
+        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/Vue/">Vue</a><a href="/fsd/tags/node/">node</a><a href="/fsd/tags/模块/">模块</a><a href="/fsd/tags/函数式/">函数式</a>
     </span>
     
 
@@ -444,37 +552,37 @@
     <div class="entry">
       
         <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&amp;mid=2651552360&amp;idx=1&amp;sn=8d2bc092405fc23379a786a6b7a36274&amp;chksm=8025ada9b75224bfd372ce168cb0f9cb6959255e2a7e94556eacea5d1d8e4b559dd494704ae5&amp;mpshare=1&amp;scene=1&amp;srcid=0720bFFOVROJ90Pe2ZutzpQz#rd" target="_blank" rel="external">CSS 样式书写规范</a><br><strong>不同的规范都有各自的长处与缺陷，对待所谓的规范最好的方式不是人云亦云，拿来就用，而是应该结合实际情况及需求，取长补短，取其精华去其糟粕。</strong></p>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&amp;mid=2651552360&amp;idx=1&amp;sn=8d2bc092405fc23379a786a6b7a36274&amp;chksm=8025ada9b75224bfd372ce168cb0f9cb6959255e2a7e94556eacea5d1d8e4b559dd494704ae5&amp;mpshare=1&amp;scene=1&amp;srcid=0720bFFOVROJ90Pe2ZutzpQz#rd" target="_blank" rel="noopener">CSS 样式书写规范</a><br><strong>不同的规范都有各自的长处与缺陷，对待所谓的规范最好的方式不是人云亦云，拿来就用，而是应该结合实际情况及需求，取长补短，取其精华去其糟粕。</strong></p>
 </li>
-<li><p><a href="https://segmentfault.com/a/1190000010150841" target="_blank" rel="external">bfc初探</a><br><strong>bfc全称是块级格式化上下文（block formating context），是web可视化css渲染的一部分，它是块级盒子的布局发生，浮动互相交互的部分。</strong></p>
+<li><p><a href="https://segmentfault.com/a/1190000010150841" target="_blank" rel="noopener">bfc初探</a><br><strong>bfc全称是块级格式化上下文（block formating context），是web可视化css渲染的一部分，它是块级盒子的布局发生，浮动互相交互的部分。</strong></p>
 </li>
-<li><p><a href="https://segmentfault.com/a/1190000010279009" target="_blank" rel="external">es6精简学习</a><br><strong>秉着二八原则，掌握好常用的，有用的这个可以让我们快速起飞</strong></p>
+<li><p><a href="https://segmentfault.com/a/1190000010279009" target="_blank" rel="noopener">es6精简学习</a><br><strong>秉着二八原则，掌握好常用的，有用的这个可以让我们快速起飞</strong></p>
 </li>
 </ul>
 <h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
-<li><p><a href="https://github.com/chenbin92/blog/issues/1" target="_blank" rel="external">推荐一个Vuex的介绍文章</a><br><small><em>推荐人：张成斌</em></small><br>使用Vue做项目时，Vuex的使用与否和怎么使用始终是回避不了的一个问题。这篇文章或许能给你一些灵感。</p>
+<li><p><a href="https://github.com/chenbin92/blog/issues/1" target="_blank" rel="noopener">推荐一个Vuex的介绍文章</a><br><small><em>推荐人：张成斌</em></small><br>使用Vue做项目时，Vuex的使用与否和怎么使用始终是回避不了的一个问题。这篇文章或许能给你一些灵感。</p>
 </li>
-<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzIyMjYyMzg3MA==&amp;mid=2247484289&amp;idx=1&amp;sn=9e7f6c0c5e6707c8b3d0a73b36bc00c1&amp;chksm=e82be290df5c6b86e2be66f2eea6ee88be1449c3b40d8ebf40932798f95e651fbaf49ca698d0&amp;mpshare=1&amp;scene=1&amp;srcid=0728VrhaVGLU4L9ednVFlmev&amp;pass_ticket=UuoqCxRu07cu1Iw3Eo8nDcUi6ufOxbjgwdd0cRPXNFEztRXx6J2qpa2gAXxKir5f#rd" target="_blank" rel="external">当我们学习 Node.js 时，我们在学习什么？</a><br><small><em>推荐人：包京京</em></small><br>大家都说学 Node.js 学 Node.js，到底是学它的什么呢？是学 JavaScript 这门语言，还是学 Node.js 的 API？还是学 Node.js 各种三方库？</p>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzIyMjYyMzg3MA==&amp;mid=2247484289&amp;idx=1&amp;sn=9e7f6c0c5e6707c8b3d0a73b36bc00c1&amp;chksm=e82be290df5c6b86e2be66f2eea6ee88be1449c3b40d8ebf40932798f95e651fbaf49ca698d0&amp;mpshare=1&amp;scene=1&amp;srcid=0728VrhaVGLU4L9ednVFlmev&amp;pass_ticket=UuoqCxRu07cu1Iw3Eo8nDcUi6ufOxbjgwdd0cRPXNFEztRXx6J2qpa2gAXxKir5f#rd" target="_blank" rel="noopener">当我们学习 Node.js 时，我们在学习什么？</a><br><small><em>推荐人：包京京</em></small><br>大家都说学 Node.js 学 Node.js，到底是学它的什么呢？是学 JavaScript 这门语言，还是学 Node.js 的 API？还是学 Node.js 各种三方库？</p>
 </li>
-<li><p><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="external">推荐一篇关于WebSocket 的教程</a><br><small><em>推荐人：陶明</em></small><br>文章介绍了WebSocket 的特性及与HTTP对比在服务器推送上的优势，通过一个简单的示例介绍了WebSocket 部分API。</p>
+<li><p><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="noopener">推荐一篇关于WebSocket 的教程</a><br><small><em>推荐人：陶明</em></small><br>文章介绍了WebSocket 的特性及与HTTP对比在服务器推送上的优势，通过一个简单的示例介绍了WebSocket 部分API。</p>
 </li>
-<li><p><a href="http://www.cnblogs.com/cnblogsfans/p/5075073.html" target="_blank" rel="external">推荐一篇介绍git工作流程的文章</a><br><small><em>推荐人：李丽娇</em></small><br>git成为现在最火的代码管理工具，文中详细介绍了git在团队中的使用流程，这种思路在团队协作中很是受用。同时文中介绍了gitflow使用的方法。</p>
+<li><p><a href="http://www.cnblogs.com/cnblogsfans/p/5075073.html" target="_blank" rel="noopener">推荐一篇介绍git工作流程的文章</a><br><small><em>推荐人：李丽娇</em></small><br>git成为现在最火的代码管理工具，文中详细介绍了git在团队中的使用流程，这种思路在团队协作中很是受用。同时文中介绍了gitflow使用的方法。</p>
 </li>
-<li><p><a href="https://juejin.im/post/596e142d5188254b532ce2da" target="_blank" rel="external">理解 async/await</a><br><small><em>推荐人：耿少真</em></small><br>async 函数是 Generator 函数的语法糖。使用 关键字 async 来表示，在函数内部使用 await 来表示异步。</p>
+<li><p><a href="https://juejin.im/post/596e142d5188254b532ce2da" target="_blank" rel="noopener">理解 async/await</a><br><small><em>推荐人：耿少真</em></small><br>async 函数是 Generator 函数的语法糖。使用 关键字 async 来表示，在函数内部使用 await 来表示异步。</p>
 </li>
-<li><p><a href="http://www.jianshu.com/p/80e25cb1d81a" target="_blank" rel="external">http协议简介</a><br><small><em>推荐人：郭俊兵</em></small><br>大致了解下http协议相关内容，有利于了解前端开发时，调用后台接口，请求做了什么。</p>
+<li><p><a href="http://www.jianshu.com/p/80e25cb1d81a" target="_blank" rel="noopener">http协议简介</a><br><small><em>推荐人：郭俊兵</em></small><br>大致了解下http协议相关内容，有利于了解前端开发时，调用后台接口，请求做了什么。</p>
 </li>
-<li><p><a href="http://zhouweicsu.github.io/blog/2017/03/07/vue-2-0-reactivity/" target="_blank" rel="external">Vue2.0 源码阅读：响应式原理</a><br><small><em>推荐人：李志伟</em></small><br>文章深入Vue源码，详细地解析了响应式原理。其原理大致可总结为：当数据发生改变后，相应的 setter 函数被触发，然后执行 notify 函数通知订阅者（Watcher）去更新相关视图，也会对新的数据重新 observe，更新相关的依赖关系。</p>
+<li><p><a href="http://zhouweicsu.github.io/blog/2017/03/07/vue-2-0-reactivity/" target="_blank" rel="noopener">Vue2.0 源码阅读：响应式原理</a><br><small><em>推荐人：李志伟</em></small><br>文章深入Vue源码，详细地解析了响应式原理。其原理大致可总结为：当数据发生改变后，相应的 setter 函数被触发，然后执行 notify 函数通知订阅者（Watcher）去更新相关视图，也会对新的数据重新 observe，更新相关的依赖关系。</p>
 </li>
-<li><p><a href="https://www.smashingmagazine.com/2017/04/guide-http2-server-push/" target="_blank" rel="external">HTTP/2 Server Push 详解(原文)</a><br><small><em>推荐人：胡国伟</em></small><br>Server Push可以将静态资源推送给客户端，实现多路复用，是HTTP/2众多协议优化中最令人振奋的特性，它大大降低了网络延迟对性能的影响。</p>
+<li><p><a href="https://www.smashingmagazine.com/2017/04/guide-http2-server-push/" target="_blank" rel="noopener">HTTP/2 Server Push 详解(原文)</a><br><small><em>推荐人：胡国伟</em></small><br>Server Push可以将静态资源推送给客户端，实现多路复用，是HTTP/2众多协议优化中最令人振奋的特性，它大大降低了网络延迟对性能的影响。</p>
 <h5 id="翻译："><a href="#翻译：" class="headerlink" title="翻译："></a>翻译：</h5><ul>
-<li><a href="http://www.alloyteam.com/2017/04/guide-http2-server-push-part1/" target="_blank" rel="external">HTTP/2 Server Push 详解（上）</a></li>
-<li><a href="http://www.alloyteam.com/2017/04/guide-http2-server-push-part2/" target="_blank" rel="external">HTTP/2 Server Push 详解（下）</a></li>
+<li><a href="http://www.alloyteam.com/2017/04/guide-http2-server-push-part1/" target="_blank" rel="noopener">HTTP/2 Server Push 详解（上）</a></li>
+<li><a href="http://www.alloyteam.com/2017/04/guide-http2-server-push-part2/" target="_blank" rel="noopener">HTTP/2 Server Push 详解（下）</a></li>
 </ul>
 </li>
-<li><p><a href="http://mp.weixin.qq.com/s/L5VK5v3fmzdjLdT6Z6w-rA" target="_blank" rel="external">深入vue2.0底层思想–模板渲染</a><br><small><em>推荐人：王俐</em></small><br>Vue 2.0 中模板渲染与 Vue 1.0的区别，1.0 中采用的 DocumentFragment （想了解可以观看这篇文章），而 2.0 中借鉴 React 的 Virtual DOM。基于 Virtual DOM，2.0 还可以支持服务端渲染（SSR），也支持 JSX 语法。</p>
+<li><p><a href="http://mp.weixin.qq.com/s/L5VK5v3fmzdjLdT6Z6w-rA" target="_blank" rel="noopener">深入vue2.0底层思想–模板渲染</a><br><small><em>推荐人：王俐</em></small><br>Vue 2.0 中模板渲染与 Vue 1.0的区别，1.0 中采用的 DocumentFragment （想了解可以观看这篇文章），而 2.0 中借鉴 React 的 Virtual DOM。基于 Virtual DOM，2.0 还可以支持服务端渲染（SSR），也支持 JSX 语法。</p>
 </li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/28090879" target="_blank" rel="external">iView 一周年了，同时发布了 2.0 正式版</a><br><small><em>推荐人：王祥</em></small><br>一周年，两个大版本，很值得称赞的成绩！能跟梁灏这样优秀的前端生态贡献者共事，我感到非常荣幸！<br>正如标题所言，2.0正式版将会是一个全新的开始，她将随着Vue社区的进步而快速迭代。<br>期待vue社区和iView能有更好的发展，iView不会止于组件库，更期待iView deign、iView mobile…和更多优秀的开发者参与到开源生态的共建！</p>
+<li><p><a href="https://zhuanlan.zhihu.com/p/28090879" target="_blank" rel="noopener">iView 一周年了，同时发布了 2.0 正式版</a><br><small><em>推荐人：王祥</em></small><br>一周年，两个大版本，很值得称赞的成绩！能跟梁灏这样优秀的前端生态贡献者共事，我感到非常荣幸！<br>正如标题所言，2.0正式版将会是一个全新的开始，她将随着Vue社区的进步而快速迭代。<br>期待vue社区和iView能有更好的发展，iView不会止于组件库，更期待iView deign、iView mobile…和更多优秀的开发者参与到开源生态的共建！</p>
 </li>
 </ul>
 
@@ -530,27 +638,27 @@
     <div class="entry">
       
         <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li><p><a href="https://kongchenglc.github.io/blog/%E5%85%B3%E4%BA%8Ethis20170716/" target="_blank" rel="external">JS中关于this</a><br><strong>关于this的几种绑定规则以及优先级</strong></p>
+<li><p><a href="https://kongchenglc.github.io/blog/%E5%85%B3%E4%BA%8Ethis20170716/" target="_blank" rel="noopener">JS中关于this</a><br><strong>关于this的几种绑定规则以及优先级</strong></p>
 </li>
-<li><p><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="external">跨域资源共享 CORS</a><br><strong>一个option请求引发的疑惑</strong></p>
+<li><p><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">跨域资源共享 CORS</a><br><strong>一个option请求引发的疑惑</strong></p>
 </li>
-<li><p><a href="http://www.jianshu.com/p/fc2017f18525" target="_blank" rel="external">表单脚本的基础知识</a><br><strong>详细的总结了表单的属性、方法及事件</strong></p>
+<li><p><a href="http://www.jianshu.com/p/fc2017f18525" target="_blank" rel="noopener">表单脚本的基础知识</a><br><strong>详细的总结了表单的属性、方法及事件</strong></p>
 </li>
 </ul>
 <h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
 <li><p><a href="https://talkingdata.github.io/fsd/2017/07/21/5-protocols-for-event-driven-api-architectures/">五种事件驱动的API架构</a><br><small><em>推荐人：王祥</em></small><br>本文会介绍 5 种事件驱动的 API 架构：WebSockets、WebHooks、REST Hooks、Pub-Sub， 以及 Server Sent Events，并分别介绍这几种架构的基础功能、使用方式以及各自的优缺点。<br>对于 Node.js 开发者来说，我们天生就在使用事件驱动的架构，业界也越来越认可事件驱动架构和异步系统的优势，了解本文介绍的 5 种事件驱动API 架构。</p>
 </li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/27296011" target="_blank" rel="external">推荐一篇Three.js入门文章</a><br><small><em>推荐人：张成斌</em></small><br>文章把学习Three.js需要掌握的基本概念和知识点讲解的很详细。并且结合代码实现了一个demo。对于Three.js有兴趣的同学，是一篇不错的入门文章。</p>
+<li><p><a href="https://zhuanlan.zhihu.com/p/27296011" target="_blank" rel="noopener">推荐一篇Three.js入门文章</a><br><small><em>推荐人：张成斌</em></small><br>文章把学习Three.js需要掌握的基本概念和知识点讲解的很详细。并且结合代码实现了一个demo。对于Three.js有兴趣的同学，是一篇不错的入门文章。</p>
 </li>
-<li><p><a href="https://segmentfault.com/a/1190000010261115" target="_blank" rel="external">推荐一篇介绍RESTful API的文章</a><br><small><em>推荐人：李丽娇</em></small><br>介绍了RESTful API的实现思想，并从http请求方式和相应内容等方面给出详细示例。<br>在项目接口设计和接口对接中可做实质性参考。</p>
+<li><p><a href="https://segmentfault.com/a/1190000010261115" target="_blank" rel="noopener">推荐一篇介绍RESTful API的文章</a><br><small><em>推荐人：李丽娇</em></small><br>介绍了RESTful API的实现思想，并从http请求方式和相应内容等方面给出详细示例。<br>在项目接口设计和接口对接中可做实质性参考。</p>
 </li>
-<li><p><a href="https://juejin.im/post/596d45d96fb9a06ba2688e44/?utm_source=weixinqun&amp;utm_medium=feZeptoEvent" target="_blank" rel="external">读 Zepto 源码之 Event 模块</a><br><small><em>推荐人：胡国伟</em></small><br>如何自己实现事件处理，本文通过深入浅出解读 Zepto Event 模块源码，给我们提供了很好的答案。</p>
+<li><p><a href="https://juejin.im/post/596d45d96fb9a06ba2688e44/?utm_source=weixinqun&amp;utm_medium=feZeptoEvent" target="_blank" rel="noopener">读 Zepto 源码之 Event 模块</a><br><small><em>推荐人：胡国伟</em></small><br>如何自己实现事件处理，本文通过深入浅出解读 Zepto Event 模块源码，给我们提供了很好的答案。</p>
 </li>
-<li><p><a href="https://www.404forest.com/2017/07/18/how-javascript-actually-works-eventloop-and-uirendering/" target="_blank" rel="external">深入探究 eventloop 与浏览器渲染的时序问题</a><br><small><em>推荐人：陶明</em></small><br>文章通过对那些『延迟』执行的函数思考，深入的对event loop和task进行了拆分讲解，通过实例与图示详细讲解了整个执行渲染过程。</p>
+<li><p><a href="https://www.404forest.com/2017/07/18/how-javascript-actually-works-eventloop-and-uirendering/" target="_blank" rel="noopener">深入探究 eventloop 与浏览器渲染的时序问题</a><br><small><em>推荐人：陶明</em></small><br>文章通过对那些『延迟』执行的函数思考，深入的对event loop和task进行了拆分讲解，通过实例与图示详细讲解了整个执行渲染过程。</p>
 </li>
-<li><p><a href="http://www.cnblogs.com/xuntu/p/6800547.html" target="_blank" rel="external">vue的Virtual Dom实现- snabbdom解密</a><br><small><em>推荐人：李志伟</em></small><br>文章通过详细的图文对照、算法代码解析讲述了虚拟dom的实现，Virtual Node作为纯数据对象，patch创建或者更新DOM树，diff算法用来比较同层级，然后通过钩子和扩展模块创建有attribute、props、eventlistener的复杂dom。</p>
+<li><p><a href="http://www.cnblogs.com/xuntu/p/6800547.html" target="_blank" rel="noopener">vue的Virtual Dom实现- snabbdom解密</a><br><small><em>推荐人：李志伟</em></small><br>文章通过详细的图文对照、算法代码解析讲述了虚拟dom的实现，Virtual Node作为纯数据对象，patch创建或者更新DOM树，diff算法用来比较同层级，然后通过钩子和扩展模块创建有attribute、props、eventlistener的复杂dom。</p>
 </li>
-<li><p><a href="https://github.com/ruanyf/es6tutorial/blob/8c8be74712a9e0d1a5dbcc855fe3e574b9fd4e6b/docs/array.md" target="_blank" rel="external">ES6数组的扩展(rest参数和扩展运算符)</a><br><small><em>推荐人：耿少真</em></small><br>rest参数和扩展运算符都是ES6新增的特性。<br>rest参数的形式为：…变量名；扩展运算符是三个点（…）。</p>
+<li><p><a href="https://github.com/ruanyf/es6tutorial/blob/8c8be74712a9e0d1a5dbcc855fe3e574b9fd4e6b/docs/array.md" target="_blank" rel="noopener">ES6数组的扩展(rest参数和扩展运算符)</a><br><small><em>推荐人：耿少真</em></small><br>rest参数和扩展运算符都是ES6新增的特性。<br>rest参数的形式为：…变量名；扩展运算符是三个点（…）。</p>
 <h5 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数:"></a>rest参数:</h5><ul>
 <li>rest参数用于获取函数的多余参数，这样就不需要使用arguments对象了, rest参数搭配的变量是一个数组，该变量将多余的参数放入数组中</li>
 </ul>
@@ -558,14 +666,14 @@
 <li>扩展运算符可以看做是 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列</li>
 </ul>
 </li>
-<li><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5Mjg4NDMwMA==&amp;mid=2652975196&amp;idx=1&amp;sn=7775588a3e5a9cd44090f379766d2354&amp;chksm=bd4ae37f8a3d6a69d00df95143c477440c4c494df56a101e4e076911a615e75f5b194cd4e182&amp;mpshare=1&amp;scene=1&amp;srcid=0720soS6N4MjqELSisDoyamI#rd" target="_blank" rel="external">程序员如何快速学习新的框架</a><br><small><em>推荐人：郭俊兵</em></small><br>前端框架丰富多彩的今天，快速学习新的框架是每个前端程序员的必备技能。</p>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5Mjg4NDMwMA==&amp;mid=2652975196&amp;idx=1&amp;sn=7775588a3e5a9cd44090f379766d2354&amp;chksm=bd4ae37f8a3d6a69d00df95143c477440c4c494df56a101e4e076911a615e75f5b194cd4e182&amp;mpshare=1&amp;scene=1&amp;srcid=0720soS6N4MjqELSisDoyamI#rd" target="_blank" rel="noopener">程序员如何快速学习新的框架</a><br><small><em>推荐人：郭俊兵</em></small><br>前端框架丰富多彩的今天，快速学习新的框架是每个前端程序员的必备技能。</p>
 </li>
-<li><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226710&amp;idx=1&amp;sn=3c6848e002aabeb55d6e9456b646d03d&amp;chksm=bd495bd28a3ed2c43c34afb19a4fb0aedfb489b847f5e27348b9a021242e115d6ddb158c9e32&amp;mpshare=1&amp;scene=1&amp;srcid=0721vFmgm9iqGHwNUyqboDb3&amp;pass_ticket=E7F2%2BBqX9jvbMHf320yfzDVuT2rXz5tmHzjKDL3CgheMLCPvEi2MI8tlg%2FO3xRtu#rd" target="_blank" rel="external">4种使用webpack提升vue应用的方式</a><br><small><em>推荐人：包京京</em></small><br>本篇文章所提到的几个措施大家可能都曾经在项目里用过，但是就如作者所言：你只是在用，并不知道为什么用，本文最大的价值在于提供了系统的优化方案并解释了原因</p>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226710&amp;idx=1&amp;sn=3c6848e002aabeb55d6e9456b646d03d&amp;chksm=bd495bd28a3ed2c43c34afb19a4fb0aedfb489b847f5e27348b9a021242e115d6ddb158c9e32&amp;mpshare=1&amp;scene=1&amp;srcid=0721vFmgm9iqGHwNUyqboDb3&amp;pass_ticket=E7F2%2BBqX9jvbMHf320yfzDVuT2rXz5tmHzjKDL3CgheMLCPvEi2MI8tlg%2FO3xRtu#rd" target="_blank" rel="noopener">4种使用webpack提升vue应用的方式</a><br><small><em>推荐人：包京京</em></small><br>本篇文章所提到的几个措施大家可能都曾经在项目里用过，但是就如作者所言：你只是在用，并不知道为什么用，本文最大的价值在于提供了系统的优化方案并解释了原因</p>
 </li>
 </ul>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
-<li><a href="https://github.com/jaredreich/pell" target="_blank" rel="external">pell</a><br><strong>一个非常轻的开源WYSIWYG 编辑器</strong></li>
-<li><a href="https://threejs.org/examples/#webgl_animation_cloth" target="_blank" rel="external">three.js</a><br><strong>three.js的Demo</strong></li>
+<li><a href="https://github.com/jaredreich/pell" target="_blank" rel="noopener">pell</a><br><strong>一个非常轻的开源WYSIWYG 编辑器</strong></li>
+<li><a href="https://threejs.org/examples/#webgl_animation_cloth" target="_blank" rel="noopener">three.js</a><br><strong>three.js的Demo</strong></li>
 </ul>
 
       
@@ -619,14 +727,14 @@
   <div class="article-content">
     <div class="entry">
       
-        <p>原文：<a href="http://nordicapis.com/5-protocols-for-event-driven-api-architectures/" target="_blank" rel="external">5 Protocols For Event-Driven API Architectures</a></p>
+        <p>原文：<a href="http://nordicapis.com/5-protocols-for-event-driven-api-architectures/" target="_blank" rel="noopener">5 Protocols For Event-Driven API Architectures</a></p>
 <p>The internet is a system of communication, and as such, the relationship between client and server, as well as server to server, is one of the most oft-discussed and hotly contested concepts. <strong>event-driven architecture</strong> is a methodology of defining these relationships, and creating systems within a specific set of relationships that allow for extensive functionality.</p>
 <p>In this piece, we’re going to discuss 5 common event-driven methods — <strong>WebSockets</strong>, <strong>WebHooks</strong>, <strong>REST Hooks</strong>, <strong>Pub-Sub</strong>, and <strong>Server Sent Events</strong>. We’ll define what they fundamentally are and do, and how API providers go about using them. Additionally, we’ll provide some pros and cons on each to make choosing a solution for your platform easy and intuitive.</p>
 <h2 id="What-is-an-Event-Driven-Architecture"><a href="#What-is-an-Event-Driven-Architecture" class="headerlink" title="What is an Event-Driven Architecture?"></a>What is an Event-Driven Architecture?</h2><p>Event-driven architectures establish an event that can be consumed and reacted to. But what is an event?</p>
 <p>An event is essentially any significant <strong>change</strong> from one state to another, such as the change from having no messages in your inbox to have a new message in your inbox. This state can be reacted to <strong>internally</strong> (such as when the email program in question realizes a new message has been received), <strong>externally</strong> (when a user sees a notification for a new message), or used to <strong>generate another event</strong> (for instance, the message tally increases by one).</p>
 <p>Event-driven architectures are appealing to API developers because they function very well in <strong>asynchronous</strong> environments. By crafting APIs that <strong>trigger</strong> certain functions on new event delivery, API systems don’t have to inherently wait for synchronous delivery or real time communication. This is hugely beneficial, as eliminating the need to constantly poll endpoints frees resources from otherwise wasteful purposes, reducing both general hardware requirements and call-specific overhead.</p>
 <p>For this reason, event-driven architectures are very, very popular, and lead to improved power, bandwidth, and co-processing than other solutions and architectures such as polling and other poll-centric derivatives.</p>
-<h2 id="5-Types-of-Event-Driven-Protocols-for-APIs"><a href="#5-Types-of-Event-Driven-Protocols-for-APIs" class="headerlink" title="5 Types of Event-Driven Protocols for APIs"></a>5 Types of Event-Driven Protocols for APIs</h2><h3 id="1-WebSockets"><a href="#1-WebSockets" class="headerlink" title="1: WebSockets"></a>1: WebSockets</h3><p><strong>WebSockets</strong> are an interesting event-driven solution, because, for most browsers, they’re actually baked into the application itself. Essentially, WebSocket is a protocol that provides full-duplex communication on a single TCP connection. It was standardized by the Internet Engineering Task Force as <a href="https://tools.ietf.org/html/rfc6455" target="_blank" rel="external">RFC 6455</a>, and the WebSocket API in Web IDL was later standardized under the W3C banner.</p>
+<h2 id="5-Types-of-Event-Driven-Protocols-for-APIs"><a href="#5-Types-of-Event-Driven-Protocols-for-APIs" class="headerlink" title="5 Types of Event-Driven Protocols for APIs"></a>5 Types of Event-Driven Protocols for APIs</h2><h3 id="1-WebSockets"><a href="#1-WebSockets" class="headerlink" title="1: WebSockets"></a>1: WebSockets</h3><p><strong>WebSockets</strong> are an interesting event-driven solution, because, for most browsers, they’re actually baked into the application itself. Essentially, WebSocket is a protocol that provides full-duplex communication on a single TCP connection. It was standardized by the Internet Engineering Task Force as <a href="https://tools.ietf.org/html/rfc6455" target="_blank" rel="noopener">RFC 6455</a>, and the WebSocket API in Web IDL was later standardized under the W3C banner.</p>
 <p>While the protocol itself is meant to be used between <strong>web browsers</strong> and <strong>servers</strong>, the protocol can be used in any case where there is a client-server relationship. The protocol itself is based upon TCP, with the additional HTTP interpretation statement that is considered an “Upgrade request” to allow for interoperability.</p>
 <h4 id="Pros"><a href="#Pros" class="headerlink" title="Pros"></a>Pros</h4><p>Because WebSocket is expressly designed for browser operation, it boasts extremely <strong>low overhead</strong> for what it actually does. By establishing a <strong>full-duplex</strong> conversation using a standardized methodology, connection both to and from the two entities can take place simultaneously, resulting in lower overhead and better throughput.</p>
 <p>Additionally, the fact that these communications take place over TCP 80/443 means that environments that traditionally block non-web based applications for security reasons can still handle this protocol, as firewalls allow communication to and from this port.</p>
@@ -635,36 +743,36 @@
 <p>Because WebSockets are relatively new, having been only officially standardized in 2011, the industry is still understanding what the side effects mean. Most applications that use WebSockets are designed specifically for everything that a WebSocket is — what has yet to be seen, however, is whether or not this solution is better in the long-run than any stateless solution currently available.</p>
 <p>There is of course the fact that, as with other architectures on this list, WebSockets create an “always on” connection during the duration of data transfer. While this is fine for many uses such as media streaming and live stream calculations, it also essentially means that, for WebSockets, there is no scalability. Ports have hardcoded limitations and bandwidth, and thus in order to “scale”, you must add additional ports to match the maximum load. In stateless systems, this is less of an issue, as requests can wait and be made in such a way as to be independent on the state of the server itself.</p>
 <h3 id="2-WebHooks"><a href="#2-WebHooks" class="headerlink" title="2: WebHooks"></a>2: WebHooks</h3><p><strong>WebHooks</strong> are a similar concept to the WebSocket. They primarily function using <strong>custom callbacks</strong>, or code that is passed as an argument to another chunk of code and executed at a specified point in time. Essentially, a WebHook is a glorified system of “if this, then do”, allowing for users independent of the event firing to craft a custom response to that event within their own system.</p>
-<p>The term was coined by <a href="https://twitter.com/progrium" target="_blank" rel="external">Jeff Lindsay</a> in 2007, and quickly became popular amongst users who wished to create automated responses to exterior behaviors. A great example of this would be a developer pushing a new item to GitHub, which causes an event. A user has a system tied into the URI of a WebHook. When the push is published, the user’s system utilizes the URI of the WebHook to integrate the push into a larger build, thereby creating a compiled component.</p>
+<p>The term was coined by <a href="https://twitter.com/progrium" target="_blank" rel="noopener">Jeff Lindsay</a> in 2007, and quickly became popular amongst users who wished to create automated responses to exterior behaviors. A great example of this would be a developer pushing a new item to GitHub, which causes an event. A user has a system tied into the URI of a WebHook. When the push is published, the user’s system utilizes the URI of the WebHook to integrate the push into a larger build, thereby creating a compiled component.</p>
 <h4 id="Pros-1"><a href="#Pros-1" class="headerlink" title="Pros"></a>Pros</h4><p>WebHooks function a lot like WebSockets, but they’re different in some key areas. First and foremost, WebSockets are primarily designed for browser-based communications, and while they can be used regardless in any client-server communication, they do not behave well in a <strong>server-to-server</strong> setup.</p>
 <p>WebHooks, on the other hand, work very well in server-to-server systems due to how they operate. Because the system essentially functions as the aforementioned “if this then do”, servers can be configured to tie into pre-formed URIs at any time and execute a given function whenever that event is triggered.</p>
 <p>Additionally, WebHooks have the unique benefit of being <strong>based upon HTTP</strong>, unlike WebSockets. This means that the system can be integrated without utilizing any new infrastructure, allowing speedy adoption and relatively simple setup.</p>
 <h4 id="Cons-1"><a href="#Cons-1" class="headerlink" title="Cons"></a>Cons</h4><p>The problem with WebHooks is that a lot of their functionality can already be placed on the arguably more powerful REST architectural approach. While adopting event-driven architecture is often a requirement of the service being built, it’s a hard sell when it can be mirrored in REST while also giving the wealth of options that REST gives to the user.</p>
-<p>These RESTful solutions such as <a href="http://www.restms.org/" target="_blank" rel="external">RestMS</a> are essentially simply message querying services, though, and do require additional infrastructure, which may or may not be doable considering the purpose of the application.</p>
+<p>These RESTful solutions such as <a href="http://www.restms.org/" target="_blank" rel="noopener">RestMS</a> are essentially simply message querying services, though, and do require additional infrastructure, which may or may not be doable considering the purpose of the application.</p>
 <p>Additionally, WebHooks can be <strong>resource intensive</strong> to both the client and the server. If the client needs to notify many servers that an event has occurred, and a server needs to listen to a great deal of clients notifying of this change, you can very quickly run into a situation where your network grows uncontrollably. While HTTP does scale quite well, this is a definite negative to consider.</p>
-<p>However, there are also ways to build a <a href="https://en.wikipedia.org/wiki/Message_queuing_service" target="_blank" rel="external">message queuing service</a> on top of HTTP—some RESTful examples include <a href="https://www.iron.io/platform/ironmq/" target="_blank" rel="external">IronMQ</a> and RestMS.</p>
-<h3 id="3-REST-Hooks"><a href="#3-REST-Hooks" class="headerlink" title="3: REST Hooks"></a>3: REST Hooks</h3><p>Speaking of RESTful examples, <strong>REST Hooks</strong> is essentially “hooking” baked into REST itself. Defined as an initiative from <a href="http://resthooks.org/docs/" target="_blank" rel="external">Zapier</a>, this is a subject <a href="http://nordicapis.com/stop-polling-and-consider-using-rest-hooks/" target="_blank" rel="external">we’ve covered before</a> — hooks are collated to a single target URL as a subscription, which pings the resource requester when a change is noted.</p>
+<p>However, there are also ways to build a <a href="https://en.wikipedia.org/wiki/Message_queuing_service" target="_blank" rel="noopener">message queuing service</a> on top of HTTP—some RESTful examples include <a href="https://www.iron.io/platform/ironmq/" target="_blank" rel="noopener">IronMQ</a> and RestMS.</p>
+<h3 id="3-REST-Hooks"><a href="#3-REST-Hooks" class="headerlink" title="3: REST Hooks"></a>3: REST Hooks</h3><p>Speaking of RESTful examples, <strong>REST Hooks</strong> is essentially “hooking” baked into REST itself. Defined as an initiative from <a href="http://resthooks.org/docs/" target="_blank" rel="noopener">Zapier</a>, this is a subject <a href="http://nordicapis.com/stop-polling-and-consider-using-rest-hooks/" target="_blank" rel="noopener">we’ve covered before</a> — hooks are collated to a single target URL as a subscription, which pings the resource requester when a change is noted.</p>
 <p>This approach is a response to the practice of <strong>polling</strong>, in which a client constantly checks for changes to a resource. Under the REST Hooks paradigm, the client instead waits for a change, and reacts to it. To put it simply, this is a WebHook in REST.</p>
 <h4 id="Pros-2"><a href="#Pros-2" class="headerlink" title="Pros"></a>Pros</h4><p>REST Hooks are obviously super powerful in the correct context — being able to passively receive a resource rather than dedicating processing power to constant polling frees up a lot of the client-side cost.</p>
 <p>Perhaps the strongest argument for REST Hooks though, is the fact that it’s <strong>so easy</strong> and <strong>intuitive</strong> to use. While WebHooks utilize HTTP and thus do not need new architecture to set up, they are also limited by the fact that they are built upon HTTP, and can thus be somewhat complex to set up properly and use effectively.</p>
 <p>REST Hooks, though, are <strong>subscription based</strong>, and as such, are simply usable by subscribing. This makes it a very easy to use solution while providing a lot of the usability and effectiveness of more complex systems.</p>
-<h4 id="Cons-2"><a href="#Cons-2" class="headerlink" title="Cons"></a>Cons</h4><p>Of course, every solution has its negatives, and REST Hooks are no different. It could be viewed that REST Hooks actually fly in the face of what REST is — <a href="http://nordicapis.com/defining-stateful-vs-stateless-web-services/" target="_blank" rel="external">session free and stateless</a>. REST Hooks essentially create consistent polling, it’s just moved the polling from one side to another.</p>
+<h4 id="Cons-2"><a href="#Cons-2" class="headerlink" title="Cons"></a>Cons</h4><p>Of course, every solution has its negatives, and REST Hooks are no different. It could be viewed that REST Hooks actually fly in the face of what REST is — <a href="http://nordicapis.com/defining-stateful-vs-stateless-web-services/" target="_blank" rel="noopener">session free and stateless</a>. REST Hooks essentially create consistent polling, it’s just moved the polling from one side to another.</p>
 <p>Then, there’s the arguable problem that REST Hooks might be doing something that has already been solved. Some would argue that TCP already does most of what REST Hooks is trying to do, and simply layering more solutions on top of HTTP to get what TCP already does is a poor approach.</p>
 <h3 id="4-Pub-Sub"><a href="#4-Pub-Sub" class="headerlink" title="4: Pub-Sub"></a>4: Pub-Sub</h3><p><strong>Pub-Sub</strong> is a slightly different approach. Referred to by its full name as <strong>publish-subscribe</strong>, the concept is where events are published to a class without knowledge of the client subscribing to the class. Basically, a user will join one or more classes, and then will receive event updates without regard or knowledge to the event publisher.</p>
 <p>The main difference here is one of conscious choice of provider — in the other solutions noted herein, a user consciously communicates with a given server or provider and receives events as pre-determined. Under the Pub-Sub scheme, the user only specifies which class they wish to be part of and what events they are interested in receiving. From there, they receive these events when one is pushed out.</p>
 <p>A way this is often framed in internet discussions is in the frame of a <strong>radio channel</strong>. Record companies, or publishers, issue audio to the station, which then broadcasts this audio to listeners, or subscribers. Pub-sub is the middleman radio station here — listeners don’t know who gave the station the music, nor do the companies know who the listeners are. It is this segmentation that is baked into the pattern.</p>
-<p>When we talk about Pub-Sub, we need to keep in mind that we’re actually talking about two different things. Pub-Sub can mean the methodology and general concept in programming terms, but it can also mean specific provider solutions based upon that methodology. For instance, Google’s <a href="https://cloud.google.com/pubsub/docs/overview" target="_blank" rel="external">Cloud Pub/Sub</a> is an implementation of the general methodology within their cloud service, and allows for asynchronous many-to-many pub-sub relationships as stated above.</p>
+<p>When we talk about Pub-Sub, we need to keep in mind that we’re actually talking about two different things. Pub-Sub can mean the methodology and general concept in programming terms, but it can also mean specific provider solutions based upon that methodology. For instance, Google’s <a href="https://cloud.google.com/pubsub/docs/overview" target="_blank" rel="noopener">Cloud Pub/Sub</a> is an implementation of the general methodology within their cloud service, and allows for asynchronous many-to-many pub-sub relationships as stated above.</p>
 <h4 id="Pros-3"><a href="#Pros-3" class="headerlink" title="Pros"></a>Pros</h4><p>A huge benefit of Pub-Sub is the fact that it’s <strong>loosely coupled</strong>, and thus is extremely scalable and flexible. The only thing the event-provider is doing is generating the content — each other step is done through a separated middleman, and so the content is easily scaled and modulated to the architecture and design of the solution.</p>
 <p>Additionally, Pub-Sub lends itself very well to <strong>testing</strong>. A subscriber is narrowly limited to a set of events that they have requested under a class, so if a failure occurs, this natural segmentation informs the provider as to where the fault is, and which class of users is experiencing the fault.</p>
 <h4 id="Cons-3"><a href="#Cons-3" class="headerlink" title="Cons"></a>Cons</h4><p>Unfortunately, decoupling is also a huge disadvantage for this pattern. By being a <strong>middleman</strong>, Pub-Sub cannot effectively notify the provider that a message has been sent, and the listener is separated from the event and thus may not know if a message wasn’t sent that should have been. Harkening back to the radio explanation, a listener will never know if a song was meant to play on a channel or if the channel is out of range, and once the record executives hand off the music, they’ve got no idea if the user received the songs without direct feedback from them.</p>
 <p>Additionally, while the system is extensible and flexible, instability does occur with high traffic load as subclass after subclass might be constructed to handle further segmentation. This of course leads to the aforementioned instability in addition to increased complexity.</p>
 <p>You must keep in mind that while the relationship between the publisher and subscriber in this model may be beneficial, it also comes with its own difficulties when these relationships need to be modulated. While you can certainly work around this, at this point, you’re fighting the very basis of the pattern, rather than any secondary natures — you’re trying to make dehydrated water, and fighting against the nature of a pattern suggests the pattern to be inherently poor.</p>
 <blockquote>
-<p>Also read: <a href="http://nordicapis.com/building-a-backend-for-frontend-shim-for-your-microservices/" target="_blank" rel="external">Building a Backend for Frontend (BFF) For Your Microservices</a></p>
+<p>Also read: <a href="http://nordicapis.com/building-a-backend-for-frontend-shim-for-your-microservices/" target="_blank" rel="noopener">Building a Backend for Frontend (BFF) For Your Microservices</a></p>
 </blockquote>
-<h3 id="5-Server-Sent-Events"><a href="#5-Server-Sent-Events" class="headerlink" title="5: Server Sent Events"></a>5: Server Sent Events</h3><p><strong>Server Sent Events</strong>, or SSE, is a communication protocol much like WebSockets, but with the implication of <strong>unidirectional data</strong>. In this architecture, the server is consistently sending updates to the client as an automatic process. This was standardized under HTML5 by the <a href="https://www.w3.org/TR/2009/WD-eventsource-20091029/" target="_blank" rel="external">W3C</a>, and is thus compatible with any solution that is likewise compatible with HTML5.</p>
+<h3 id="5-Server-Sent-Events"><a href="#5-Server-Sent-Events" class="headerlink" title="5: Server Sent Events"></a>5: Server Sent Events</h3><p><strong>Server Sent Events</strong>, or SSE, is a communication protocol much like WebSockets, but with the implication of <strong>unidirectional data</strong>. In this architecture, the server is consistently sending updates to the client as an automatic process. This was standardized under HTML5 by the <a href="https://www.w3.org/TR/2009/WD-eventsource-20091029/" target="_blank" rel="noopener">W3C</a>, and is thus compatible with any solution that is likewise compatible with HTML5.</p>
 <blockquote>
-<p>Of note is that there is a competing standardization from the <a href="https://whatwg.org/" target="_blank" rel="external">Web Hypertext Application Technology Working Group</a> – this is a relic from movement away from “HTML5” and into what WHATWG is calling “HTML Living Standard”. The general working consensus is that, WHATWG’s standardization is prioritized in the rare cases of divergent standards. This could become more of an issue as time marches forward, given that WHATWG was created due to a perceived lack of interest from W3C towards evolving HTML, but for the time being, either standard is generally acceptable.<br>While simple in theory, Server Sent Events are anything but simple when considering benefits and drawbacks.</p>
+<p>Of note is that there is a competing standardization from the <a href="https://whatwg.org/" target="_blank" rel="noopener">Web Hypertext Application Technology Working Group</a> – this is a relic from movement away from “HTML5” and into what WHATWG is calling “HTML Living Standard”. The general working consensus is that, WHATWG’s standardization is prioritized in the rare cases of divergent standards. This could become more of an issue as time marches forward, given that WHATWG was created due to a perceived lack of interest from W3C towards evolving HTML, but for the time being, either standard is generally acceptable.<br>While simple in theory, Server Sent Events are anything but simple when considering benefits and drawbacks.</p>
 </blockquote>
 <h4 id="Pros-4"><a href="#Pros-4" class="headerlink" title="Pros"></a>Pros</h4><p>SSE is <strong>not bidirectional</strong> in its communications — the server is issuing the events in a steady, predictable method. This is hugely beneficial to applications which do not need the two-way communications baked into WebSockets or other such solutions, as this means <strong>lower bandwidth</strong>, and an allowance for the connection to be temporary rather than always-on during the duration of data transfer. By its nature, the data is being transferred one way, and thus there is no need to wait for data to be returned.</p>
 <p>Additionally, at least in theory, SSE is easier to set up in complex situations. You only have to worry about data traveling one direction via one system, thus reducing complexity dramatically. There is no need to define a message exchange protocol, no need to specify data duration or wait times, no need to support bilateral messaging — the single direction saves a lot of complexity.</p>
@@ -770,27 +878,27 @@
     <div class="entry">
       
         <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li><p><a href="http://www.webhek.com/post/svg.html" target="_blank" rel="external">SVG的用法</a><br><strong>SVG基础和使用介绍</strong></p>
+<li><p><a href="http://www.webhek.com/post/svg.html" target="_blank" rel="noopener">SVG的用法</a><br><strong>SVG基础和使用介绍</strong></p>
 </li>
-<li><p><a href="http://coolshell.cn/articles/9666.html" target="_blank" rel="external">浏览器的渲染原理简介</a><br><strong>由浅到深、简单易懂的浏览器渲染原理介绍</strong></p>
+<li><p><a href="http://coolshell.cn/articles/9666.html" target="_blank" rel="noopener">浏览器的渲染原理简介</a><br><strong>由浅到深、简单易懂的浏览器渲染原理介绍</strong></p>
 </li>
-<li><p><a href="http://ourjs.com/detail/53ad24edb984bb4659000013" target="_blank" rel="external">Mongoose学习参考文档——基础篇</a><br><strong>Nodejs使用MongoDB的详细介绍</strong></p>
+<li><p><a href="http://ourjs.com/detail/53ad24edb984bb4659000013" target="_blank" rel="noopener">Mongoose学习参考文档——基础篇</a><br><strong>Nodejs使用MongoDB的详细介绍</strong></p>
 </li>
 </ul>
 <h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
-<li><p><a href="http://es6.ruanyifeng.com/#docs/symbol" target="_blank" rel="external">ECMAScript 6 入门-Symbol</a><br><a href="http://www.infoq.com/cn/articles/es6-in-depth-symbols" target="_blank" rel="external">symbols类型</a><br><small><em>推荐人：王祥</em></small><br>继六种数据类型（Undefined、Null、Boolean、Number、String、Object）后，ES6又新增了Symbols类型。Symbols类型比较抽象，要了解相关的适应场景，可以看这两篇文章。</p>
+<li><p><a href="http://es6.ruanyifeng.com/#docs/symbol" target="_blank" rel="noopener">ECMAScript 6 入门-Symbol</a><br><a href="http://www.infoq.com/cn/articles/es6-in-depth-symbols" target="_blank" rel="noopener">symbols类型</a><br><small><em>推荐人：王祥</em></small><br>继六种数据类型（Undefined、Null、Boolean、Number、String、Object）后，ES6又新增了Symbols类型。Symbols类型比较抽象，要了解相关的适应场景，可以看这两篇文章。</p>
 </li>
-<li><p><a href="https://juejin.im/post/59626ca0f265da6c2442fbdf" target="_blank" rel="external">Vue 与 iOS 的组件化</a><br><small><em>推荐人：张成斌</em></small><br>对Vue的组件化有一个非常清晰的讲解。组件化原理，组件化分，组件间传递都有涉及。另外笔者是一名普通的全职 iOS 开发者，还介绍iOS的组件化的东西，对前端和移动端进行了一些对比。</p>
+<li><p><a href="https://juejin.im/post/59626ca0f265da6c2442fbdf" target="_blank" rel="noopener">Vue 与 iOS 的组件化</a><br><small><em>推荐人：张成斌</em></small><br>对Vue的组件化有一个非常清晰的讲解。组件化原理，组件化分，组件间传递都有涉及。另外笔者是一名普通的全职 iOS 开发者，还介绍iOS的组件化的东西，对前端和移动端进行了一些对比。</p>
 </li>
-<li><p><a href="http://www.zhangxinxu.com/wordpress/2014/07/introduce-svg-sprite-technology/" target="_blank" rel="external">SVG Sprite技术介绍</a><br><small><em>推荐人：李丽娇</em></small><br>使用svg文件显示小图标已经成为趋势，随之而来地，svg文件合并也成为必然需求。文中介绍了svg sprite的使用原理，并介绍了多种生成svg sprite的方式来满足偏前端、偏命令、偏设计各类coder的需求。</p>
+<li><p><a href="http://www.zhangxinxu.com/wordpress/2014/07/introduce-svg-sprite-technology/" target="_blank" rel="noopener">SVG Sprite技术介绍</a><br><small><em>推荐人：李丽娇</em></small><br>使用svg文件显示小图标已经成为趋势，随之而来地，svg文件合并也成为必然需求。文中介绍了svg sprite的使用原理，并介绍了多种生成svg sprite的方式来满足偏前端、偏命令、偏设计各类coder的需求。</p>
 </li>
-<li><p><a href="http://efe.baidu.com/blog/echarts-statistical-extension-tutorial/" target="_blank" rel="external">ECharts 统计扩展教程</a><br><small><em>推荐人：胡国伟</em></small><br>ECharts 统计扩展，包含的功能有直方图、聚类、回归、以及常用的汇总统计。通过统计扩展和 ECharts 的结合，可以使大家方便地实现可视分析，也就是将数据分析的结果，通过可视化直观地呈现出来。</p>
+<li><p><a href="http://efe.baidu.com/blog/echarts-statistical-extension-tutorial/" target="_blank" rel="noopener">ECharts 统计扩展教程</a><br><small><em>推荐人：胡国伟</em></small><br>ECharts 统计扩展，包含的功能有直方图、聚类、回归、以及常用的汇总统计。通过统计扩展和 ECharts 的结合，可以使大家方便地实现可视分析，也就是将数据分析的结果，通过可视化直观地呈现出来。</p>
 </li>
-<li><p><a href="https://github.com/wy-ei/notebook/issues/34#issuecomment-266946255" target="_blank" rel="external">前端性能优化相关</a><br><small><em>推荐人：陶明</em></small><br>从多角度进行性能问题剖析，对JavaScript，DOM，CSS都介绍了性能优化方面的问题因素及解决方案；内容介绍不是很详细，例如对于debounce 进行消抖只是简单说明，这方面在第一期成斌有推荐详细的<a href="https://github.com/mqyqingfeng/Blog/issues/22" target="_blank" rel="external">文章</a>。</p>
+<li><p><a href="https://github.com/wy-ei/notebook/issues/34#issuecomment-266946255" target="_blank" rel="noopener">前端性能优化相关</a><br><small><em>推荐人：陶明</em></small><br>从多角度进行性能问题剖析，对JavaScript，DOM，CSS都介绍了性能优化方面的问题因素及解决方案；内容介绍不是很详细，例如对于debounce 进行消抖只是简单说明，这方面在第一期成斌有推荐详细的<a href="https://github.com/mqyqingfeng/Blog/issues/22" target="_blank" rel="noopener">文章</a>。</p>
 </li>
-<li><p><a href="https://github.com/creeperyang/blog/issues/2" target="_blank" rel="external">JavaScript问题集锦</a><br><small><em>推荐人：李志伟</em></small><br>文章整理了一些比较有价值且常见的JS问题，看似简单，但深究其原理还是很有必要的，相信对你的JS基础功底是个考验。</p>
+<li><p><a href="https://github.com/creeperyang/blog/issues/2" target="_blank" rel="noopener">JavaScript问题集锦</a><br><small><em>推荐人：李志伟</em></small><br>文章整理了一些比较有价值且常见的JS问题，看似简单，但深究其原理还是很有必要的，相信对你的JS基础功底是个考验。</p>
 </li>
-<li><p><a href="https://segmentfault.com/a/1190000003894119" target="_blank" rel="external">浅谈 JS 对象之扩展、密封及冻结三大特性</a><br><small><em>推荐人：耿少真</em></small><br>由浅入深讨论JS中对象的扩展、密封及冻结特性，从三种不同的冻结程度介绍了 js 冻结对象的方法。</p>
+<li><p><a href="https://segmentfault.com/a/1190000003894119" target="_blank" rel="noopener">浅谈 JS 对象之扩展、密封及冻结三大特性</a><br><small><em>推荐人：耿少真</em></small><br>由浅入深讨论JS中对象的扩展、密封及冻结特性，从三种不同的冻结程度介绍了 js 冻结对象的方法。</p>
 <h5 id="扩展特性"><a href="#扩展特性" class="headerlink" title="扩展特性:"></a>扩展特性:</h5><ul>
 <li>Object.isExtensible 方法</li>
 <li>Object.preventExtensions 方法<h5 id="密封特性"><a href="#密封特性" class="headerlink" title="密封特性:"></a>密封特性:</h5></li>
@@ -800,9 +908,9 @@
 <li>Object.freeze 方法</li>
 </ul>
 </li>
-<li><p><a href="https://github.com/hustcc/JS-Sorting-Algorithm" target="_blank" rel="external">十大经典排序算法</a><br><small><em>推荐人：郭俊兵</em></small><br>排序算法可以分为内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。常见的内部排序算法有：插入排序、希尔排序、选择排序、冒泡排序、归并排序、快速排序、堆排序、基数排序等。</p>
+<li><p><a href="https://github.com/hustcc/JS-Sorting-Algorithm" target="_blank" rel="noopener">十大经典排序算法</a><br><small><em>推荐人：郭俊兵</em></small><br>排序算法可以分为内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。常见的内部排序算法有：插入排序、希尔排序、选择排序、冒泡排序、归并排序、快速排序、堆排序、基数排序等。</p>
 </li>
-<li><p><a href="http://www.ruanyifeng.com/blog/2012/10/javascript_module.html" target="_blank" rel="external">Javascript模块化编程（一）：模块的写法</a><br><a href="http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html" target="_blank" rel="external">Javascript模块化编程（二）：AMD规范</a><br><a href="http://www.ruanyifeng.com/blog/2012/11/require_js.html" target="_blank" rel="external">Javascript模块化编程（三）：require.js的用法</a><br><small><em>推荐人：包京京</em></small><br>阮一峰的文章最大的好处就是解释的清楚，很多大牛工程师不善表达，自己会但不一定能教得会。<br>三篇系列文章介绍了：js模块花的基本概念，AMD规范以及require.js的实践。</p>
+<li><p><a href="http://www.ruanyifeng.com/blog/2012/10/javascript_module.html" target="_blank" rel="noopener">Javascript模块化编程（一）：模块的写法</a><br><a href="http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html" target="_blank" rel="noopener">Javascript模块化编程（二）：AMD规范</a><br><a href="http://www.ruanyifeng.com/blog/2012/11/require_js.html" target="_blank" rel="noopener">Javascript模块化编程（三）：require.js的用法</a><br><small><em>推荐人：包京京</em></small><br>阮一峰的文章最大的好处就是解释的清楚，很多大牛工程师不善表达，自己会但不一定能教得会。<br>三篇系列文章介绍了：js模块花的基本概念，AMD规范以及require.js的实践。</p>
 </li>
 </ul>
 
@@ -858,43 +966,43 @@
     <div class="entry">
       
         <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li><p><a href="https://juejin.im/post/59278e312f301e006c2e1510" target="_blank" rel="external">JavaScript系列</a><br>相信作为“前端程序猿(媛)”的你一定了解作用域、原型、原型链、继承、闭包……在前端框架的盛行之下，却让初学者忽略了JS基础的学习，但基础不稳必然限制你的发展空间，当你了解了底层，就能很轻松明白框架的原理。</p>
+<li><p><a href="https://juejin.im/post/59278e312f301e006c2e1510" target="_blank" rel="noopener">JavaScript系列</a><br>相信作为“前端程序猿(媛)”的你一定了解作用域、原型、原型链、继承、闭包……在前端框架的盛行之下，却让初学者忽略了JS基础的学习，但基础不稳必然限制你的发展空间，当你了解了底层，就能很轻松明白框架的原理。</p>
 </li>
-<li><p><a href="https://juejin.im/post/57dcd394a22b9d00610c5ec8" target="_blank" rel="external">排序算法</a><br>什么？在这个“用数据说话”的时代，你不懂排序算法？那你算什么男人~算什么男人~ 不对不对 算什么猿人~算什么猿人…咳咳，言归正传，平时开发我们常用的快速排序、冒泡排序、选择排序你是否了解其利弊。除此之外还有什么排序算法呢？快来一起学习吧。</p>
+<li><p><a href="https://juejin.im/post/57dcd394a22b9d00610c5ec8" target="_blank" rel="noopener">排序算法</a><br>什么？在这个“用数据说话”的时代，你不懂排序算法？那你算什么男人~算什么男人~ 不对不对 算什么猿人~算什么猿人…咳咳，言归正传，平时开发我们常用的快速排序、冒泡排序、选择排序你是否了解其利弊。除此之外还有什么排序算法呢？快来一起学习吧。</p>
 </li>
-<li><p><a href="http://es6.ruanyifeng.com/#docs/iterator" target="_blank" rel="external">Iterator 遍历器</a><br>Iterator为各种不同的数据结构提供了统一的访问机制。它可以提供统一的、简便的接口，使得数据结构的成员按某种次序排列，而es6新增for…of循环，就是由Iterator接口提供消费的。</p>
+<li><p><a href="http://es6.ruanyifeng.com/#docs/iterator" target="_blank" rel="noopener">Iterator 遍历器</a><br>Iterator为各种不同的数据结构提供了统一的访问机制。它可以提供统一的、简便的接口，使得数据结构的成员按某种次序排列，而es6新增for…of循环，就是由Iterator接口提供消费的。</p>
 </li>
-<li><p><a href="http://www.ruanyifeng.com/blog/2017/06/tcp-protocol.html" target="_blank" rel="external">TCP协议简介</a><br>TCP作为互联网核心协议之一，“三次握手”“四次挥手”你是否有所了解？快来完善自己的知识体系吧。<br>ps:详解请参考<a href="http://www.jianshu.com/p/ef892323e68f" target="_blank" rel="external">这里</a></p>
+<li><p><a href="http://www.ruanyifeng.com/blog/2017/06/tcp-protocol.html" target="_blank" rel="noopener">TCP协议简介</a><br>TCP作为互联网核心协议之一，“三次握手”“四次挥手”你是否有所了解？快来完善自己的知识体系吧。<br>ps:详解请参考<a href="http://www.jianshu.com/p/ef892323e68f" target="_blank" rel="noopener">这里</a></p>
 </li>
-<li><p><a href="http://www.jianshu.com/p/e7bb97218946" target="_blank" rel="external">正则表达式</a><br>业务中有很多复杂的逻辑判断？常常嵌套多个if？快来这里学习下吧，熟练掌握正则表达式会使得你的开发效率得到极大提升。</p>
+<li><p><a href="http://www.jianshu.com/p/e7bb97218946" target="_blank" rel="noopener">正则表达式</a><br>业务中有很多复杂的逻辑判断？常常嵌套多个if？快来这里学习下吧，熟练掌握正则表达式会使得你的开发效率得到极大提升。</p>
 </li>
 </ul>
 <h2 id="资源整理"><a href="#资源整理" class="headerlink" title="资源整理"></a>资源整理</h2><ul>
-<li><a href="https://github.com/Wscats/Good-text-Share" target="_blank" rel="external">前端知识点大百科全书</a></li>
-<li><a href="http://www.jianshu.com/p/c3dae0951f74" target="_blank" rel="external">前端资源汇集</a><br>如此之全的知识整理、资源汇集，都掌握的话你可以神挡杀神佛挡杀佛了。</li>
+<li><a href="https://github.com/Wscats/Good-text-Share" target="_blank" rel="noopener">前端知识点大百科全书</a></li>
+<li><a href="http://www.jianshu.com/p/c3dae0951f74" target="_blank" rel="noopener">前端资源汇集</a><br>如此之全的知识整理、资源汇集，都掌握的话你可以神挡杀神佛挡杀佛了。</li>
 </ul>
 <h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
-<li><p><a href="https://juejin.im/post/58e3a5a0a0bb9f0069fc16bb" target="_blank" rel="external">一劳永逸的搞定flex布局</a><br>你是否还在使用浮动布局？写各种line-height实现居中？不妨试试flexBox布局，它简单易用的写法可以轻松实现各种布局，让你的布局更快速高效。</p>
+<li><p><a href="https://juejin.im/post/58e3a5a0a0bb9f0069fc16bb" target="_blank" rel="noopener">一劳永逸的搞定flex布局</a><br>你是否还在使用浮动布局？写各种line-height实现居中？不妨试试flexBox布局，它简单易用的写法可以轻松实现各种布局，让你的布局更快速高效。</p>
 </li>
-<li><p><a href="https://segmentfault.com/a/1190000010014281" target="_blank" rel="external">Vue的数据依赖实现原理简析</a><br>主要从初始化的数据层面上分析了Vue是如何管理依赖来到达数据的动态响应。<br>initState的过程中，将props,computed,data等属性通过Object.defineProperty来改造其getter/setter属性，并为每一个响应式属性实例化一个observer观察者。这个observer内部dep记录了这个响应式属性的所有依赖。<br>当响应式属性调用setter函数时，通过dep.notify()方法去遍历所有的依赖，调用watcher.update()去完成数据的动态响应。</p>
+<li><p><a href="https://segmentfault.com/a/1190000010014281" target="_blank" rel="noopener">Vue的数据依赖实现原理简析</a><br>主要从初始化的数据层面上分析了Vue是如何管理依赖来到达数据的动态响应。<br>initState的过程中，将props,computed,data等属性通过Object.defineProperty来改造其getter/setter属性，并为每一个响应式属性实例化一个observer观察者。这个observer内部dep记录了这个响应式属性的所有依赖。<br>当响应式属性调用setter函数时，通过dep.notify()方法去遍历所有的依赖，调用watcher.update()去完成数据的动态响应。</p>
 </li>
-<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzIyNjE4NjI2Nw==&amp;mid=2652558943&amp;idx=1&amp;sn=1516afcf876b9fb4a17ce048c5ade58d" target="_blank" rel="external">靠谱程序员必备技能——重构</a><br>当项目变得难以维护，重构便便迫在眉睫，但很多所谓重构仅仅算是重写，随着时间推移，项目再次变得难以维护，周而复始，陷入怪圈。如何避免重构变成重写，本文给了一些很好的建议。</p>
+<li><p><a href="https://mp.weixin.qq.com/s?__biz=MzIyNjE4NjI2Nw==&amp;mid=2652558943&amp;idx=1&amp;sn=1516afcf876b9fb4a17ce048c5ade58d" target="_blank" rel="noopener">靠谱程序员必备技能——重构</a><br>当项目变得难以维护，重构便便迫在眉睫，但很多所谓重构仅仅算是重写，随着时间推移，项目再次变得难以维护，周而复始，陷入怪圈。如何避免重构变成重写，本文给了一些很好的建议。</p>
 </li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/27659059" target="_blank" rel="external">我接触过的前端数据结构与算法</a><br>只要是工程师就必须学好计算机基础，只有这样才能适应计算机技术的快速发展，前端工程师更是如此。</p>
+<li><p><a href="https://zhuanlan.zhihu.com/p/27659059" target="_blank" rel="noopener">我接触过的前端数据结构与算法</a><br>只要是工程师就必须学好计算机基础，只有这样才能适应计算机技术的快速发展，前端工程师更是如此。</p>
 </li>
-<li><p><a href="https://yeaseonzhang.github.io/2017/03/16/Vuex-%E9%80%9A%E4%BF%97%E7%89%88/" target="_blank" rel="external">Vuex 通俗版教程</a><br>Vuex 类似 Redux 的状态管理器，用来管理Vue的所有组件状态。<br>一般在你开发大型单页应用（SPA），会出现多个视图组件依赖同一个状态，来自不同视图的行为需要变更同一个状态。<br>遇到以上情况时候，可以考虑使用Vuex，它能把组件的共享状态抽取出来，当做一个全局单例模式进行管理。这样不管你在何处改变状态，都会通知使用该状态的组件做出相应修改。</p>
+<li><p><a href="https://yeaseonzhang.github.io/2017/03/16/Vuex-%E9%80%9A%E4%BF%97%E7%89%88/" target="_blank" rel="noopener">Vuex 通俗版教程</a><br>Vuex 类似 Redux 的状态管理器，用来管理Vue的所有组件状态。<br>一般在你开发大型单页应用（SPA），会出现多个视图组件依赖同一个状态，来自不同视图的行为需要变更同一个状态。<br>遇到以上情况时候，可以考虑使用Vuex，它能把组件的共享状态抽取出来，当做一个全局单例模式进行管理。这样不管你在何处改变状态，都会通知使用该状态的组件做出相应修改。</p>
 </li>
-<li><p><a href="https://stffe.github.io/vue/2017/03/03/%E5%AD%A6%E4%B9%A0Vue%E6%BA%90%E7%A0%81.html" target="_blank" rel="external">学习Vue.js源码</a><br>文中介绍了vue项目目录结构和数据绑定实现，没有太深入，但可以作为初步了解。</p>
+<li><p><a href="https://stffe.github.io/vue/2017/03/03/%E5%AD%A6%E4%B9%A0Vue%E6%BA%90%E7%A0%81.html" target="_blank" rel="noopener">学习Vue.js源码</a><br>文中介绍了vue项目目录结构和数据绑定实现，没有太深入，但可以作为初步了解。</p>
 </li>
-<li><p><a href="https://segmentfault.com/a/1190000009985489#articleHeader9" target="_blank" rel="external">GitHub —— 你不得不上的交友网站</a><br>文章整理了GitHub入门，搭建发布个人博客及个人项目发布，还介绍了一些工具，插件及开源项目；内容比较丰富。</p>
+<li><p><a href="https://segmentfault.com/a/1190000009985489#articleHeader9" target="_blank" rel="noopener">GitHub —— 你不得不上的交友网站</a><br>文章整理了GitHub入门，搭建发布个人博客及个人项目发布，还介绍了一些工具，插件及开源项目；内容比较丰富。</p>
 </li>
-<li><p><a href="http://meiminjun.github.io/import%E5%92%8Cexport%E7%AC%94%E8%AE%B0/" target="_blank" rel="external">彻底搞清楚javascript中的require、import和export</a><br>通过介绍CMD、AMD、ES6的模块规范，来引申出平时业务中经常用到require、import和export的用法以及含义。</p>
+<li><p><a href="http://meiminjun.github.io/import%E5%92%8Cexport%E7%AC%94%E8%AE%B0/" target="_blank" rel="noopener">彻底搞清楚javascript中的require、import和export</a><br>通过介绍CMD、AMD、ES6的模块规范，来引申出平时业务中经常用到require、import和export的用法以及含义。</p>
 </li>
-<li><p><a href="https://github.com/istanbuljs/nyc" target="_blank" rel="external">工具推荐</a><br>覆盖率工具 istanbul 替换为 nyc，多进程覆盖率的测试速度提升了几倍。都是同一作者的作品，后者目前活跃度高，并支持前端很多新特性。</p>
+<li><p><a href="https://github.com/istanbuljs/nyc" target="_blank" rel="noopener">工具推荐</a><br>覆盖率工具 istanbul 替换为 nyc，多进程覆盖率的测试速度提升了几倍。都是同一作者的作品，后者目前活跃度高，并支持前端很多新特性。</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ npm i nyc --save-dev</div><div class="line">$ ./node_modules/.bin/nyc ./node_modules/.bin/mocha</div></pre></td></tr></table></figure>
-<p>执行单元测试命令后，还会直观的给出代码覆盖率报告，以<a href="http://flcloverjs.org/" target="_blank" rel="external">Flclover</a>为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">------------------------------------|----------|----------|----------|----------|----------------|</div><div class="line">File                                |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |</div><div class="line">------------------------------------|----------|----------|----------|----------|----------------|</div><div class="line">All files                           |    79.41 |    66.67 |    61.11 |    81.82 |                |</div><div class="line"> flclover                           |      100 |      100 |      100 |      100 |                |</div><div class="line">  index.js                          |      100 |      100 |      100 |      100 |                |</div><div class="line"> flclover/lib                       |    88.52 |    82.35 |    81.82 |    88.52 |                |</div><div class="line">  application.js                    |      100 |      100 |      100 |      100 |                |</div><div class="line">  flclover.js                       |       30 |        0 |        0 |       30 |... 13,14,17,19 |</div><div class="line"> flclover/lib/middleware/bodyparser |      100 |      100 |      100 |      100 |                |</div><div class="line">  index.js                          |      100 |      100 |      100 |      100 |                |</div><div class="line"> flclover/lib/middleware/logger     |    55.56 |       50 |       50 |    55.56 |                |</div><div class="line">  index.js                          |    55.56 |       50 |       50 |    55.56 |... 39,42,45,48 |</div><div class="line"> flclover/lib/utils                 |    71.43 |    33.33 |        0 |    83.33 |                |</div><div class="line">  index.js                          |    81.25 |    33.33 |        0 |      100 |           7,10 |</div><div class="line">  logger.js                         |       40 |      100 |        0 |       40 |         4,9,13 |</div><div class="line">------------------------------------|----------|----------|----------|----------|----------------|</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm i nyc --save-dev</span><br><span class="line">$ ./node_modules/.bin/nyc ./node_modules/.bin/mocha</span><br></pre></td></tr></table></figure>
+<p>执行单元测试命令后，还会直观的给出代码覆盖率报告，以<a href="http://flcloverjs.org/" target="_blank" rel="noopener">Flclover</a>为例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">------------------------------------|----------|----------|----------|----------|----------------|</span><br><span class="line">File                                |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |</span><br><span class="line">------------------------------------|----------|----------|----------|----------|----------------|</span><br><span class="line">All files                           |    79.41 |    66.67 |    61.11 |    81.82 |                |</span><br><span class="line"> flclover                           |      100 |      100 |      100 |      100 |                |</span><br><span class="line">  index.js                          |      100 |      100 |      100 |      100 |                |</span><br><span class="line"> flclover/lib                       |    88.52 |    82.35 |    81.82 |    88.52 |                |</span><br><span class="line">  application.js                    |      100 |      100 |      100 |      100 |                |</span><br><span class="line">  flclover.js                       |       30 |        0 |        0 |       30 |... 13,14,17,19 |</span><br><span class="line"> flclover/lib/middleware/bodyparser |      100 |      100 |      100 |      100 |                |</span><br><span class="line">  index.js                          |      100 |      100 |      100 |      100 |                |</span><br><span class="line"> flclover/lib/middleware/logger     |    55.56 |       50 |       50 |    55.56 |                |</span><br><span class="line">  index.js                          |    55.56 |       50 |       50 |    55.56 |... 39,42,45,48 |</span><br><span class="line"> flclover/lib/utils                 |    71.43 |    33.33 |        0 |    83.33 |                |</span><br><span class="line">  index.js                          |    81.25 |    33.33 |        0 |      100 |           7,10 |</span><br><span class="line">  logger.js                         |       40 |      100 |        0 |       40 |         4,9,13 |</span><br><span class="line">------------------------------------|----------|----------|----------|----------|----------------|</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -912,96 +1020,6 @@
     <span class="post-tags">
       <i class="icon-tags"></i>
         <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/es6/">es6</a><a href="/fsd/tags/vue/">vue</a><a href="/fsd/tags/算法/">算法</a><a href="/fsd/tags/工具/">工具</a><a href="/fsd/tags/必备技能/">必备技能</a>
-    </span>
-    
-
-    </div>
-
-    
-  </div>
-</article>
-
-
-
-  <article>
-
-  
-    
-    <h3 class="article-title"><a href="/fsd/2017/06/30/weekly-2/"><span>大前端周刊 第2期 （本期小编：胡国伟）</span></a></h3>
-    
-  
-
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/fsd/2017/06/30/weekly-2/" rel="bookmark">
-        <time class="entry-date published" datetime="2017-06-30T03:18:25.000Z">
-          2017-06-30
-        </time>
-      </a>
-    </span>
-  </div>
-
-
-  
-
-  <div class="article-content">
-    <div class="entry">
-      
-        <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li><p><a href="http://es6.ruanyifeng.com/#docs/class" target="_blank" rel="external">Class 的基本语法</a><br>尽管基本上，<code>ES6</code>的<code>class</code>可以看作只是一个语法糖，但使得<code>JavaScript</code>对象原型的写法更加清晰、更像面向对象编程的语法，更接近传统语言的写法。</p>
-</li>
-<li><p><a href="http://es6.ruanyifeng.com/#docs/module" target="_blank" rel="external">Module 的语法</a><br>相交于社区提供了各种模块化解决方案，<code>ES6</code>语言标准的层面上实现了模块功能，成为浏览器和服务器通用的模块解决方案。</p>
-</li>
-<li><p><a href="http://es6.ruanyifeng.com/#docs/array" target="_blank" rel="external">数组的扩展</a><br><code>ES6</code>内置新数组方法，无需再自己再实现相应的<code>polyfill</code>了，赶紧学习充能，搭配<a href="http://louiszhai.github.io/2017/04/28/array/" target="_blank" rel="external">该文（<em>【深度长文】JavaScript数组所有API全解密</em>）</a>食用，更易消化。</p>
-</li>
-<li><p><a href="https://webpack-china.org/" target="_blank" rel="external">webpack 中文</a><br>旧版的<code>webpack</code>官方文档有些糟糕，幸好后来有了新版，并且还有志愿者维护了相对应的中文版本，这下查阅学习就更轻松了。近日<code>webpack 3.0</code> 已经释出，大家赶快跟进。</p>
-</li>
-<li><p><a href="https://segmentfault.com/a/1190000007599845" target="_blank" rel="external">EditorConfig使用介绍</a><br>团队合作，统一编辑器行为非常必要，本文对<code>EditorConfig</code>中的配置进行了讲解。<br>ps：<a href="http://editorconfig.org/" target="_blank" rel="external">EditorConfig</a>规范在这里。</p>
-</li>
-</ul>
-<h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
-<li><ol>
-<li><a href="http://www.ruanyifeng.com/blog/2017/05/server-sent_events.html" target="_blank" rel="external">Server-Sent Events 教程</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html" target="_blank" rel="external">WebSocket 教程</a> <br><br>这两篇文章一起读，就可以很全面的了解现代浏览器和服务器通信技术。</li>
-</ol>
-</li>
-<li><p><a href="https://github.com/wangfupeng1988/js-async-tutorial" target="_blank" rel="external">深入理解 JavaScript 异步</a><br>这个系列文章把异步方面的知识以及原理讲解的比较清楚，从传统的方式到<code>promise</code>到<code>generator</code>到<code>async</code>，值得一读。</p>
-</li>
-<li><p><a href="http://www.jianshu.com/p/6b816c609669" target="_blank" rel="external">koa2从起步到填坑</a><br>比较系统简介<code>koa2</code>使用，包含一些例子，可以让人更快上手。</p>
-</li>
-<li><p><a href="https://www.404forest.com/2017/06/28/modern-web-development-tech-analysis-data-reactivity-system/" target="_blank" rel="external">现代前端科技解析 —— 数据响应式系统</a><br>文章讲解数据响应式系统及其构建，分步骤实现了<code>vue2.0</code>的响应式，还有详细的代码示例及注释。</p>
-</li>
-<li><p><a href="https://segmentfault.com/a/1190000000317146" target="_blank" rel="external">关于前端开发谈谈单元测试</a><br>阐述了做单元测试的必要性，<br>着重介绍了<code>Jasmine</code>的常用语法，<br>并对其他流行测试框架和工具做了介绍。</p>
-</li>
-<li><p><a href="http://www.ituring.com.cn/book/1272" target="_blank" rel="external">Three.js入门指南</a><br>关于<code>Three.js</code>中文文章资料还是不够丰富，以至于这本免费小书时至今日还是<code>Three.js</code>入门的最佳选择之一。</p>
-</li>
-<li><ol>
-<li><a href="https://mp.weixin.qq.com/s/jUJXmis0_u6BzQDT2mCltA" target="_blank" rel="external">测试你的前端代码 – part1（介绍篇）</a></li>
-<li><a href="https://mp.weixin.qq.com/s/pYUePHOsZegMf4MmJCoJeA" target="_blank" rel="external">测试你的前端代码 – part2（单元测试）</a></li>
-<li><a href="https://mp.weixin.qq.com/s/8UfR8bsPd2bkmPg_xkAKKg" target="_blank" rel="external">测试你的前端代码 – part3（端到端测试）</a></li>
-<li><a href="https://mp.weixin.qq.com/s/CpNUn5AWbP4aH0yirwuizQ" target="_blank" rel="external">测试你的前端代码 – part4（集成测试）</a><br><br><br>文章由浅入深的介绍前端工程的测试，覆盖单元测试、端到端测试、集成测试，较为简单的事例介绍有利于你快速掌握这些知识。</li>
-</ol>
-</li>
-<li><p><a href="http://www.oschina.net/translate/learning-javascript-design-patterns?cmp" target="_blank" rel="external">学用 JavaScript 设计模式</a><br>文章讲解数据响应式系统及其构建，分步骤实现了 vue2.0的响应式，还有详细的代码示例及注释。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/fsd/tags/weekly/">weekly</a><a href="/fsd/tags/设计模式/">设计模式</a><a href="/fsd/tags/框架/">框架</a><a href="/fsd/tags/测试/">测试</a><a href="/fsd/tags/three-js/">three.js</a>
     </span>
     
 
