@@ -547,11 +547,11 @@
     </summary>
     
     
-      <category term="Event-Driven" scheme="https://talkingdata.github.io/tags/Event-Driven/"/>
-    
       <category term="全栈" scheme="https://talkingdata.github.io/tags/%E5%85%A8%E6%A0%88/"/>
     
       <category term="Node" scheme="https://talkingdata.github.io/tags/Node/"/>
+    
+      <category term="Event-Driven" scheme="https://talkingdata.github.io/tags/Event-Driven/"/>
     
   </entry>
   
@@ -581,11 +581,11 @@
     
       <category term="ES6" scheme="https://talkingdata.github.io/tags/ES6/"/>
     
-      <category term="算法" scheme="https://talkingdata.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="Echarts" scheme="https://talkingdata.github.io/tags/Echarts/"/>
     
       <category term="SVG" scheme="https://talkingdata.github.io/tags/SVG/"/>
+    
+      <category term="算法" scheme="https://talkingdata.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="模块化" scheme="https://talkingdata.github.io/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
     
@@ -615,11 +615,11 @@
     
       <category term="weekly" scheme="https://talkingdata.github.io/tags/weekly/"/>
     
+      <category term="算法" scheme="https://talkingdata.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
       <category term="es6" scheme="https://talkingdata.github.io/tags/es6/"/>
     
       <category term="vue" scheme="https://talkingdata.github.io/tags/vue/"/>
-    
-      <category term="算法" scheme="https://talkingdata.github.io/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="工具" scheme="https://talkingdata.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
     
